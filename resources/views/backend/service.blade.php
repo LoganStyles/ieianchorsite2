@@ -55,7 +55,7 @@ $moduleitems=$data['moduleitems'];?>
                     <div class="portlet-title">
                         <div class="caption font-green-sharp">
                             <i class="icon-speech font-green-sharp"></i>
-                            <span id="service_title" class="caption-subject bold uppercase"> {{$serviceitem['title']}}</span>
+                            <span id="service_title" class="caption-subject bold uppercase"> {!!$serviceitem['title']!!}</span>
                             <!--<span class="caption-helper">weekly stats...</span>-->
                         </div>
                         <div class="actions">
@@ -74,7 +74,7 @@ $moduleitems=$data['moduleitems'];?>
                             <input type="hidden" id="type" value="{{$serviceitem['type']}}">
                             <input type="hidden" id="service_position" value="{{$serviceitem['position']}}">
                             <input type="hidden" id="service_display" value="{{$serviceitem['display']}}">
-                            <p id="service_details"> {{$serviceitem['details']}}</p>
+                            <p id="service_details"> {!!$serviceitem['details']!!}</p>
                             <div>                                
                                 <div class="row">
                                     @foreach($moduleitems as $service_inneritem)

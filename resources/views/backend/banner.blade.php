@@ -56,7 +56,7 @@ $moduleitems=$data['moduleitems'];
                     <div class="portlet-title">
                         <div class="caption font-green-sharp">
                             <i class="icon-speech font-green-sharp"></i>
-                            <span id="banner_title" class="caption-subject bold uppercase"> {{$banneritem['title']}}</span>
+                            <span id="banner_title" class="caption-subject bold uppercase"> {!!$banneritem['title']!!}</span>
                             <!--<span class="caption-helper">weekly stats...</span>-->
                         </div>
                         <div class="actions">
@@ -75,7 +75,7 @@ $moduleitems=$data['moduleitems'];
                             <input type="hidden" id="type" value="{{$banneritem['type']}}">
                             <input type="hidden" id="banner_position" value="{{$banneritem['position']}}">
                             <input type="hidden" id="banner_display" value="{{$banneritem['display']}}">
-                            <p id="banner_details"> {{$banneritem['details']}}</p>
+                            <p id="banner_details"> {!!$banneritem['details']!!}</p>
                             <div>                                
                                 <div class="row">
                                     @foreach($moduleitems as $banner_inneritem)

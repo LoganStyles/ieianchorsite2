@@ -37,7 +37,9 @@
         <link href="{{ asset('/assets/layouts/layout/css/custom.min.css')}}" rel="stylesheet" type="text/css" />
         <!-- END THEME LAYOUT STYLES -->
 
-        <link rel="shortcut icon" href="{{ asset('/assets/pages/img/favicon.ico')}}" /> </head>
+        <link rel="shortcut icon" href="{{ asset('/assets/pages/img/favicon.ico')}}" /> 
+        
+        </head>
     <!-- END HEAD -->
     
     <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid page-content-white page-md">

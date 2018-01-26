@@ -55,7 +55,7 @@ $moduleitems=$data['moduleitems'];?>
                     <div class="portlet-title">
                         <div class="caption font-green-sharp">
                             <i class="icon-speech font-green-sharp"></i>
-                            <span id="newsitem_title" class="caption-subject bold uppercase"> {{$newitem['title']}}</span>
+                            <span id="newsitem_title" class="caption-subject bold uppercase"> {!!$newitem['title']!!}</span>
                             <!--<span class="caption-helper">weekly stats...</span>-->
                         </div>
                         <div class="actions">
@@ -74,7 +74,7 @@ $moduleitems=$data['moduleitems'];?>
                             <input type="hidden" id="type" value="{{$newitem['type']}}">
                             <input type="hidden" id="newsitem_position" value="{{$newitem['position']}}">
                             <input type="hidden" id="newsitem_display" value="{{$newitem['display']}}">
-                            <p id="newsitem_details"> {{$newitem['details']}}</p>
+                            <p id="newsitem_details"> {!!$newitem['details']!!}</p>
                             <div>                                
                                 <div class="row">
                                     @foreach($moduleitems as $news_inneritem)

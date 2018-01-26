@@ -66,7 +66,20 @@
         <script src="{{asset('/assets/layouts/layout/scripts/demo.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('/assets/layouts/global/scripts/quick-sidebar.min.js')}}" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
-        
+        <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+        <script>
+            //initTinyMice('#details','');
+//            function initTinyMice(form_id,data){
+//                $(form_id).html(data);
+//               tinymce.init({ 
+//                            selector:'textarea#details',
+//                            plugins:'link code',
+//                            menubar:false
+//                        }); 
+//                        
+//               /**/
+//            }
+        </script>
         <script type="text/javascript">
             $(document).ready(function(){
                 //fetch specific content & display in form
@@ -127,6 +140,14 @@
                     }
                     $(form_display).text(display_val);
                     $(form_details).text(details_val).focus();
+                    //initTinyMice(form_details,details_val);
+                    //tinymce.get(form_details).setContent("<p>"+details_val+"</p>");
+                    
+                    /*tinymce.init({ 
+                            selector:'textarea#details' 
+                        });*/
+                    
+                    /**/
                 });
                 
                 $('body').on('click','.del_button',function(){
@@ -189,6 +210,7 @@
             });
         
         </script>
+        
         
 
 </body>

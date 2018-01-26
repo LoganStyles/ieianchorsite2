@@ -56,7 +56,7 @@ $moduleitems=$data['moduleitems'];
                     <div class="portlet-title">
                         <div class="caption font-green-sharp">
                             <i class="icon-speech font-green-sharp"></i>
-                            <span id="testimonial_title" class="caption-subject bold uppercase"> {{$testimonialitem['title']}}</span>
+                            <span id="testimonial_title" class="caption-subject bold uppercase"> {!!$testimonialitem['title']!!}</span>
                             <!--<span class="caption-helper">weekly stats...</span>-->
                         </div>
                         <div class="actions">
@@ -75,7 +75,7 @@ $moduleitems=$data['moduleitems'];
                             <input type="hidden" id="type" value="{{$testimonialitem['type']}}">
                             <input type="hidden" id="testimonial_position" value="{{$testimonialitem['position']}}">
                             <input type="hidden" id="testimonial_display" value="{{$testimonialitem['display']}}">
-                            <p id="testimonial_details"> {{$testimonialitem['details']}}</p>
+                            <p id="testimonial_details"> {!!$testimonialitem['details']!!}</p>
                             <div>                                
                                 <div class="row">
                                     @foreach($moduleitems as $testimonial_inneritem)

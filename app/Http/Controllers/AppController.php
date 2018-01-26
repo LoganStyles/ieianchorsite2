@@ -26,6 +26,7 @@ use App\Board;
 use App\Boardimage;
 use App\Management;
 use App\Managementimage;
+use Session;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -298,26 +299,31 @@ class AppController extends BaseController {
         $moduleitem->states = $request['states'];
         $moduleitem->oname = trim($request['oname']);
         $moduleitem->save();
-
-        $request->session()->flash('reg_status', 'Registration was successful!');
+        
         //select contact email & send mail
-//        Mail::send('emails.mailEvent', $user, function($message) use ($user) {
-//            $message->to($user->email);
-//            $message->subject('Mailgun Testing');
-//        });
-//        dd('Mail Sent Successfully');
+        $agent_details=DB::table('ref_states_teams')->select('contact_email')
+                    ->where('title', $request['states'])
+                ->get();
+        $agent_email=$agent_details[0];
+        
+        $data=array(
+            'email'=>trim($request['email']),
+            'phone'=>trim($request['phone']),
+            'states'=>trim($request['states']),
+            'subject'=>'RSA Generation',
+            'agent_email'=>$agent_email->contact_email,
+            'clientname'=>trim($request['fname']).' '.trim($request['lname'])
+        );     
+                
+        Mail::send('emails.mailEvent', $data, function($message) use ($data) {
+            $message->from($data['email']);
+            $message->to($data['agent_email']);
+            $message->subject('RSA Registration');
+        });
+        $request->session()->flash('reg_status', 'Registration was successful!');
 
         return redirect()->back();
     }
-
-//    public function processRegMail() {
-//        $user = User::find(1)->toArray();
-//        Mail::send('emails.mailEvent', $user, function($message) use ($user) {
-//            $message->to($user->email);
-//            $message->subject('Mailgun Testing');
-//        });
-//        dd('Mail Send Successfully');
-//    }
 
     public function pensionCalculator(Request $request) {
         //default values
@@ -397,6 +403,7 @@ class AppController extends BaseController {
     /* process modules create & edit */
 
     public function processModule(Request $request) {
+        echo $request['details'];exit;
 
         if ($request['id'] > 0) {//validate and already existing module item
             $this->validate($request, [
