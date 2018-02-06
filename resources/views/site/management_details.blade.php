@@ -48,12 +48,11 @@ Services
                     @foreach($fetched_item as $subitem)
                         <div class="w3ls_courses_left_grid">
                             <h2>
-<!--                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>-->
-                                {{$subitem['title']}}</h2><br>
+                                {!!$subitem['title']!!}</h2><br>
                             <div>
                                 <img src="{{ asset('/site/img/'.$subitem['filename'])}}" style="max-width: 100%;" />
                             </div>
-                            <div class="item_page_details">{{$subitem['details']}}</div>
+                            <div class="item_page_details">{!!$subitem['details']!!}</div>
                         
                     </div>
                     @endforeach

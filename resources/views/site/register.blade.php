@@ -12,80 +12,158 @@ Register
 @endsection 
 
 @section('content')
-
+<link href="{{ captcha_layout_stylesheet_url() }}" type="text/css" rel="stylesheet">
 
         <!-- //banner -->	
-        <div class="banner1">
+<!--        <div class="banner1">
             <div class="wthree_banner1_info">
                 <h3><span>R</span>egister with us</h3>
             </div>
-        </div>
+        </div>-->
         <!-- //banner -->	
         <!-- mail -->
         <div class="team">
             <div class="container">
                 <h3 class="w3l_header w3_agileits_header">RSA <span>REGISTRATION</span></h3>
-                <span style="color: #0086B3;font-size: 1.1em;"><strong>{{Session::get('reg_status')}}</strong></span>
-                <form action="{{ route('process_register')}}" method="post">
-                <div class="agile_team_grids_top">
-                    <div class="col-md-6 agileinfo_mail_grid_left">
-                        
-                            <span class="input input--nariko">
-                                <input class="input__field input__field--nariko" name="fname" type="text" id="fname" required="" />
-                                <label class="input__label input__label--nariko" for="fname">
-                                    <span class="input__label-content input__label-content--nariko">First Name</span>
-                                </label>
-                            </span>
-                            <span class="input input--nariko">
-                                <input class="input__field input__field--nariko" name="oname" type="text" id="oname" required="" />
-                                <label class="input__label input__label--nariko" for="oname">
-                                    <span class="input__label-content input__label-content--nariko">Other Names</span>
-                                </label>
-                            </span>
-                            <span class="input input--nariko">
-                                <input class="input__field input__field--nariko" name="email" type="email" id="email" required="" />
-                                <label class="input__label input__label--nariko" for="email">
-                                    <span class="input__label-content input__label-content--nariko">Your Email</span>
-                                </label>
-                            </span>
+                
+     
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"> <span style="color: #800;">(*Required Fields)</span></div>
+                    <div class="panel-body">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/web-register') }}">
+                            {!! csrf_field() !!}
                             
-                            <span class="input input--nariko">
-                                <select class="input__field input__field--nariko" name="states" id="states">
+                            <span style="color: #0086B3;font-size: 1.1em;"><strong>{{Session::get('reg_status')}}</strong></span>
+
+                            <div class="form-group{{ $errors->has('fname') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label"><span style="color: #f00">*</span>First Name</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="fname" value="{{ old('fname') }}">
+                                    @if ($errors->has('fname'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('fname') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            
+                            <div class="form-group{{ $errors->has('lname') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label"><span style="color: #f00">*</span>Last Name</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="lname" value="{{ old('lname') }}">
+                                    @if ($errors->has('lname'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('lname') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            
+                            <div class="form-group{{ $errors->has('oname') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label">Other Names</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="oname" value="{{ old('oname') }}">
+                                    @if ($errors->has('oname'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('oname') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            
+                            <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label"><span style="color: #f00">*</span>Phone</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="phone" value="{{ old('phone') }}">
+                                    @if ($errors->has('phone'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('phone') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            
+                            <div class="form-group{{ $errors->has('employer') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label"><span style="color: #f00">*</span>Employer Name</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="employer" value="{{ old('employer') }}">
+                                    @if ($errors->has('employer'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('employer') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+
+                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label"><span style="color: #f00">*</span>E-Mail Address</label>
+
+
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+                                    @if ($errors->has('email'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            
+                            <div class="form-group{{ $errors->has('states') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label"><span style="color: #f00">*</span>State of Residence</label>
+
+                                <div class="col-md-6">
+                                    <select class="form-control" name="states" id="states">
                                     @foreach($states as $state)
                                         <option value="{{$state['title']}}">{{$state['title']}}</option>
                                     @endforeach
-                                        </select>
-                                <label class="input__label input__label--nariko" for="states">
-                                    <span class="input__label-content input__label-content--nariko">Your State</span>
-                                </label>
-                            </span>
+                                </select>                                    
+                                </div>
+                            </div>
                             
-                            <input type="submit" value="Register" name="submit">
-                            <input type="hidden" value="{{Session::token()}}" name="_token"/>
-                        
+
+
+                            <div class="form-group{{ $errors->has('CaptchaCode') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label">Captcha</label>
+
+
+                                <div class="col-md-6">
+                                    {!! captcha_image_html('ContactCaptcha') !!}
+                                    <input class="form-control" type="text" id="CaptchaCode" name="CaptchaCode" style="margin-top:5px;">
+
+
+                                    @if ($errors->has('CaptchaCode'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('CaptchaCode') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <br/>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fa fa-btn fa-user"></i>Register
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <div class="col-md-6 agileinfo_mail_grid_right">
-                        <span class="input input--nariko">
-                                <input class="input__field input__field--nariko" name="lname" type="text" id="lname" required="" />
-                                <label class="input__label input__label--nariko" for="lname">
-                                    <span class="input__label-content input__label-content--nariko">Last Name</span>
-                                </label>
-                            </span>
-                            <span class="input input--nariko">
-                                <input class="input__field input__field--nariko" name="phone" type="text" id="phone" required="" />
-                                <label class="input__label input__label--nariko" for="phone">
-                                    <span class="input__label-content input__label-content--nariko">Your Phone</span>
-                                </label>
-                            </span>
-                    </div>
-                    <div class="clearfix"> </div>
                 </div>
-                    </form>
             </div>
         </div>
-<!--        <div class="agile_map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.3905851087434!2d-34.90500565012194!3d-8.061582082752993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ab18d90992e4ab%3A0x8e83c4afabe39a3a!2sSport+Club+Do+Recife!5e0!3m2!1sen!2sin!4v1478684415917" style="border:0"></iframe>
-        </div>-->
-        <!-- //mail -->
-        
+    </div>
+    
+                
+                
+                
+            </div>
+        </div>
         @endsection

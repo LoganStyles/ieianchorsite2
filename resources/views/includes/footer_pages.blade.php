@@ -19,6 +19,16 @@
         <script src="{{asset('/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js')}}" type="text/javascript"></script>
         <!-- END CORE PLUGINS -->
         <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <script src="{{asset('/assets/global/plugins/amcharts/amcharts/amcharts.js')}}" type="text/javascript"></script>
+		<script src="{{asset('/assets/global/plugins/amcharts/amcharts/serial.js')}}" type="text/javascript"></script>
+        <script src="{{asset('/assets/global/plugins/amcharts/amcharts/pie.js')}}" type="text/javascript"></script>
+        <script src="{{asset('/assets/global/plugins/amcharts/amcharts/radar.js')}}" type="text/javascript"></script>
+		<script src="{{asset('/assets/global/plugins/amcharts/amcharts/themes/light.js')}}" type="text/javascript"></script>
+        <script src="{{asset('/assets/global/plugins/amcharts/amcharts/themes/patterns.js')}}" type="text/javascript"></script>
+        <script src="{{asset('/assets/global/plugins/amcharts/amcharts/themes/chalk.js')}}" type="text/javascript"></script>
+        <script src="{{asset('/assets/global/plugins/amcharts/ammap/ammap.js')}}" type="text/javascript"></script>
+        <script src="{{asset('/assets/global/plugins/amcharts/ammap/maps/js/worldLow.js')}}" type="text/javascript"></script>
+        <script src="{{asset('/assets/global/plugins/amcharts/amstockcharts/amstock.js')}}" type="text/javascript"></script>
         <script src="{{asset('/assets/global/scripts/datatable.js')}}" type="text/javascript"></script>
         <script src="{{asset('/assets/global/plugins/datatables/datatables.min.js')}}" type="text/javascript"></script>
         
@@ -46,6 +56,8 @@
         <script src="{{asset('/assets/global/plugins/counterup/jquery.waypoints.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('/assets/global/plugins/counterup/jquery.counterup.min.js')}}" type="text/javascript"></script>
         
+        
+        
         <script src="{{asset('/assets/global/plugins/flot/jquery.flot.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('/assets/global/plugins/flot/jquery.flot.resize.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('/assets/global/plugins/flot/jquery.flot.categories.min.js')}}" type="text/javascript"></script>
@@ -67,21 +79,23 @@
         <script src="{{asset('/assets/layouts/global/scripts/quick-sidebar.min.js')}}" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
         <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-        <script>
-            //initTinyMice('#details','');
-//            function initTinyMice(form_id,data){
-//                $(form_id).html(data);
-//               tinymce.init({ 
-//                            selector:'textarea#details',
-//                            plugins:'link code',
-//                            menubar:false
-//                        }); 
-//                        
-//               /**/
-//            }
-        </script>
+        
         <script type="text/javascript">
             $(document).ready(function(){
+                tinymce.init({ 
+                            selector:'textarea#details',
+                            height: 250,
+                            menubar: false,
+                            plugins: [
+                              'advlist autolink lists link image charmap print preview anchor textcolor',
+                              'searchreplace visualblocks code fullscreen',
+                              'insertdatetime media table contextmenu paste code help wordcount'
+                            ],
+                            toolbar: 'insert | undo redo |  formatselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+                            content_css: [
+                              '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+                              '//www.tinymce.com/css/codepen.min.css']
+                        }); 
                 //fetch specific content & display in form
                 $('body').on('click','.clicked_button',function(){
                     var $this =$(this);
@@ -94,6 +108,7 @@
                     var position_field="#"+type+"_position";
                     var display_field="#"+type+"_display";
                     var details_field="#"+type+"_details";
+                    console.log('details_field '+details_field);
                     
                     //form fields vars
                     var form_id="#"+type+"_form #id";
@@ -118,7 +133,7 @@
                     var type_val=$this.parents('.bordered').children('.portlet-body').find(type_field).val();
                     var position_val=$this.parents('.bordered').children('.portlet-body').find(position_field).val();
                     var display_val= $this.parents('.bordered').children('.portlet-body').find(display_field).val();
-                    var details_val =$this.parents('.bordered').children('.portlet-body').find(details_field).text();
+                    var details_val =$this.parents('.bordered').children('.portlet-body').find(details_field).html();
                     
                     console.log('pos '+position_val);
                     console.log('display '+display_val);
@@ -141,13 +156,9 @@
                     $(form_display).text(display_val);
                     $(form_details).text(details_val).focus();
                     //initTinyMice(form_details,details_val);
-                    //tinymce.get(form_details).setContent("<p>"+details_val+"</p>");
+                    console.log('details val '+details_val);
+                    tinymce.activeEditor.setContent(details_val);
                     
-                    /*tinymce.init({ 
-                            selector:'textarea#details' 
-                        });*/
-                    
-                    /**/
                 });
                 
                 $('body').on('click','.del_button',function(){

@@ -20,6 +20,8 @@ use App\Banner;
 use App\Bannerimage;
 use App\Slide;
 use App\Slideimage;
+use App\Award;
+use App\Awardimage;
 use App\Newsitem;
 use App\Newsitemimage;
 use App\Board;
@@ -38,6 +40,10 @@ class AppController extends BaseController {
     public function __construct(){
 //        $this->middleware('auth');
         parent::__construct();
+    }
+    
+     public function webRegister(){
+        return view('/site/register');
     }
 
     public function showPage($page, $sub_item = NULL, $data = []) {
@@ -64,6 +70,7 @@ class AppController extends BaseController {
                         $data['testimonials'] = $this->getDBData('testimonial');
                         $data['banners'] = $this->getDBData('banner');
                         $data['slides'] = $this->getDBData('slide');
+                        $data['awards'] = $this->getDBData('award');
                         break;
                     case 'show_pension_calculator':
                         $path = '/site/pension_calculator';
@@ -94,38 +101,23 @@ class AppController extends BaseController {
                     case 'management_site':
                         $data['moduleitems'] = $this->getDBData('management');
                         break;
+                    case 'service_site':
+                        $data['moduleitems'] = $this->getDBData('service');
+                        break;
+                    case 'newsitem_site':
+                        $data['moduleitems'] = $this->getDBData('newsitem');
+                        break;
                     case 'about':
                     case 'service':
                     case 'testimonial':
                     case 'banner':
                     case 'slide':
+                    case 'award':
                     case 'newsitem':
                     case 'board':
                     case 'management':
                         $path = '/backend/' . $page;
                         $data['moduleitems'] = $this->getDBData($page);
-
-//                        if (count($data['moduleitems']) <= 0) {//provide defaults if module is empty
-//                            $sub_array = [];
-//                            $sub_array['id'] = 0;
-//                            $sub_array['title'] = "";
-//                            $sub_array['details'] = "";
-//                            $sub_array['link_label'] = "";
-//                            $sub_array['position'] = 1;
-//                            $sub_array['display'] = 1;
-//                            $sub_array['keywords'] = "";
-//                            $sub_array['description'] = "";
-//                            $sub_array['excerpt'] = "";
-//                            $sub_array['type'] = $page;
-//                            $sub_array['filename'] = "";
-//                            $sub_array['imageid'] = "";
-//                            $sub_array['alt'] = "";
-//                            $sub_array['caption'] = "";
-//                            $sub_array['main'] = "";
-//
-//                            $data['moduleitems'] = $sub_array;
-//                        }
-
                         break;
                     default:
                         break;
@@ -146,26 +138,30 @@ class AppController extends BaseController {
 
         if ($request['id'] > 0) {//validate and already existing module item
             $this->validate($request, [
-                'title' => 'required',
+                'name' => 'required',
+                'feedback_type' => 'required',
                 'details' => 'required',
                 'email' => 'required',
                 'phone' => 'required',
                 'subject' => 'required'
             ]);
-            
+                        
             Response::where('id', $request['id'])->update([
-                        'title' => $request['title'],
-                        'details' => trim($request['details']),
-                        'email' => $request['email'],
-                        'phone' => $request['phone'],
-                'ticket_id' => '1',
-                        'subject' => $request['subject']
-                    ]);
+                'name' => $request['name'],
+                'pin' => $request['pin'],
+                'employer' => $request['employer'],
+                'feedback_type' => $request['type'],
+                'details' => trim($request['details']),
+                'email' => $request['email'],
+                'phone' => $request['phone'],
+                'subject' => $request['subject']
+            ]);
             
         } else {
             //validate not existing module item
             $this->validate($request, [
-                'title' => 'required',
+                'name' => 'required',
+                'feedback_type' => 'required',
                 'details' => 'required',
                 'email' => 'required',
                 'phone' => 'required',
@@ -175,15 +171,17 @@ class AppController extends BaseController {
             $moduleitem = new Response();            
 
             //insert modules            
-            $moduleitem->title = $request['title'];
+            $moduleitem->name = $request['name'];
+            $moduleitem->pin = $request['pin'];
+            $moduleitem->employer = $request['employer'];
             $moduleitem->details = trim($request['details']);
             $moduleitem->email = $request['email'];
             $moduleitem->phone = $request['phone'];
             $moduleitem->subject = $request['subject'];
-            $moduleitem->ticket_id = '1';
+            $moduleitem->feedback_type = $request['feedback_type'];
             $moduleitem->save();
         }
-
+        $request->session()->flash('response_status', 'Thank You,your Feedback has been received.');
         return redirect()->back();
     }
 
@@ -275,18 +273,25 @@ class AppController extends BaseController {
     }
 
     /*
-     * pension calculator
-     * validates data received then calculates total package
+     * client registration
+     * validates data received from registration
+     * sends email to validate client email address
      */
+//    public function webRegisterPost(Request $request)
+//    {
+//        
+//        print('write your other code here.');exit;
+//    }
 
-    public function processRegister(Request $request) {
+    public function processRegister(Request $request) {        
         $this->validate($request, [
             'fname' => 'required',
             'lname' => 'required',
-            'oname' => 'required',
-            'email' => 'required',
             'states' => 'required',
-            'phone' => 'required'
+            'phone' => 'required',
+            'employer' => 'required',
+            'email' => 'required|email',
+            'CaptchaCode' => 'required|valid_captcha'
         ]);
 
         $moduleitem = new Registration();
@@ -296,24 +301,37 @@ class AppController extends BaseController {
         $moduleitem->lname = trim($request['lname']);
         $moduleitem->email = trim($request['email']);
         $moduleitem->phone = trim($request['phone']);
+        $moduleitem->employer = trim($request['employer']);
         $moduleitem->states = $request['states'];
         $moduleitem->oname = trim($request['oname']);
+        $moduleitem->validated = 'no';
         $moduleitem->save();
         
         //select contact email & send mail
-        $agent_details=DB::table('ref_states_teams')->select('contact_email')
-                    ->where('title', $request['states'])
-                ->get();
-        $agent_email=$agent_details[0];
+//        $agent_details=DB::table('ref_states_teams')->select('contact_email')
+//                    ->where('title', $request['states'])
+//                ->get();
+//        $agent_email=$agent_details[0];
+//        
+//        $data=array(
+//            'email'=>trim($request['email']),
+//            'phone'=>trim($request['phone']),
+//            'states'=>trim($request['states']),
+//            'subject'=>'RSA Generation',
+//            'agent_email'=>$agent_email->contact_email,
+//            'clientname'=>trim($request['fname']).' '.trim($request['lname'])
+//        );  
         
+        //send client validation email
         $data=array(
-            'email'=>trim($request['email']),
+            'email'=>'cservice@ieianchorpensions.com',
             'phone'=>trim($request['phone']),
             'states'=>trim($request['states']),
             'subject'=>'RSA Generation',
-            'agent_email'=>$agent_email->contact_email,
+            'agent_email'=>trim($request['email']),
             'clientname'=>trim($request['fname']).' '.trim($request['lname'])
-        );     
+        );
+        
                 
         Mail::send('emails.mailEvent', $data, function($message) use ($data) {
             $message->from($data['email']);
@@ -321,7 +339,6 @@ class AppController extends BaseController {
             $message->subject('RSA Registration');
         });
         $request->session()->flash('reg_status', 'Registration was successful!');
-
         return redirect()->back();
     }
 
@@ -403,7 +420,6 @@ class AppController extends BaseController {
     /* process modules create & edit */
 
     public function processModule(Request $request) {
-        echo $request['details'];exit;
 
         if ($request['id'] > 0) {//validate and already existing module item
             $this->validate($request, [
@@ -474,6 +490,19 @@ class AppController extends BaseController {
                         'excerpt' => substr($request['details'], 0, 100)
                     ]);
                     $moduleimage = new Slideimage();
+                    break;
+                
+                case'award':
+                    Award::where('id', $request['id'])->update([
+                        'title' => $request['title'],
+                        'details' => trim($request['details']),
+                        'position' => $request['position'],
+                        'url' => $request['url'],
+                        'display' => $request['display'],
+                        'link_label' => preg_replace('/[^A-Za-z0-9]/', '_', strtolower($request['title'])),
+                        'excerpt' => substr($request['details'], 0, 100)
+                    ]);
+                    $moduleimage = new Awardimage();
                     break;
 
                 case'board':
@@ -565,6 +594,12 @@ class AppController extends BaseController {
                     $moduleitem->url = $request['url'];
                     $moduleimage = new Slideimage();
                     break;
+                
+                case'award':
+                    $moduleitem = new Award();
+                    $moduleitem->url = $request['url'];
+                    $moduleimage = new Awardimage();
+                    break;
 
                 case'newsitem':
                     $moduleitem = new Newsitem();
@@ -647,6 +682,11 @@ class AppController extends BaseController {
                 $moduleitem = Slide::find($request['id']);
                 $moduleitem->delete();
                 break;
+            
+            case'award':
+                $moduleitem = Award::find($request['id']);
+                $moduleitem->delete();
+                break;
 
             case'board':
                 $moduleitem = Board::find($request['id']);
@@ -669,6 +709,26 @@ class AppController extends BaseController {
         }
 
         return redirect()->back();
+    }
+    
+    public function fetchRangeOfPrices(Request $request) {
+        //fetch range of unit prices
+        $result=[];
+        $from_date  = ($request['startDate'])?($request['startDate']):(date('m/d/Y'));
+        $to_date    = ($request['endDate'])?($request['endDate']):(date('m/d/Y'));
+
+        $from = date('Y-m-d' . ' 00:00:00', strtotime($from_date));
+        $to = date('Y-m-d' . ' 00:00:00', strtotime($to_date));
+
+        $range_of_prices = DB::table('unit_prices')
+                ->whereBetween('report_date', [$from, $to])
+                ->orderBy('report_date', 'desc')
+                ->get();
+//        print_r($range_of_prices);exit;
+        if($range_of_prices){
+            $result=$range_of_prices;
+        }
+        return json_encode($result);
     }
 
 }

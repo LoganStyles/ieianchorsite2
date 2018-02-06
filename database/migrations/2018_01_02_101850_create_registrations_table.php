@@ -17,11 +17,12 @@ class CreateRegistrationsTable extends Migration
             $table->increments('id');
             $table->string('fname');
             $table->string('lname');
-            $table->string('oname');
+            $table->string('oname')->nullable();
             $table->string('email');
             $table->string('phone');
             $table->string('states');
             $table->enum('process_status', ['yes', 'no'])->default('no');
+            $table->enum('validated', ['yes', 'no'])->default('no');
             $table->string('type')->default('registration');
             $table->timestamps();
         });

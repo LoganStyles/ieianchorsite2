@@ -74,7 +74,7 @@ $moduleitems=$data['moduleitems'];?>
                             <input type="hidden" id="type" value="{{$managementitem['type']}}">
                             <input type="hidden" id="management_position" value="{{$managementitem['position']}}">
                             <input type="hidden" id="management_display" value="{{$managementitem['display']}}">
-                            <p id="management_details"> {!!$managementitem['details']!!}</p>
+                            <div id="management_details"> {!!$managementitem['details']!!}</div>
                             <div>                                
                                 <div class="row">
                                     @foreach($moduleitems as $management_inneritem)

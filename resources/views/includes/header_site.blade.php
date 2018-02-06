@@ -23,6 +23,10 @@
         <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700,900" rel="stylesheet">
         
         <link href="{{asset('/site/css/datatables/jquery.dataTables.min.css')}}" rel="stylesheet" />
+        <!--coin slider-->
+        <link href="{{asset('/assets/global/coin-slider/coin-slider-styles.css')}}" rel="stylesheet" />
+        <!--<link rel="stylesheet" type="text/css" href="{{asset('/site/css/flexslider/styles.css')}}" media="all" />
+        <!--<link rel="stylesheet" type="text/css" href="{{asset('/site/css/flexslider/demo.css')}}" media="all" />-->
         <style>
             .dataTables_filter, .dataTables_length, .dataTables_info, .dataTables_paginate {
                 /*display: none;*/
@@ -152,8 +156,8 @@
                     <nav class="link-effect-2" id="link-effect-2">
                         <ul class="nav navbar-nav">
                             <li class="<?php if($page=="home"){echo "active";}?>"><a href="{{route('home')}}"><span data-hover="Home">Home</span></a></li>
+                            
                             <li class="<?php if($page=="about_site"||$page=="board_site"){echo "active";}?>dropdown">
-                                <!--<a href="{{url('/page/about')}}"><span data-hover="About Us">About Us</span></a>-->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span data-hover="About Us">About Us</span> <b class="caret"></b></a>
                                 <ul class="dropdown-menu agile_short_dropdown">
                                     <li><a href="{{url('/page/about_site')}}">About Us</a></li>
@@ -173,26 +177,32 @@
                                     
                                     }
                                     ?>
-                                        
-                                   
                                 </ul>
                             </li>
                             
                             <li class="<?php if($page=="investment"){echo "active";}?>"><a href="{{route('investment')}}"><span data-hover="Investment">Investment</span></a></li>
                             
                             <li class="<?php if($page=="newsitem"){echo "active";}?>"><a href="{{url('/page/newsitem/'.$newslink)}}"><span data-hover="News">News</span></a></li>
-                            <li class="<?php if($page=="contact"){echo "active";}?>"><a href="{{url('/page/contact/')}}"><span data-hover="Contact Us">Contact Us</span></a></li>
+                            
+                            <li class="<?php if($page=="faq_site"||$page=="contact"){echo "active";}?>dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span data-hover="Contact Us">Contact Us</span> <b class="caret"></b></a>
+                                <ul class="dropdown-menu agile_short_dropdown">
+                                    <li><a href="{{url('/page/contact')}}">Feedback</a></li>
+                                    <li><a href="{{url('/page/faq_site')}}">FAQ</a></li>
+                                    <li><a href="{{url('/page/branch_site')}}">Our Office/Service Centers</a></li>
+                                </ul>
+                            </li>                                   
+
                         </ul>
                     </nav>
 
                 </div>
-                <div style="position: absolute;top:10px;z-index: 10;right: 1%;">
+<!--                <div style="position: absolute;top:10px;z-index: 10;right: 1%;">
                     @if($page =="home")
                 <img src="{{ asset('/site/img/Award1_colored.png')}}" alt="IEI Anchor Pensions" class="img-responsive" style="float: right;" />
                 @endif
-                <!--<img src="{{ asset('/site/img/award2.jpg')}}" alt="IEI Anchor Pensions" class="img-responsive" style="max-width: 20%;float: right;" />-->
                 <div class="clearfix"></div>
-                </div>
+                </div>-->
                 <div class="clearfix"></div>
             </nav>
             

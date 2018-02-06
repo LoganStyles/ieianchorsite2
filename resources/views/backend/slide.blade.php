@@ -75,7 +75,7 @@ $moduleitems=$data['moduleitems'];
                             <input type="hidden" id="type" value="{{$slideitem['type']}}">
                             <input type="hidden" id="slide_position" value="{{$slideitem['position']}}">
                             <input type="hidden" id="slide_display" value="{{$slideitem['display']}}">
-                            <p id="slide_details"> {!!$slideitem['details']!!}</p>
+                            <div id="slide_details"> {!!$slideitem['details']!!}</div>
                             <div>                                
                                 <div class="row">
                                     @foreach($moduleitems as $slide_inneritem)

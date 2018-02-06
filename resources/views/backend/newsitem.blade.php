@@ -74,7 +74,7 @@ $moduleitems=$data['moduleitems'];?>
                             <input type="hidden" id="type" value="{{$newitem['type']}}">
                             <input type="hidden" id="newsitem_position" value="{{$newitem['position']}}">
                             <input type="hidden" id="newsitem_display" value="{{$newitem['display']}}">
-                            <p id="newsitem_details"> {!!$newitem['details']!!}</p>
+                            <div id="newsitem_details"> {!!$newitem['details']!!}</div>
                             <div>                                
                                 <div class="row">
                                     @foreach($moduleitems as $news_inneritem)
@@ -159,7 +159,6 @@ $moduleitems=$data['moduleitems'];?>
                                     </label>
                                     <div class="col-md-10">
                                         <textarea class="form-control" rows="6" name="details" id="details" ></textarea>
-                                        <!--<textarea class="ckeditor form-control" rows="6" name="details" id="details" ></textarea>-->
                                         <div id="details_error"> </div>
                                     </div>
                                 </div>

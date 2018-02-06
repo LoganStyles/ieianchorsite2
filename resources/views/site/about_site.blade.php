@@ -29,8 +29,8 @@ About Us
                 <div class="w3ls_courses_left_grids">
                     @foreach($moduleitems as $aboutitem)
                         <div class="w3ls_courses_left_grid">
-                        <h3><i class="fa fa-pencil-square-o" aria-hidden="true"></i>{{$aboutitem['title']}}</h3>
-                        {{substr($aboutitem['details'],3)}}
+                        <h3><i class="fa fa-pencil-square-o" aria-hidden="true"></i>{!!$aboutitem['title']!!}</h3>
+                        {!!substr($aboutitem['details'],3)!!}
                     </div>
                     @endforeach
                 </div>

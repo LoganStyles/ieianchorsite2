@@ -84,32 +84,28 @@ Dashboard
                     </div> 
                     
                     <div class="row">
+                        
                         <div class="col-md-6 col-sm-6">
                             <div class="portlet light ">
                                 <div class="portlet-title">
-                                    <div class="caption">
-                                        <span class="caption-subject bold uppercase font-dark">Revenue</span>
-                                        <span class="caption-helper">distance stats...</span>
+                                    <div class="caption ">
+                                        <span class="caption-subject font-dark bold uppercase">Top 10 RSA Generating Organizations</span>
+                                        <span class="caption-helper">First Quater</span>
                                     </div>
                                     <div class="actions">
-                                        <a class="btn btn-circle btn-icon-only btn-default" href="#">
-                                            <i class="icon-cloud-upload"></i>
-                                        </a>
-                                        <a class="btn btn-circle btn-icon-only btn-default" href="#">
-                                            <i class="icon-wrench"></i>
-                                        </a>
-                                        <a class="btn btn-circle btn-icon-only btn-default" href="#">
-                                            <i class="icon-trash"></i>
-                                        </a>
-                                        <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="#"> </a>
+                                        <a href="#" class="btn btn-circle green btn-outline btn-sm">
+                                            <i class="fa fa-pencil"></i> Export </a>
+                                        <a href="#" class="btn btn-circle green btn-outline btn-sm">
+                                            <i class="fa fa-print"></i> Print </a>
                                     </div>
                                 </div>
                                 <div class="portlet-body">
-                                    <div id="dashboard_amchart_1" class="CSSAnimationChart"></div>
+                                    <div id="dashboard_amchart_3" class="CSSAnimationChart"></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-sm-6">
+                        
+<!--                        <div class="col-md-6 col-sm-6">
                             <div class="portlet light ">
                                 <div class="portlet-title">
                                     <div class="caption ">
@@ -124,10 +120,10 @@ Dashboard
                                     </div>
                                 </div>
                                 <div class="portlet-body">
-                                    <div id="dashboard_amchart_3" class="CSSAnimationChart"></div>
+                                    <div id="dashboard_amchart_31" class="CSSAnimationChart"></div>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                     
                 </div>

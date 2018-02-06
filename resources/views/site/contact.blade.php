@@ -11,93 +11,146 @@ Contact Us
 
 @section('content')
 
-
-        <!-- //banner -->	
-        <div class="banner1">
-            <div class="wthree_banner1_info">
-                <h3><span>C</span>ontact Us</h3>
-            </div>
-        </div>
-        <!-- //banner -->	
-        <!-- mail -->
         <div class="team">
             <div class="container">
-                <h3 class="w3l_header w3_agileits_header">Contact <span>Us</span></h3>
-                <div class="agile_team_grids_top">
-                    <div class="col-md-6 agileinfo_mail_grid_left">
-                        <form action="{{ route('process_feedback')}}" method="post">
-                            <span class="input input--nariko">
-                                <input class="input__field input__field--nariko" name="title" type="text" id="title" required="" />
-                                <label class="input__label input__label--nariko" for="title">
-                                    <span class="input__label-content input__label-content--nariko">Your Name</span>
-                                </label>
-                            </span>
-                            <span class="input input--nariko">
-                                <input class="input__field input__field--nariko" name="phone" type="text" id="phone" required="" />
-                                <label class="input__label input__label--nariko" for="input-21">
-                                    <span class="input__label-content input__label-content--nariko">Your Phone</span>
-                                </label>
-                            </span>
-                            <span class="input input--nariko">
-                                <input class="input__field input__field--nariko" name="email" type="email" id="email" required="" />
-                                <label class="input__label input__label--nariko" for="input-21">
-                                    <span class="input__label-content input__label-content--nariko">Your Email</span>
-                                </label>
-                            </span>
-                            <span class="input input--nariko">
-                                <input class="input__field input__field--nariko" name="subject" type="text" id="subject"  required="" />
-                                <label class="input__label input__label--nariko" for="input-22">
-                                    <span class="input__label-content input__label-content--nariko">Your Subject</span>
-                                </label>
-                            </span>
-                            <textarea name="details" id="details" placeholder="Your Message..." required=""></textarea>
-                            <input type="submit" value="Send" name="submit">
-                            <input type="hidden" value="{{Session::token()}}" name="_token"/>
+                <h3 class="w3l_header w3_agileits_header">FEED <span>BACK</span></h3>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"> <span style="color: #800;">(*Required Fields)</span></div>
+                    <div class="panel-body">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ route('process_feedback')}}">
+                            {!! csrf_field() !!}
+                            <span style="color: #0086B3;font-size: 1.1em;"><strong>{{Session::get('response_status')}}</strong></span>
+                            <div class="form-group{{ $errors->has('feedback_type') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label"><span style="color: #f00">*</span>Feedback Type</label>
+
+                                <div class="col-md-6">
+                                    <select class="form-control" name="feedback_type" id="feedback_type">
+                                        <option value="issue">Issue</option>
+                                        <option value="suggestion">Suggestion</option>
+                                        <option value="enquiry">Enquiry</option>
+                                </select>                                    
+                                </div>
+                            </div>
+
+
+                            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label"><span style="color: #f00">*</span>Name</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="name" value="{{ old('name') }}" required>
+                                    @if ($errors->has('name'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('name') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            
+                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label"><span style="color: #f00">*</span>E-Mail Address</label>
+
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                    @if ($errors->has('email'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            
+                            <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label"><span style="color: #f00">*</span>Phone</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="phone" value="{{ old('phone') }}" required> 
+                                    @if ($errors->has('phone'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('phone') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            
+                            <div class="form-group{{ $errors->has('pin') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label">PIN</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="pin" value="{{ old('pin') }}">
+                                    @if ($errors->has('pin'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('pin') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                                                        
+                            <div class="form-group{{ $errors->has('employer') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label">Employer</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="employer" value="{{ old('employer') }}" >
+                                    @if ($errors->has('employer'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('employer') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            
+                            <div class="form-group{{ $errors->has('subject') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label"><span style="color: #f00">*</span>Subject</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="subject" value="{{ old('subject') }}" required>
+                                    @if ($errors->has('subject'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('subject') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            
+                            <div class="form-group{{ $errors->has('details') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label"><span style="color: #f00">*</span>Details</label>
+                                <div class="col-md-6">
+                                    <textarea style="width: 283px;" name="details" id="details" value="{{ old('details') }}" rows="3" placeholder="Your Message..." required></textarea>
+                                    <!--<input type="text" class="form-control" name="details" value="{{ old('details') }}">-->
+                                    @if ($errors->has('details'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('details') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('CaptchaCode') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label">Captcha</label>
+                                <div class="col-md-6">
+                                    {!! captcha_image_html('ContactCaptcha') !!}
+                                    <input class="form-control" type="text" id="CaptchaCode" name="CaptchaCode" style="margin-top:5px;">
+
+
+                                    @if ($errors->has('CaptchaCode'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('CaptchaCode') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <br/>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
                         </form>
                     </div>
-                    <div class="col-md-6 agileinfo_mail_grid_right">
-                        <div class="agileinfo_mail_social_right">
-                            <div class="agileinfo_mail_social_rightl">
-                                <a href="#" class="w3_contact_facebook">
-                                    <i class="fa fa-facebook" aria-hidden="true"></i>
-                                    <p>Facebook</p>
-                                </a>
-                            </div>
-                            <div class="agileinfo_mail_social_rightr">
-                                <a href="#" class="w3_contact_twitter">
-                                    <i class="fa fa-twitter" aria-hidden="true"></i>
-                                    <p>Twitter</p>
-                                </a>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
-                        <div class="agileinfo_mail_social_right">
-                            <div class="agileinfo_mail_social_rightl">
-                                <a href="#" class="w3_contact_google">
-                                    <i class="fa fa-google-plus" aria-hidden="true"></i>
-                                    <p>Google+</p>
-                                </a>
-                            </div>
-                            <div class="agileinfo_mail_social_rightr">
-                                <a href="#" class="w3_contact_instagram">
-                                    <i class="fa fa-instagram" aria-hidden="true"></i>
-                                    <p>Instagram</p>
-                                </a>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
-                        <div class="agileinfo_mail_social_right">
-                            <div class="agileinfo_mail_social_right_social">
-                                <a href="#" class="w3_contact_rss">
-                                    <i class="fa fa-rss"></i>
-                                    <p>RSS</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="clearfix"> </div>
                 </div>
             </div>
+        </div>
+    </div>
+    
+      
         </div>
 <!--        <div class="agile_map">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.3905851087434!2d-34.90500565012194!3d-8.061582082752993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ab18d90992e4ab%3A0x8e83c4afabe39a3a!2sSport+Club+Do+Recife!5e0!3m2!1sen!2sin!4v1478684415917" style="border:0"></iframe>

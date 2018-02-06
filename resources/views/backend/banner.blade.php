@@ -75,7 +75,7 @@ $moduleitems=$data['moduleitems'];
                             <input type="hidden" id="type" value="{{$banneritem['type']}}">
                             <input type="hidden" id="banner_position" value="{{$banneritem['position']}}">
                             <input type="hidden" id="banner_display" value="{{$banneritem['display']}}">
-                            <p id="banner_details"> {!!$banneritem['details']!!}</p>
+                            <div id="banner_details"> {!!$banneritem['details']!!}</div>
                             <div>                                
                                 <div class="row">
                                     @foreach($moduleitems as $banner_inneritem)

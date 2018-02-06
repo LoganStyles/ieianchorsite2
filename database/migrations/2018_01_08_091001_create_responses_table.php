@@ -15,14 +15,15 @@ class CreateResponsesTable extends Migration
     {
         Schema::create('responses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
+            $table->string('name');
             $table->text('details');
             $table->string('phone')->nullable();
             $table->string('email');
             $table->text('subject');
-            $table->string('ticket_id');
+            $table->string('employer')->nullable();
+            $table->string('pin')->nullable();
+            $table->enum('feedback_type',['issue','suggestion','enquiry'])->default('enquiry');
             $table->string('type')->default('response');
-            $table->rememberToken();
             $table->timestamps();
         });
     }

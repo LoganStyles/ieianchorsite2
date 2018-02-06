@@ -6,11 +6,11 @@
                     <div class="col-md-3 footer-w3-agileits">
                         <h3>About Us</h3>
                         <ul>
-                            <li><a href="{{url('/page/board/')}}">The Board of Directors</a></li>
-                            <li><a href="{{url('/page/management/')}}">The Management Team</a></li>                           
+                            <li><a href="{{url('/page/board_site/')}}">The Board of Directors</a></li>
+                            <li><a href="{{url('/page/management_site/')}}">The Management Team</a></li>                           
                             <li><a target="_blank" href="{{url('https://ubapensions.com/')}}">UBA Pensions Custodian Limited</a></li>                            
                             <li><a href="#">Frequently Asked Questions</a></li>
-                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="{{url('/page/contact/')}}">Contact Us</a></li>
                         </ul>
                                                 
                     </div>
@@ -18,11 +18,11 @@
                         <h3>Quick Links</h3>
                         <ul>
                             <li><a href="{{route('home')}}">Home</a></li>                           
-                            <li><a href="{{url('/page/service')}}">Services</a></li>
+                            <li><a href="{{url('/page/service_site')}}">Services</a></li>
                             <li><a href="#">Retirement Planning</a></li>
                             <?php //$newslink=$news->link_label;
                             $newslink=""; ?>
-                            <li><a href="{{url('/page/newsitem/'.$newslink)}}">News</a></li>
+                            <li><a href="{{url('/page/newsitem_site'.$newslink)}}">News</a></li>
                             <li><a href="#">Unit Prices</a></li>
                         </ul>
                     </div>
@@ -114,21 +114,14 @@
         <script type="text/javascript" src="{{ asset('/site/js/jquery-2.1.4.min.js')}}"></script>
         <!-- //js -->
         <!-- Counter required files -->
-       
-        
-        <script>
-jQuery(document).ready(function ($) {
-//    $('.demo2').dsCountDown({
-//        endDate: new Date("December 24, 2020 23:59:00"),
-//        theme: 'black'
-//    });
-});
-        </script>
         <!-- //Counter required files -->
 
 <script src="{{asset('/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('/assets/global/scripts/app.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('/assets/pages/scripts/components-date-time-pickers.min.js')}}" type="text/javascript"></script>
+
+<!--coin slider-->
+<script src="{{asset('/assets/global/coin-slider/coin-slider.min.js')}}" type="text/javascript"></script>
 
 <script src="{{asset('/site/js/datatables/jquery.dataTables.min.js')}}"></script>
 <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="js/jqPlot/excanvas.js"></script><![endif]-->
@@ -140,8 +133,39 @@ jQuery(document).ready(function ($) {
 <script type="text/javascript" src="{{asset('site/js/jqPlot/plugins/jqplot.highlighter.js')}}"></script>
 <script type="text/javascript" src="{{asset('site/js/moment/moment.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('site/js/slick.js')}}"  charset="utf-8"></script>
+<!-- jQuery -->
+    <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>-->
+    <!-- FlexSlider -->
+    <script type="text/javascript" src="{{asset('site/js/jquery.flexslider-min.js')}}"></script>
 <script type="text/javascript">
 $(document).on('ready', function () {
+    
+    //sliders
+    $('#coin-slider').coinslider({
+        width:1000,
+        height:450,
+        navigation:false,
+        delay:5000
+    });
+    
+    $(".flexslider").flexslider({
+          animation: "fade"
+    });
+	
+	$(function() {
+		$('.show_menu').click(function(){
+				$('.menu').fadeIn();
+				$('.show_menu').fadeOut();
+				$('.hide_menu').fadeIn();
+		});
+		$('.hide_menu').click(function(){
+				$('.menu').fadeOut();
+				$('.show_menu').fadeIn();
+				$('.hide_menu').fadeOut();
+		});
+	});
+//        
+//   slider for testimonials     
     $(".center").slick({
         dots: true,
         infinite: true,

@@ -75,7 +75,7 @@ $moduleitems=$data['moduleitems'];
                             <input type="hidden" id="type" value="{{$testimonialitem['type']}}">
                             <input type="hidden" id="testimonial_position" value="{{$testimonialitem['position']}}">
                             <input type="hidden" id="testimonial_display" value="{{$testimonialitem['display']}}">
-                            <p id="testimonial_details"> {!!$testimonialitem['details']!!}</p>
+                            <div id="testimonial_details"> {!!$testimonialitem['details']!!}</div>>
                             <div>                                
                                 <div class="row">
                                     @foreach($moduleitems as $testimonial_inneritem)

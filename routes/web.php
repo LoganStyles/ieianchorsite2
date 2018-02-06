@@ -32,6 +32,10 @@ Route::post('delete', 'AppController@destroy')->name('delete_item')->middleware(
 Route::get('/page/index', 'AppController@index')->name('home');//display the home page
 Route::get('/page/investment', 'AppController@showInvestment')->name('investment'); //..display investment strategy
 Route::post('pension_calculator', 'AppController@pensionCalculator')->name('pension_calc'); //pension calculator
+Route::get('/unitprice/range','AppController@fetchRangeOfPrices')->name('unitprice_range');
+
+//Route::get('web-register', 'AppController@webRegister');
+Route::post('web-register', 'AppController@processRegister');
 
 //PROCESSING
 Route::post('process_register', 'AppController@processRegister')->name('process_register'); //process register item
@@ -45,4 +49,6 @@ Route::post('processm', 'AppController@processModule')->name('processm'); //proc
 Route::post('process_usergroup', 'UserController@processUserGroups')->name('process_role')->middleware('auth'); //..create/edit usergroups
 //Feedback
 Route::post('process_feedback', 'AppController@processContact')->name('process_feedback'); //process feedback items
+
+
 Route::post('delete_feedback', 'AppController@destroy')->name('delete_feedback');

@@ -74,7 +74,7 @@ $moduleitems=$data['moduleitems'];?>
                             <input type="hidden" id="type" value="{{$boarditem['type']}}">
                             <input type="hidden" id="board_position" value="{{$boarditem['position']}}">
                             <input type="hidden" id="board_display" value="{{$boarditem['display']}}">
-                            <p id="board_details"> {!!$boarditem['details']!!}</p>
+                            <div id="board_details"> {!!$boarditem['details']!!}</div>
                             <div>                                
                                 <div class="row">
                                     @foreach($moduleitems as $board_inneritem)

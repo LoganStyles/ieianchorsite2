@@ -104,8 +104,6 @@ Unit Price History
             var endday=$('#end_date').val();
             loadUnitPrices(startday,endday);
         });
-        
-        
     });    
     //get a range of unit_prices
     function loadUnitPrices(startday,endday){

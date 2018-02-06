@@ -229,6 +229,13 @@
                             </a>
                         </li>
                         
+                        <li class="nav-item  <?php if($page_name=='award'){echo 'active ';}?>">
+                            <a href="{{url('/module/award')}}" class="nav-link ">
+                                <i class="fa fa-photo"></i>
+                                <span class="title">Awards</span>
+                            </a>
+                        </li>
+                        
                         <li class="nav-item  <?php if($page_name=='states'){echo 'active ';}?>">
                             <a href="{{url('/module/states')}}" class="nav-link ">
                                 <i class="fa fa-calendar-o"></i>

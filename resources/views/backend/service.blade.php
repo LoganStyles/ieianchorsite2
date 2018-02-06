@@ -159,7 +159,6 @@ $moduleitems=$data['moduleitems'];?>
                                     </label>
                                     <div class="col-md-10">
                                         <textarea class="form-control" rows="6" name="details" id="details" ></textarea>
-                                        <!--<textarea class="ckeditor form-control" rows="6" name="details" id="details" ></textarea>-->
                                         <div id="details_error"> </div>
                                     </div>
                                 </div>

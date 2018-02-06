@@ -1573,8 +1573,8 @@ p.b_label {
     text-align: right;
 }
 .agile_services_grid1 p{
-       background: rgba(17, 19, 18, 0.67);
-    padding: 0 .3em;
+    /*background: rgba(17, 19, 18, 0.67);*/
+    padding: 0.3em;
     color: #fff;
     display: inline-block;
 }
@@ -2624,7 +2624,8 @@ h2.typoh2{
 		padding: 5em 0 0;
 	}
 	.banner1 {
-		min-height: 182px;
+		min-height: 50px;
+                /*min-height: 182px;*/
 	}
 	.stats-bottom-banner p {
 		width: 90%;

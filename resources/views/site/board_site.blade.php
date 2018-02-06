@@ -36,10 +36,10 @@ Board of Directors
                 <div class="col-md-12">
                     @foreach($moduleitems as $item)
                     <div class="col-md-4 w3_agile_services_grid">
-                        <a href="{{url('/page/board/'.$item['link_label'])}}">
+                        <a href="{{url('/page/newsitem/'.$item['link_label'])}}">
                             <div class="agile_services_grid1" >
                                 <div class="agile_services_grid1_sub">
-                                    <p style="color: #cd9536; font-weight: 600; font-size: 13px;">{{$item['title']}}</p>
+                                    <p style="color: #cd9536; font-weight: 600; font-size: 13px;">{!!$item['title']!!}</p>
                                 </div>
                                 <div>
                                     <img src="{{ asset('/site/img/'.$item['filename'])}}" style="max-width: 100%;" />
@@ -49,7 +49,7 @@ Board of Directors
                                 <div class="w3_agileits_services_grid1">
                                     <div class="clearfix"> </div>
                                 </div>
-                                <h4><a href="{{url('/page/board/'.$item['link_label'])}}">{{$item['excerpt']}}...</a></h4>
+                                <h4><a href="{{url('/page/newsitem/'.$item['link_label'])}}">{!!$item['excerpt']!!}...</a></h4>
                             </div>
                         </a>
                         

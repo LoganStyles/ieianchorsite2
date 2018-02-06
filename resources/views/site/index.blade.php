@@ -5,6 +5,9 @@ $services=$data['services'];
 $news=$data['newsitem'];
 $banners=$data['banners'];
 $slides=$data['slides'];
+$awards=$data['awards'];
+
+//print_r($slides);exit;
 
 ?>
 
@@ -21,14 +24,28 @@ Retire Happy
     <div><h3>Open A Retirement Savings Account Today <span>and Retire Happy</span></h3></div>
     <div><h3>Don't Simply Retire, <span>Have Something to Retire To</span></h3></div>
 </div>-->
-<div style="width:100%;">
-    <!--<img style="max-width: 100%;" src="{{ asset('/site/images/retirement12.png')}}"  />-->
+<!--<div style="width:100%;">
+    <img style="max-width: 100%;" src="{{ asset('/site/images/retirement12.png')}}"  />
     @if(count($slides) >0 && $slides[0])
         
         <img src="{{ asset('/site/img/'.$slides[0]['filename'])}}" style="max-width: 100%;" />
         
     @endif
+</div>-->
+
+<div class="container">
+    <div id='coin-slider'>
+        <?php foreach($slides as $item){ ?>
+        <a href="#">
+            <img src="{{ asset('/site/img/'.$item['filename'])}}" alt="" title=""/>
+            <span>
+                {{$item['title']}}
+            </span>
+        </a>
+       <?php } ?>
+    </div>
 </div>
+
 
 <!-- //middle -->
 <div class="testimonials">
@@ -50,7 +67,7 @@ Retire Happy
                             <div class="agile_services_grid1" >
                                 <div style="width:100%;">
                                     <div style="width:30%;float: left;"><img  class="products_icon" src="{{ asset('/site/images/statements.png')}}" /></div>
-                                    <div style="width:70%;float: left;"> <p class="product_icon_title">Online Statement</p></div>
+                                    <div style="width:70%;float: right;background-color: #042948;"> <p class="product_icon_title">Online Statement</p></div>
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
@@ -67,7 +84,7 @@ Retire Happy
                             <div class="agile_services_grid1">
                                  <div style="width:100%;">
                                     <div style="width:30%;float: left;"><img  class="products_icon" src="{{ asset('/site/images/calculator.png')}}" /></div>
-                                    <div style="width:70%;float: left;"> <p class="product_icon_title">Pension Calculator</p></div>
+                                    <div style="width:70%;float: left;background-color: #042948;"> <p class="product_icon_title">Pension Calculator</p></div>
                                     <div class="clearfix"></div>
                                 </div>                                
                             </div>
@@ -84,7 +101,7 @@ Retire Happy
                             <div class="agile_services_grid1">
                                 <div style="width:100%;">
                                     <div style="width:30%;float: left;"><img  class="products_icon" src="{{ asset('/site/images/portfolio.png')}}" /></div>
-                                    <div style="width:70%;float: left;"> <p class="product_icon_title">Investment Portfolio</p></div>
+                                    <div style="width:70%;float: left;background-color: #042948;"> <p class="product_icon_title">Investment Portfolio</p></div>
                                     <div class="clearfix"></div>
                                 </div>                                
                             </div>
@@ -101,7 +118,7 @@ Retire Happy
                             <div class="agile_services_grid1">
                                 <div style="width:100%;">
                                     <div style="width:30%;float: left;"><img  class="products_icon" src="{{ asset('/site/images/rate_of_return.png')}}" /></div>
-                                    <div style="width:70%;float: left;"> <p class="product_icon_title">Rate of Return</p></div>
+                                    <div style="width:70%;float: left;background-color: #042948;"> <p class="product_icon_title">Rate of Return</p></div>
                                     <div class="clearfix"></div>
                                 </div>                                
                             </div>
@@ -118,7 +135,7 @@ Retire Happy
                             <div class="agile_services_grid1">
                                 <div style="width:100%;">
                                     <div style="width:30%;float: left;"><img  class="products_icon" src="{{ asset('/site/images/strategy.png')}}" /></div>
-                                    <div style="width:70%;float: left;"> <p class="product_icon_title">Investment Strategy</p></div>
+                                    <div style="width:70%;float: left;background-color: #042948;"> <p class="product_icon_title">Investment Strategy</p></div>
                                     <div class="clearfix"></div>
                                 </div>                                
                             </div>
@@ -136,7 +153,7 @@ Retire Happy
                             <div class="agile_services_grid1">
                                 <div style="width:100%;">
                                     <div style="width:30%;float: left;"><img  class="products_icon" src="{{ asset('/site/images/news.png')}}" /></div>
-                                    <div style="width:70%;float: left;"> <p class="product_icon_title">News</p></div>
+                                    <div style="width:70%;float: left;background-color: #042948;"> <p class="product_icon_title">News</p></div>
                                     <div class="clearfix"></div>
                                 </div>                                
                             </div>
@@ -161,6 +178,32 @@ Retire Happy
         </div>
     </div>
 </div>
+
+<!-- gallery -->
+<div class="gallery">
+    <h3 class="w3l_header w3_agileits_header">Our <span>Awards</span></h3>
+    <p class="sub_para_agile">We have been recognized for our good deals</p>
+    <div class="agile_team_grids_top">
+        <ul id="flexiselDemo1">	
+            <?php foreach($awards as $item){ ?>
+            <li>
+                <div class="wthree_gallery_grid">
+                    <a href="{{ asset('/site/img/'.$item['filename'])}}" class="lsb-preview" data-lsb-group="header">
+                        <div class="view second-effect" style="width: 350px;height: 350px;">
+                            <img src="{{ asset('/site/img/'.$item['filename'])}}" style="width: 100%;min-width: 100%;min-height: 100%;" alt="" class="img-responsive" />
+                            <div class="mask">
+                                <p>{!!$item['title']!!}</p>
+                            </div>
+                        </div>	
+                    </a>
+                </div>
+            </li>
+            <?php } ?>
+
+        </ul>
+    </div>
+</div>
+<!-- //gallery -->
 <!-- testimonials -->
 <div class="testimonials">
     <div class="container">
@@ -171,8 +214,8 @@ Retire Happy
                 <?php foreach($data['testimonials'] as $item){ ?>
                 <div class="agileits_testimonial_grid">
                     <div class="w3l_testimonial_grid">
-                        <p>{{$item['details']}}</p>
-                        <h4>{{$item['title']}}</h4>
+                        <p>{!!$item['details']!!}</p>
+                        <h4>{!!$item['title']!!}</h4>
                         <h5>Client</h5>
                         <div class="w3l_testimonial_grid_pos">
                             <?php $image=$item['link_label']; ?>

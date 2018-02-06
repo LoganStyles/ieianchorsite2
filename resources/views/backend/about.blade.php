@@ -75,7 +75,7 @@ $moduleitems=$data['moduleitems'];
                             <input type="hidden" id="type" value="{{$aboutitem['type']}}">
                             <input type="hidden" id="about_position" value="{{$aboutitem['position']}}">
                             <input type="hidden" id="about_display" value="{{$aboutitem['display']}}">
-                            <p id="about_details"> {!!$aboutitem['details']!!}</p>
+                            <div id="about_details"> {!!$aboutitem['details']!!}</div>
                             <div>                                
                                 <div class="row">
                                     @foreach($moduleitems as $about_inneritem)
@@ -160,7 +160,6 @@ $moduleitems=$data['moduleitems'];
                                     </label>
                                     <div class="col-md-10">
                                         <textarea class="form-control" rows="6" name="details" id="details" ></textarea>
-                                        <!--<textarea class="ckeditor form-control" rows="6" name="details" id="details" ></textarea>-->
                                         <div id="details_error"> </div>
                                     </div>
                                 </div>
