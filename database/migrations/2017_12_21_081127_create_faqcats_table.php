@@ -16,6 +16,7 @@ class CreateFaqcatsTable extends Migration
         Schema::create('faqcats', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

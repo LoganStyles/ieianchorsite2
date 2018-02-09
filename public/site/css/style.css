@@ -722,7 +722,7 @@ background: rgba(0, 0, 0, 0.17);
 }
 /*-- //gallery --*/
 .testimonials,.team,.Funding_section {
-    padding: 5em 0;
+    padding: 2em 0;
 }
 .w3l_header {
     font-size: 2.5em;
@@ -769,7 +769,7 @@ background: #ececec;
 	    margin-bottom: 5px;
 }
 .banner-bottom,.gallery{
-    padding: 5em 0 0 0;
+    padding: 1em 0 0 0;
 }
 /*-- testimonials --*/
 .w3ls_testimonials_grids{
@@ -3969,7 +3969,7 @@ h2.typoh2{
 
 /*-- about--*/
 .about,.testimonials,.footer,.features,.awardsw3-agileits,.codes,.contact,.portfolio{
-    padding: 5em 0;
+    padding: 2em 0;
 }
 .about {
     margin-top: 5em;

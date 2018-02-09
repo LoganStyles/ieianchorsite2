@@ -83,6 +83,7 @@ class AppController extends BaseController {
                     case 'register':
                         $data['states'] = $this->getDBData('ref_states_team', $sub_item, true);
                         break;
+                    
                     case 'states':
                         $data['states'] = DB::table('ref_states_teams')->paginate(5);
                         $path = '/backend/' . $page;
@@ -91,6 +92,9 @@ class AppController extends BaseController {
                     case 'setup':
                     case 'dashboard':
                         $path = '/backend/' . $page;
+                        break;
+                    case 'faq_site':
+                        $data['moduleitems']= DB::table('faqs')->select('category_id')->distinct()->get();
                         break;
                     case 'about_site':
                         $data['moduleitems'] = $this->getDBData('about');
@@ -114,6 +118,7 @@ class AppController extends BaseController {
                     case 'slide':
                     case 'award':
                     case 'newsitem':
+                    case 'faqcat':
                     case 'board':
                     case 'management':
                         $path = '/backend/' . $page;

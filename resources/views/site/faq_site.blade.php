@@ -4,6 +4,8 @@ $site=$data['siteitems'][0];
 $services=$data['services'];
 $news=$data['newsitem'];
 $moduleitems=$data['moduleitems'];
+
+//print_r($moduleitems);exit;
 ?>
 @extends('layouts.master_site')
 @section('title')
@@ -36,23 +38,22 @@ Board of Directors
                 <div class="col-md-12">
                     @foreach($moduleitems as $item)
                     <div class="col-md-4 w3_agile_services_grid">
-                        <a href="{{url('/page/board/'.$item['link_label'])}}">
+                        <a href="{{url('/page/faq/'.$item['id'])}}">
                             <div class="agile_services_grid1" >
                                 <div class="agile_services_grid1_sub">
                                     <p style="color: #cd9536; font-weight: 600; font-size: 13px;">{!!$item['title']!!}</p>
                                 </div>
-                                <div>
+<!--                                <div>
                                     <img src="{{ asset('/site/img/'.$item['filename'])}}" style="max-width: 100%;" />
-                                </div>
+                                </div>-->
                             </div>
                             <div class="agileits_w3layouts_services_grid1">
                                 <div class="w3_agileits_services_grid1">
                                     <div class="clearfix"> </div>
                                 </div>
-                                <h4><a href="{{url('/page/board/'.$item['link_label'])}}">{!!$item['excerpt']!!}...</a></h4>
+                                <h4><a href="{{url('/page/faq/'.$item['id'])}}">{!!$item['title']!!}...</a></h4>
                             </div>
-                        </a>
-                        
+                        </a>                        
                     </div>
                     @endforeach
            

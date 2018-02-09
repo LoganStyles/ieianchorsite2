@@ -257,13 +257,13 @@
                             </a>
                         </li>
                         
-<!--                        <li class="nav-item  <?php if($page_name=='report'){echo 'active ';}?>">
-                            <a href="{{url('/module/report')}}" class="nav-link ">
-                                <i class="fa fa-file-pdf-o"></i>
-                                <span class="title">Reports</span>
+                        <li class="nav-item  <?php if($page_name=='faq_cats'){echo 'active ';}?>">
+                            <a href="{{url('/module/faqcat')}}" class="nav-link ">
+                                <i class="fa fa-group"></i>
+                                <span class="title">FAQ Categories</span>
                             </a>
-                        </li>-->
-                        
+                        </li>
+                                                
                         @if(session()->has('users') && session('users') >1)<!--can view-->
                         <li class="nav-item <?php if($page_name=='personnel' || $page_name=='role'){echo 'active open';}?>">
                             <a href="javascript:;" class="nav-link nav-toggle">
