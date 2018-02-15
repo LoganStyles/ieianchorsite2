@@ -56,6 +56,11 @@ class BaseController extends Controller {
                     ->leftjoin('siteimages', 'sites.id', '=', 'siteimages.itemid')
                     ->select('sites.*', 'siteimages.filename', 'siteimages.itemid as imageid', 'siteimages.alt', 'siteimages.caption', 'siteimages.main')
                     ->get();
+        } else if($item == "faq"){
+            $moduleitems = DB::table($items)
+                    ->select('*')
+                    ->where('category_id',$subitem)
+                    ->get();
         } else if($ref){
             $moduleitems = DB::table($items)->get();
 
@@ -85,22 +90,12 @@ class BaseController extends Controller {
     protected function showPaginatedList($item) {
         $itemimages = $item . 'images';
         $items = $item . 's';
-
-//        $siteitems = $this->getDBData('site');
-//        $services = $this->getDBData('service');
-//        $latest_news = $this->latest_news;
-
+        if($item=="faq"){
+            $items="faqcats";
+        }
 
         $paginateditems= DB::table($items)->paginate(5);
         return $paginateditems;
-
-//        return view('site.newsitem', 
-//                [   'news' => $content, 
-//                    'siteitems' => $siteitems,
-//                    'services' => $services, 
-//                    'latest_news' => $this->latest_news, 
-//                    'prices' => $this->latest_prices
-//                ]);
     }
 
 }

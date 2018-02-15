@@ -182,7 +182,7 @@ Retire Happy
 <!-- gallery -->
 <div class="gallery">
     <h3 class="w3l_header w3_agileits_header">Our <span>Awards</span></h3>
-    <p class="sub_para_agile">We have been recognized for our good deals</p>
+    <p class="sub_para_agile">We have been recognized for our efficient services</p>
     <div class="agile_team_grids_top">
         <ul id="flexiselDemo1">	
             <?php foreach($awards as $item){ ?>

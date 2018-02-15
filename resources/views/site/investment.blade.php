@@ -15,7 +15,7 @@ Investment Strategy
 <!-- small-banner -->
 <div class="stats-bottom-banner">
     <div class="container">
-        <h3>Wouldn't You Like <span>To</span> Retire Happy</h3>
+        <h3> <span>INVESTMENTS</span></h3>
     </div>
 </div>
 <!-- //small-banner -->	

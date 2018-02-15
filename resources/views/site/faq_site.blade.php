@@ -5,6 +5,10 @@ $services=$data['services'];
 $news=$data['newsitem'];
 $moduleitems=$data['moduleitems'];
 
+foreach ($moduleitems as $object) {
+            $faqs[] = (array) $object;
+        }
+
 //print_r($moduleitems);exit;
 ?>
 @extends('layouts.master_site')
@@ -16,42 +20,32 @@ Board of Directors
 
 
 <!-- small-banner -->
-<div class="stats-bottom-banner">
+<!--<div class="stats-bottom-banner">
     <div class="container">
         <h3>Wouldn't You Like <span>To</span> Retire Happy</h3>
     </div>
-</div>
+</div>-->
 <!-- //small-banner -->	
 
 <!-- //middle -->
 <div class="testimonials">
     <div class="container" style="width:100%;">
+        <h3 class="w3l_header w3_agileits_header">F<span>AQS</span></h3>
         <div class="agile_team_grids_top">
             <div class="col-md-2 col-lg-2 col-sm-12">
-<!--                <a href="https://www.instagram.com/ieianchorpensions/" target="_blank">
-                <img src="{{ asset('/site/images/savings.png')}}" style="max-width: 100%;" />
-                </a>-->
             </div>
            
             
             <div class="col-md-8 col-lg-8 col-sm-12">
                 <div class="col-md-12">
-                    @foreach($moduleitems as $item)
+                    @foreach($faqs as $item)
                     <div class="col-md-4 w3_agile_services_grid">
                         <a href="{{url('/page/faq/'.$item['id'])}}">
-                            <div class="agile_services_grid1" >
-                                <div class="agile_services_grid1_sub">
-                                    <p style="color: #cd9536; font-weight: 600; font-size: 13px;">{!!$item['title']!!}</p>
-                                </div>
-<!--                                <div>
-                                    <img src="{{ asset('/site/img/'.$item['filename'])}}" style="max-width: 100%;" />
-                                </div>-->
-                            </div>
                             <div class="agileits_w3layouts_services_grid1">
                                 <div class="w3_agileits_services_grid1">
                                     <div class="clearfix"> </div>
                                 </div>
-                                <h4><a href="{{url('/page/faq/'.$item['id'])}}">{!!$item['title']!!}...</a></h4>
+                                <h4><a href="{{url('/page/faq/'.$item['id'])}}">{!!$item['title']!!}</a></h4>
                             </div>
                         </a>                        
                     </div>

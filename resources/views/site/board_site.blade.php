@@ -16,7 +16,7 @@ Board of Directors
 <!-- small-banner -->
 <div class="stats-bottom-banner">
     <div class="container">
-        <h3>Wouldn't You Like <span>To</span> Retire Happy</h3>
+        <h3>BOARD <span> OF</span> DIRECTORS</h3>
     </div>
 </div>
 <!-- //small-banner -->	
@@ -39,7 +39,7 @@ Board of Directors
                         <a href="{{url('/page/board/'.$item['link_label'])}}">
                             <div class="agile_services_grid1" >
                                 <div class="agile_services_grid1_sub">
-                                    <p style="color: #cd9536; font-weight: 600; font-size: 13px;">{!!$item['title']!!}</p>
+                                    <p style="color: #cd9536; font-weight: 600; font-size: 1em;">{!!$item['title']!!}</p>
                                 </div>
                                 <div>
                                     <img src="{{ asset('/site/img/'.$item['filename'])}}" style="max-width: 100%;" />

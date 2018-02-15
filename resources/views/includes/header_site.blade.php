@@ -58,6 +58,20 @@
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="{{asset('/site/images/icons2/ms-icon-144x144.png')}}">
         <meta name="theme-color" content="#ffffff">
+        <style>
+            
+/*            .navbar-brand .img_logo{
+                width: 120px;
+                height: 100px;
+                overflow: hidden;
+            }
+
+            .navbar-brand .img_logo img{
+                width: 100%;
+                min-width: 100%;
+                min-height: 100%;
+            }*/
+        </style>
 
     </head>	
     <body>
@@ -127,7 +141,7 @@
                      <li>
                         <div class="header_contact_details_agile"><i class="fa fa-list-alt" aria-hidden="true"></i>
                             <div class="w3l_header_contact_details_agile">
-                                <div class="header-contact-detail-title">Unit Prices as at {{date("F j, Y",strtotime($prices->report_date))}}</div> 
+                                <div class="header-contact-detail-title">Unit Prices as at {{date("M j, Y",strtotime($prices->report_date))}}</div> 
                                 <span class="w3l_header_contact_details_agile-info_inner">RSA Unit Price: {{$prices->rsa}} </span><br>
                                 <span class="w3l_header_contact_details_agile-info_inner">Retiree Unit Price: {{$prices->retiree}} </span><br>
                                 <span class="w3l_header_contact_details_agile-info_inner">Administrative Fee: 100 </span><br>
@@ -148,7 +162,9 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="{{route('home')}}">
+                        <div class="img_logo">
                         <img src="{{ asset('/site/img/'.$site['filename'])}}" alt="IEI Anchor Pensions" class="img-responsive" style="max-width: 80%;" />
+                        </div>
                     </a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->

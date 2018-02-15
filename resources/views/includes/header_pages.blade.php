@@ -257,12 +257,12 @@
                             </a>
                         </li>
                         
-                        <li class="nav-item  <?php if($page_name=='faq_cats'){echo 'active ';}?>">
+<!--                        <li class="nav-item  <?php if($page_name=='faq_cats'){echo 'active ';}?>">
                             <a href="{{url('/module/faqcat')}}" class="nav-link ">
                                 <i class="fa fa-group"></i>
                                 <span class="title">FAQ Categories</span>
                             </a>
-                        </li>
+                        </li>-->
                                                 
                         @if(session()->has('users') && session('users') >1)<!--can view-->
                         <li class="nav-item <?php if($page_name=='personnel' || $page_name=='role'){echo 'active open';}?>">

@@ -1,13 +1,17 @@
 <?php
-$page=$page_name; 
+$page=$page_name;
 $site=$data['siteitems'][0];
 $services=$data['services'];
 $news=$data['newsitem'];
 $moduleitems=$data['moduleitems'];
+
+foreach ($moduleitems as $object) {
+    $branches[] = (array) $object;
+   }
 ?>
 @extends('layouts.master_site')
 @section('title')
-Board of Directors
+Branches
 @endsection 
 
 @section('content')
@@ -16,7 +20,7 @@ Board of Directors
 <!-- small-banner -->
 <div class="stats-bottom-banner">
     <div class="container">
-        <h3>BOARD <span> OF</span> DIRECTORS</h3>
+        <h3>OUR <span> SERVICE</span> CENTERS</h3>
     </div>
 </div>
 <!-- //small-banner -->	
@@ -34,22 +38,20 @@ Board of Directors
             
             <div class="col-md-8 col-lg-8 col-sm-12">
                 <div class="col-md-12">
-                    @foreach($moduleitems as $item)
+                    @foreach($branches as $item)
                     <div class="col-md-4 w3_agile_services_grid">
-                        <a href="{{url('/page/board/'.$item['link_label'])}}">
+                        <a href="javascript:;">
                             <div class="agile_services_grid1" >
                                 <div class="agile_services_grid1_sub">
-                                    <p style="color: #cd9536; font-weight: 600; font-size: 13px;">{!!$item['title']!!}</p>
+                                    <p style="color: #cd9536; font-weight: 600; font-size: 1em;">{!!$item['title']!!}</p>
                                 </div>
-                                <div>
-                                    <img src="{{ asset('/site/img/'.$item['filename'])}}" style="max-width: 100%;" />
-                                </div>
+                                
                             </div>
                             <div class="agileits_w3layouts_services_grid1">
                                 <div class="w3_agileits_services_grid1">
                                     <div class="clearfix"> </div>
                                 </div>
-                                <h4><a href="{{url('/page/board/'.$item['link_label'])}}">{!!$item['excerpt']!!}...</a></h4>
+                                <h4><a href="javascript:;">{!!$item['address']!!}...</a></h4>
                             </div>
                         </a>
                         

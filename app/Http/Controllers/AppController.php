@@ -94,7 +94,10 @@ class AppController extends BaseController {
                         $path = '/backend/' . $page;
                         break;
                     case 'faq_site':
-                        $data['moduleitems']= DB::table('faqs')->select('category_id')->distinct()->get();
+                        $data['moduleitems']= DB::table('faqcats')->select('*')->distinct()->get();
+                        break;
+                    case 'branch_site':
+                        $data['moduleitems']= DB::table('branches')->select('*')->distinct()->get();
                         break;
                     case 'about_site':
                         $data['moduleitems'] = $this->getDBData('about');

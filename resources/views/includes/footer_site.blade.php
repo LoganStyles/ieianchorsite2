@@ -142,8 +142,8 @@ $(document).on('ready', function () {
     
     //sliders
     $('#coin-slider').coinslider({
-        width:1000,
-        height:450,
+        width:1250,
+        height:400,
         navigation:false,
         delay:5000
     });
