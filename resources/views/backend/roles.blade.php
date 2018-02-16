@@ -88,8 +88,24 @@ $user_role=session('users');
                                 <tr class="table_row">
                                 <input type="hidden" value="{{$usergroup['id']}}" class="row_id"/>
                                 <input type="hidden" value="{{$usergroup['type']}}" class="row_type"/>
+                                <input type="hidden" value="{{$usergroup['title']}}" class="row_title"/>
+                                <input type="hidden" value="{{$usergroup['description']}}" class="row_description"/>
                                 <input type="hidden" value="{{$usergroup['user']}}" class="row_users"/>
                                 <input type="hidden" value="{{$usergroup['delete_group']}}" class="row_delete_group"/>
+                                <input type="hidden" value="{{$usergroup['role']}}" class="row_roles"/>
+                                <input type="hidden" value="{{$usergroup['management']}}" class="row_management"/>
+                                <input type="hidden" value="{{$usergroup['board']}}" class="row_board"/>
+                                <input type="hidden" value="{{$usergroup['newsitem']}}" class="row_newsitem"/>
+                                <input type="hidden" value="{{$usergroup['article']}}" class="row_article"/>
+                                <input type="hidden" value="{{$usergroup['banner']}}" class="row_banner"/>
+                                <input type="hidden" value="{{$usergroup['slide']}}" class="row_slide"/>
+                                <input type="hidden" value="{{$usergroup['state']}}" class="row_state"/>
+                                <input type="hidden" value="{{$usergroup['award']}}" class="row_award"/>
+                                <input type="hidden" value="{{$usergroup['testimonial']}}" class="row_testimonial"/>
+                                <input type="hidden" value="{{$usergroup['service']}}" class="row_service"/>
+                                <input type="hidden" value="{{$usergroup['about']}}" class="row_about"/>
+                                <input type="hidden" value="{{$usergroup['report']}}" class="row_reports"/>
+                                
                                     <td> {{$loop->index+1}}  </td>
                                     <td class="row_title"> {{$usergroup['title']}} </td>
                                     <td class="row_description"> {{$usergroup['description']}} </td>
@@ -223,6 +239,71 @@ $user_role=session('users');
                                             <option value="4">SPECIAL</option>
                                         </select>
                                     </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Articles</label>
+                                    <div class="col-lg-4 col-sm-4" >
+                                        <select class="form-control " name="article" id="article">
+                                            <option value="1">NONE</option>
+                                            <option value="2">READ</option>
+                                            <option value="3">WRITE</option>
+                                            <option value="4">SPECIAL</option>
+                                        </select>
+                                    </div>
+
+                                    <label class="control-label col-md-2">Banner</label>
+                                    <div class="col-lg-4 col-sm-4" >
+                                        <select class="form-control " name="banner" id="banner">
+                                            <option value="1">NONE</option>
+                                            <option value="2">READ</option>
+                                            <option value="3">WRITE</option>
+                                            <option value="4">SPECIAL</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Slides</label>
+                                    <div class="col-lg-4 col-sm-4" >
+                                        <select class="form-control " name="slide" id="slide">
+                                            <option value="1">NONE</option>
+                                            <option value="2">READ</option>
+                                            <option value="3">WRITE</option>
+                                            <option value="4">SPECIAL</option>
+                                        </select>
+                                    </div>
+
+                                    <label class="control-label col-md-2">States</label>
+                                    <div class="col-lg-4 col-sm-4" >
+                                        <select class="form-control " name="state" id="state">
+                                            <option value="1">NONE</option>
+                                            <option value="2">READ</option>
+                                            <option value="3">WRITE</option>
+                                            <option value="4">SPECIAL</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Awards</label>
+                                    <div class="col-lg-4 col-sm-4" >
+                                        <select class="form-control " name="award" id="award">
+                                            <option value="1">NONE</option>
+                                            <option value="2">READ</option>
+                                            <option value="3">WRITE</option>
+                                            <option value="4">SPECIAL</option>
+                                        </select>
+                                    </div>
+
+<!--                                    <label class="control-label col-md-2">States</label>
+                                    <div class="col-lg-4 col-sm-4" >
+                                        <select class="form-control " name="state" id="state">
+                                            <option value="1">NONE</option>
+                                            <option value="2">READ</option>
+                                            <option value="3">WRITE</option>
+                                            <option value="4">SPECIAL</option>
+                                        </select>
+                                    </div>-->
                                 </div>
                                 
                                 <div class="form-group">

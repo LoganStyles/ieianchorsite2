@@ -187,7 +187,8 @@
                     
                     var row_id=$this.find('.row_id').val();
                     var row_type=$this.find('.row_type').val();
-                    //if(row_type==="role"){
+                    console.log('row_type '+row_type);
+                    if(row_type==="ref_states_teams"){
                         var row_team_code=$this.find('.row_team_code').val();
                         var row_team_name=$this.find('.row_team_name').val();
                         var row_contact_email=$this.find('.row_contact_email').val();
@@ -214,7 +215,77 @@
 
                         var field_delete="#delete_modal #delete_form #id";
                         $(field_delete).val(row_id);
-                    //}
+                        
+                    }else if(row_type==="role"){
+                        $('#id').val(row_id);
+                        var row_title=$this.find('.row_title').val();
+                        $('#title').val(row_title);
+                        console.log('row_title '+row_title);
+                        
+                        var row_description=$this.find('.row_description').val();
+                        $('#description').val(row_description);
+                        console.log('row_description '+row_description);
+                        
+                        var row_users=$this.find('.row_users').val();
+                        $('#user').val(row_users);
+                        console.log('row_users '+row_users);
+                        
+                        var row_delete_group=$this.find('.row_delete_group').val();
+                        console.log('row_delete_group '+row_delete_group);
+                        $('#delete_group').val(row_delete_group);
+                        
+                        var row_roles=$this.find('.row_roles').val();
+                        console.log('row_roles '+row_roles);
+                        $('#role').val(row_roles);
+                        
+                        var row_management=$this.find('.row_management').val();
+                        console.log('row_management '+row_management);
+                        $('#management').val(row_management);
+                        
+                        var row_board=$this.find('.row_board').val();
+                        console.log('row_board '+row_board);
+                        $('#board').val(row_board);
+                        
+                        var row_newsitem=$this.find('.row_newsitem').val();
+                        console.log('row_newsitem '+row_newsitem);
+                        $('#newsitem').val(row_newsitem);
+                        
+                        var row_article=$this.find('.row_article').val();
+                        console.log('row_article '+row_article);
+                        $('#article').val(row_article);
+                        
+                        var row_banner=$this.find('.row_banner').val();
+                        console.log('row_banner '+row_banner);
+                        $('#banner').val(row_banner);
+                        
+                        var row_slide=$this.find('.row_slide').val();
+                        console.log('row_slide '+row_slide);
+                        $('#slide').val(row_slide);
+                        
+                        var row_state=$this.find('.row_state').val();
+                        console.log('row_state '+row_state);
+                        $('#state').val(row_state);
+                        
+                        var row_award=$this.find('.row_award').val();
+                        console.log('row_award '+row_award);
+                        $('#award').val(row_award);
+                        
+                        var row_testimonial=$this.find('.row_testimonial').val();
+                        console.log('row_testimonial '+row_testimonial);
+                        $('#testimonial').val(row_testimonial);
+                        
+                        var row_service=$this.find('.row_service').val();
+                        console.log('row_service '+row_service);
+                        $('#service').val(row_service);
+                        
+                        var row_about=$this.find('.row_about').val();
+                        console.log('row_about '+row_about);
+                        $('#about').val(row_about);
+                        
+                        var row_reports=$this.find('.row_reports').val();
+                        console.log('row_reports '+row_reports);
+                        $('#report').val(row_reports);
+                    }
                     
                 });
                 

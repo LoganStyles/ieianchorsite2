@@ -187,12 +187,14 @@
                         <li class="heading">
                             <h3 class="uppercase">Modules</h3>
                         </li>
+                        @if(session()->has('about') && session('about') >1)<!--can view-->
                         <li class="nav-item  <?php if($page_name=='about'){echo 'active ';}?>">
                             <a href="{{url('/module/about')}}" class="nav-link ">
                                 <i class="fa fa-info-circle"></i>
                                 <span class="title">About</span>
                             </a>
                         </li>
+                        @endif
                         
                         <li class="nav-item <?php if($page_name=='service'){echo 'active ';}?> ">
                             <a href="{{url('/module/service')}}" class="nav-link ">
@@ -215,6 +217,13 @@
                             </a>
                         </li>
                         
+                        <li class="nav-item  <?php if($page_name=='article'){echo 'active ';}?>">
+                            <a href="{{url('/module/article')}}" class="nav-link ">
+                                <i class="fa fa-newspaper-o"></i>
+                                <span class="title">Articles</span>
+                            </a>
+                        </li>
+                        
                         <li class="nav-item  <?php if($page_name=='banner'){echo 'active ';}?>">
                             <a href="{{url('/module/banner')}}" class="nav-link ">
                                 <i class="fa fa-picture-o"></i>
@@ -231,7 +240,7 @@
                         
                         <li class="nav-item  <?php if($page_name=='award'){echo 'active ';}?>">
                             <a href="{{url('/module/award')}}" class="nav-link ">
-                                <i class="fa fa-photo"></i>
+                                <i class="fa fa-hourglass-o"></i>
                                 <span class="title">Awards</span>
                             </a>
                         </li>

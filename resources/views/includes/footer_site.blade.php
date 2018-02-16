@@ -29,7 +29,8 @@
                     <div class="col-md-3 footer-wthree">
                         <br><br>
                         <ul>
-                            <li><a href="{{url('http://www.pencom.gov.ng/')}}">Pencom</a></li>                            
+                            <li><a href="{{url('/page/article_site'.$newslink)}}">Articles</a></li> 
+                            <li><a href="{{url('http://www.pencom.gov.ng/')}}">Pencom</a></li> 
                             <li><a href="{{url('/downloads/Whistle_Blowing_Guidelines_for_Pensions')}}">Whistle Blowing Guidelines</a></li>
                             <li><a href="{{url('/downloads/RSA_Transfer_Guidelines.pdf')}}">RSA Transfer Guidelines</a></li>
                         </ul>

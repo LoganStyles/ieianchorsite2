@@ -24,6 +24,8 @@ use App\Award;
 use App\Awardimage;
 use App\Newsitem;
 use App\Newsitemimage;
+use App\Article;
+use App\Articleimage;
 use App\Board;
 use App\Boardimage;
 use App\Management;
@@ -114,6 +116,9 @@ class AppController extends BaseController {
                     case 'newsitem_site':
                         $data['moduleitems'] = $this->getDBData('newsitem');
                         break;
+                    case 'article_site':
+                        $data['moduleitems'] = $this->getDBData('article');
+                        break;
                     case 'about':
                     case 'service':
                     case 'testimonial':
@@ -121,6 +126,7 @@ class AppController extends BaseController {
                     case 'slide':
                     case 'award':
                     case 'newsitem':
+                    case 'article':
                     case 'faqcat':
                     case 'board':
                     case 'management':
@@ -548,6 +554,18 @@ class AppController extends BaseController {
                     ]);
                     $moduleimage = new Newsitemimage();
                     break;
+                
+                case'article':
+                    Article::where('id', $request['id'])->update([
+                        'title' => $request['title'],
+                        'details' => trim($request['details']),
+                        'position' => $request['position'],
+                        'display' => $request['display'],
+                        'link_label' => preg_replace('/[^A-Za-z0-9]/', '_', strtolower($request['title'])),
+                        'excerpt' => substr($request['details'], 0, 100)
+                    ]);
+                    $moduleimage = new Articleimage();
+                    break;
             }
 
             //if image exists
@@ -613,6 +631,11 @@ class AppController extends BaseController {
                     $moduleitem = new Newsitem();
                     $moduleimage = new Newsitemimage();
                     break;
+                
+                case'article':
+                    $moduleitem = new Article();
+                    $moduleimage = new Articleimage();
+                    break;
 
                 case'board':
                     $moduleitem = new Board();
@@ -663,62 +686,69 @@ class AppController extends BaseController {
      */
     public function destroy(Request $request) {
 
-        //chk for module type
-        $del_type = $request['type'];
-        switch ($del_type) {
-            case'about':
-                $moduleitem = About::find($request['id']);
-                $moduleitem->delete();
-                break;
+        if (session()->has('delete_group') && session('delete_group') == 1) {//can delete
+            //chk for module type
+            $del_type = $request['type'];
+            switch ($del_type) {
+                case'about':
+                    $moduleitem = About::find($request['id']);
+                    $moduleitem->delete();
+                    break;
 
-            case'service':
-                $moduleitem = Service::find($request['id']);
-                $moduleitem->delete();
-                break;
+                case'service':
+                    $moduleitem = Service::find($request['id']);
+                    $moduleitem->delete();
+                    break;
 
-            case'testimonial':
-                $moduleitem = Testimonial::find($request['id']);
-                $moduleitem->delete();
-                break;
-            
-            case'banner':
-                $moduleitem = Banner::find($request['id']);
-                $moduleitem->delete();
-                break;
+                case'testimonial':
+                    $moduleitem = Testimonial::find($request['id']);
+                    $moduleitem->delete();
+                    break;
 
-            case'slide':
-                $moduleitem = Slide::find($request['id']);
-                $moduleitem->delete();
-                break;
-            
-            case'award':
-                $moduleitem = Award::find($request['id']);
-                $moduleitem->delete();
-                break;
+                case'banner':
+                    $moduleitem = Banner::find($request['id']);
+                    $moduleitem->delete();
+                    break;
 
-            case'board':
-                $moduleitem = Board::find($request['id']);
-                $moduleitem->delete();
-                break;
+                case'slide':
+                    $moduleitem = Slide::find($request['id']);
+                    $moduleitem->delete();
+                    break;
 
-            case'management':
-                $moduleitem = Management::find($request['id']);
-                $moduleitem->delete();
-                break;
+                case'award':
+                    $moduleitem = Award::find($request['id']);
+                    $moduleitem->delete();
+                    break;
 
-            case'newsitem':
-                $moduleitem = Newsitem::find($request['id']);
-                $moduleitem->delete();
-                break;
+                case'board':
+                    $moduleitem = Board::find($request['id']);
+                    $moduleitem->delete();
+                    break;
 
-            default:
-                DB::table($del_type)->where('id', '=', $request['id'])->delete();
-                break;
+                case'management':
+                    $moduleitem = Management::find($request['id']);
+                    $moduleitem->delete();
+                    break;
+
+                case'newsitem':
+                    $moduleitem = Newsitem::find($request['id']);
+                    $moduleitem->delete();
+                    break;
+
+                case'article':
+                    $moduleitem = Article::find($request['id']);
+                    $moduleitem->delete();
+                    break;
+
+                default:
+                    DB::table($del_type)->where('id', '=', $request['id'])->delete();
+                    break;
+            }
         }
 
         return redirect()->back();
     }
-    
+
     public function fetchRangeOfPrices(Request $request) {
         //fetch range of unit prices
         $result=[];

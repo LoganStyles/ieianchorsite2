@@ -1,13 +1,12 @@
 @extends('layouts.master_pages')
 
 @section('title')
-Admin - About Page
+Admin - Article Page
 @endsection 
 
 @section('content')
-<?php $page_name = "about"; 
-$moduleitems=$data['moduleitems'];
-?>
+<?php $page_name = "article";
+$moduleitems=$data['moduleitems'];?>
 
 <!-- BEGIN CONTENT -->
 <div class="page-content-wrapper">
@@ -23,15 +22,15 @@ $moduleitems=$data['moduleitems'];
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>About</span>
+                    <span>Articles</span>
                 </li>
             </ul>
 
         </div>
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
-        <h3 class="page-title"> About Us
-            <small>:Mission, vision, core values</small>
+        <h3 class="page-title"> Articles
+            <small>User: Articles</small>
         </h3>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->
@@ -47,46 +46,42 @@ $moduleitems=$data['moduleitems'];
 
         <div class="row">
             <?php $processed_ids = [] ?>
-            @foreach($moduleitems as $aboutitem)
-            <?php $current_id = $aboutitem['id']; ?>
-            @if(!in_array($aboutitem['id'],$processed_ids) && !empty($aboutitem['id']))
+            @foreach($moduleitems as $article)
+            <?php $current_id = $article['id']; ?>
+            @if(!in_array($article['id'],$processed_ids) && !empty($article['id']))
             <div class="col-md-6">
                 <!-- BEGIN Portlet PORTLET-->
                 <div class="portlet light bordered">
                     <div class="portlet-title">
                         <div class="caption font-green-sharp">
                             <i class="icon-speech font-green-sharp"></i>
-                            <span id="about_title" class="caption-subject bold uppercase"> {!!$aboutitem['title']!!}</span>
+                            <span id="article_title" class="caption-subject bold uppercase"> {!!$article['title']!!}</span>
                             <!--<span class="caption-helper">weekly stats...</span>-->
                         </div>
                         <div class="actions">
-                            @if(session()->has('about') && session('about') >2)<!--can edit-->
                             <a class="btn btn-circle btn-default btn-sm clicked_button" href="" data-toggle="modal">
                                 <i class="fa fa-pencil"></i>Edit 
                             </a>
-                            @endif
-                            
-                            @if(session()->has('delete_group') && session('delete_group') ==1)<!--can delete-->
+
                             <a href="" class="btn btn-circle btn-default btn-sm del_button" data-toggle="modal">
                                 <i class="fa fa-plus"></i> Delete </a>
                             <a class="btn btn-circle btn-icon-only btn-default fullscreen" href=""> </a>
-                            @endif
                         </div>
                     </div>
                     <div class="portlet-body">
                         <div class="scroller" style="height:200px" data-rail-visible="1" data-rail-color="yellow" data-handle-color="#a1b2bd">
-                            <input type="hidden" id="about_id" value="{{$aboutitem['id']}}">
-                            <input type="hidden" id="type" value="{{$aboutitem['type']}}">
-                            <input type="hidden" id="about_position" value="{{$aboutitem['position']}}">
-                            <input type="hidden" id="about_display" value="{{$aboutitem['display']}}">
-                            <div id="about_details"> {!!$aboutitem['details']!!}</div>
+                            <input type="hidden" id="article_id" value="{{$article['id']}}">
+                            <input type="hidden" id="type" value="{{$article['type']}}">
+                            <input type="hidden" id="article_position" value="{{$article['position']}}">
+                            <input type="hidden" id="article_display" value="{{$article['display']}}">
+                            <div id="article_details"> {!!$article['details']!!}</div>
                             <div>                                
                                 <div class="row">
-                                    @foreach($moduleitems as $about_inneritem)
-                                    @if($current_id == $about_inneritem['imageid'] && !empty($about_inneritem['imageid']))
-                                    <div class="col-sm-12 col-md-6">
+                                    @foreach($moduleitems as $news_inneritem)
+                                    @if($current_id == $news_inneritem['imageid'] && !empty($news_inneritem['imageid']))
+                                    <div class="col-sm-6 col-md-3">
                                         <a href="#" class="thumbnail">
-                                            <img src="{{asset('/site/img/'.$about_inneritem['filename'])}}" alt="100%x180" style="height: 180px; width: 100%; display: block;">
+                                            <img src="{{asset('/site/img/'.$news_inneritem['filename'])}}" alt="100%x180" style="height: 180px; width: 100%; display: block;">
                                         </a>
                                     </div>
                                     @endif
@@ -98,12 +93,12 @@ $moduleitems=$data['moduleitems'];
                 </div>
                 <!-- END Portlet PORTLET-->
             </div>
-            <?php array_push($processed_ids,$aboutitem['id'])?>
+            <?php array_push($processed_ids,$article['id'])?>
             @endif
             @endforeach
 
         </div>
-@if(session()->has('about') && session('about') >2)<!--can edit-->
+
         <div class="row">
             <div class="col-md-10">
                 <!-- BEGIN VALIDATION STATES-->
@@ -116,9 +111,9 @@ $moduleitems=$data['moduleitems'];
                     </div>
                     <div class="portlet-body">
                         <!-- BEGIN FORM-->
-                        <form role="form" action="{{ route('processm')}}" method="post" id="about_form" class="form-horizontal" enctype="multipart/form-data">
+                        <form role="form" action="{{ route('processm')}}" method="post" id="article_form" class="form-horizontal" enctype="multipart/form-data">
                             <input type="hidden" name="id"  id="id" value="0">
-                            <input type="hidden" name="type"  id="type"  value="about">
+                            <input type="hidden" name="type"  id="type"  value="article">
                             <div class="form-body">
                                 <div class="alert alert-danger display-hide">
                                     <button class="close" data-close="alert"></button> You have some form errors. Please check below. </div>
@@ -159,7 +154,7 @@ $moduleitems=$data['moduleitems'];
                                 </div>
                                 
                                  <div class="form-group">
-                                    <label class="control-label col-md-2">Details
+                                    <label class="control-label col-md-2">News
                                         <span class="required"> * </span>
                                     </label>
                                     <div class="col-md-10">
@@ -202,7 +197,7 @@ $moduleitems=$data['moduleitems'];
                                 <div class="row">
                                     <div class="col-md-offset-3 col-md-9">
                                         <input type="submit" class="btn blue" name="submit" value="Submit" />
-                                        <button onclick="resetForm('#about_form');" type="button" class="btn default">Reset</button>
+                                        <button onclick="resetForm('#article_form');" type="button" class="btn default">Reset</button>
                                     </div>
                                 </div>
                             </div>
@@ -214,7 +209,6 @@ $moduleitems=$data['moduleitems'];
                 </div>
             </div>
         </div>
-@endif
 
 
         <div class="row">
@@ -225,18 +219,18 @@ $moduleitems=$data['moduleitems'];
                     <div class="portlet-body form">                                    
 
                         <!--full width--> 
-                        <div id="about_delete_modal" class="modal fade" tabindex="-1">
+                        <div id="article_delete_modal" class="modal fade" tabindex="-1">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                                <h4 class="modal-title" id="about_header">Delete Item</h4>
+                                <h4 class="modal-title" id="article_header">Delete Item</h4>
                             </div>
                             <div class="modal-body">
                                 <h4>
                                     Are you sure you want to delete this item?
                                 </h4>
-                                <form role="form" action="{{ route('delete_item')}}" method="post" id="about_delete_form" class="form-horizontal">
+                                <form role="form" action="{{ route('delete_item')}}" method="post" id="article_delete_form" class="form-horizontal">
                                     <input type="hidden" name="id"  id="id" value="">
-                                    <input type="hidden" name="type"  id="type" value="about">
+                                    <input type="hidden" name="type"  id="type" value="article">
                                     <input type="submit" class="btn blue" name="submit" value="Delete" />
                                     <input type="hidden" value="{{Session::token()}}" name="_token"/>                            
                                 </form>

@@ -59,6 +59,11 @@ class UserController extends BaseController {
                 'management' => $request['management'],
                 'board' => $request['board'],
                 'newsitem' => $request['newsitem'],
+                'article' => $request['article'],
+                'banner' => $request['banner'],
+                'slide' => $request['slide'],
+                'state' => $request['state'],
+                'award' => $request['award'],
                 'testimonial' => $request['testimonial'],
                 'service' => $request['service'],
                 'about' => $request['about'],
@@ -79,6 +84,11 @@ class UserController extends BaseController {
             $role->management = $request['management'];
             $role->board = $request['board'];
             $role->newsitem = $request['newsitem'];
+            $role->article = $request['article'];
+            $role->banner = $request['banner'];
+            $role->slide = $request['slide'];
+            $role->state = $request['state'];
+            $role->award = $request['award'];
             $role->testimonial = $request['testimonial'];
             $role->service = $request['service'];
             $role->about = $request['about'];
@@ -158,6 +168,11 @@ class UserController extends BaseController {
                 session(['management' => $user[0]->management]);
                 session(['board' => $user[0]->board]);
                 session(['newsitem' => $user[0]->newsitem]);
+                session(['article' => $user[0]->article]);
+                session(['banner' => $user[0]->banner]);
+                session(['slide' => $user[0]->slide]);
+                session(['state' => $user[0]->state]);
+                session(['award' => $user[0]->award]);
                 session(['testimonial' => $user[0]->testimonial]);
                 session(['service' => $user[0]->service]);
                 session(['about' => $user[0]->about]);
