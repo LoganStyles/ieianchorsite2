@@ -28,12 +28,9 @@ $moduleitems=$data['moduleitems'];?>
 
         </div>
         <!-- END PAGE BAR -->
-        <!-- BEGIN PAGE TITLE-->
-        <h3 class="page-title"> News
-            <small>User: News</small>
-        </h3>
-        <!-- END PAGE TITLE-->
+
         <!-- END PAGE HEADER-->
+        @if($errors->all() )
         <div class="note note-info col-md-10">
             <p>
             <ul>
@@ -43,7 +40,7 @@ $moduleitems=$data['moduleitems'];?>
             </ul>
             </p>
         </div>
-
+        @endif
         <div class="row">
             <?php $processed_ids = [] ?>
             @foreach($moduleitems as $newitem)
@@ -111,6 +108,52 @@ $moduleitems=$data['moduleitems'];?>
                     </div>
                     <div class="portlet-body">
                         <!-- BEGIN FORM-->
+                        
+                        <!-- END FORM-->
+                    </div>
+                    <!-- END VALIDATION STATES-->
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">                            
+                <!--BEGIN MODALS FOR EDIT-->
+                <div class="portlet ">
+
+                    <div class="portlet-body form">                                    
+
+                        <!--full width--> 
+                        <div id="newsitem_delete_modal" class="modal fade" tabindex="-1">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                <h4 class="modal-title" id="newsitem_header">Delete Item</h4>
+                            </div>
+                            <div class="modal-body">
+                                <h4>
+                                    Are you sure you want to delete this item?
+                                </h4>
+                                <form role="form" action="{{ route('delete_item')}}" method="post" id="newsitem_delete_form" class="form-horizontal">
+                                    <input type="hidden" name="id"  id="id" value="">
+                                    <input type="hidden" name="type"  id="type" value="newsitem">
+                                    <input type="submit" class="btn blue" name="submit" value="Delete" />
+                                    <input type="hidden" value="{{Session::token()}}" name="_token"/>                            
+                                </form>
+
+                            </div>
+
+                        </div>
+                        
+                        
+                        <!--full width--> 
+                        <div id="newsitem_edit_modal" class="modal fade" tabindex="2" >
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                <h4 class="modal-title" id="newsitem_header">Add/Update Items</h4>
+                            </div>
+                            <div class="modal-body">
+                                <!-- BEGIN FORM-->
                         <form role="form" action="{{ route('processm')}}" method="post" id="newsitem_form" class="form-horizontal" enctype="multipart/form-data">
                             <input type="hidden" name="id"  id="id" value="0">
                             <input type="hidden" name="type"  id="type"  value="newsitem">
@@ -204,36 +247,6 @@ $moduleitems=$data['moduleitems'];?>
                             <input type="hidden" value="{{Session::token()}}" name="_token"/>
                         </form>
                         <!-- END FORM-->
-                    </div>
-                    <!-- END VALIDATION STATES-->
-                </div>
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-md-12">                            
-                <!--BEGIN MODALS FOR EDIT-->
-                <div class="portlet ">
-
-                    <div class="portlet-body form">                                    
-
-                        <!--full width--> 
-                        <div id="newsitem_delete_modal" class="modal fade" tabindex="-1">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                                <h4 class="modal-title" id="newsitem_header">Delete Item</h4>
-                            </div>
-                            <div class="modal-body">
-                                <h4>
-                                    Are you sure you want to delete this item?
-                                </h4>
-                                <form role="form" action="{{ route('delete_item')}}" method="post" id="newsitem_delete_form" class="form-horizontal">
-                                    <input type="hidden" name="id"  id="id" value="">
-                                    <input type="hidden" name="type"  id="type" value="newsitem">
-                                    <input type="submit" class="btn blue" name="submit" value="Delete" />
-                                    <input type="hidden" value="{{Session::token()}}" name="_token"/>                            
-                                </form>
 
                             </div>
 

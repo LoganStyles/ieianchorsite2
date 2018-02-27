@@ -78,24 +78,57 @@
         <script src="{{asset('/assets/layouts/layout/scripts/demo.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('/assets/layouts/global/scripts/quick-sidebar.min.js')}}" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
-        <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+        <!--<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>-->
+        <!--froala-->
+        <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
+
+        <script type="text/javascript" src="{{asset('/assets/froala/js/froala_editor.min.js')}}" ></script>
+        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/align.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/code_beautifier.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/code_view.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/colors.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/draggable.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/emoticons.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/font_size.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/font_family.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/image.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/file.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/image_manager.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/line_breaker.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/link.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/lists.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/paragraph_format.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/paragraph_style.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/video.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/table.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/url.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/entities.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/char_counter.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/inline_style.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/save.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/fullscreen.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/quote.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/quick_insert.min.js')}}"></script>
         
         <script type="text/javascript">
             $(document).ready(function(){
-                tinymce.init({ 
-                            selector:'textarea#details',
-                            height: 250,
-                            menubar: false,
-                            plugins: [
-                              'advlist autolink lists link image charmap print preview anchor textcolor',
-                              'searchreplace visualblocks code fullscreen',
-                              'insertdatetime media table contextmenu paste code help wordcount'
-                            ],
-                            toolbar: 'insert | undo redo |  formatselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
-                            content_css: [
-                              '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
-                              '//www.tinymce.com/css/codepen.min.css']
-                        }); 
+                $('#details').froalaEditor({});
+//                tinymce.init({ 
+//                            selector:'textarea#details',
+//                            height: 250,
+//                            menubar: false,
+//                            plugins: [
+//                              'advlist autolink lists link image charmap print preview anchor textcolor',
+//                              'searchreplace visualblocks code fullscreen',
+//                              'insertdatetime media table contextmenu paste code help wordcount'
+//                            ],
+//                            toolbar: 'insert | undo redo |  formatselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+//                            content_css: [
+//                              '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+//                              '//www.tinymce.com/css/codepen.min.css']
+//                        }); 
                 //fetch specific content & display in form
                 $('body').on('click','.clicked_button',function(){
                     var $this =$(this);
@@ -157,7 +190,8 @@
                     $(form_details).text(details_val).focus();
                     //initTinyMice(form_details,details_val);
                     console.log('details val '+details_val);
-                    tinymce.activeEditor.setContent(details_val);
+                    $('#newsitem_edit_modal').modal({backdrop:false,keyboard:false});
+                    //tinymce.activeEditor.setContent(details_val);
                     
                 });
                 
