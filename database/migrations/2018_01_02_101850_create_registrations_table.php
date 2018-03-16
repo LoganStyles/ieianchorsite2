@@ -17,6 +17,7 @@ class CreateRegistrationsTable extends Migration
             $table->increments('id');
             $table->string('fname');
             $table->string('lname');
+            $table->string('employer');
             $table->string('oname')->nullable();
             $table->string('email');
             $table->string('phone');

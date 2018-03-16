@@ -1,13 +1,12 @@
 @extends('layouts.master_pages')
 
 @section('title')
-Admin - Slide Page
+Admin - News Page
 @endsection 
 
 @section('content')
-<?php $page_name = "slide"; 
-$moduleitems=$data['moduleitems'];
-?>
+<?php $page_name = "newsitem";
+$moduleitems=$data['moduleitems'];?>
 
 <!-- BEGIN CONTENT -->
 <div class="page-content-wrapper">
@@ -23,18 +22,15 @@ $moduleitems=$data['moduleitems'];
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Slide</span>
+                    <span>News</span>
                 </li>
             </ul>
 
         </div>
         <!-- END PAGE BAR -->
-        <!-- BEGIN PAGE TITLE-->
-        <h3 class="page-title"> Slide
-            <small>User Slides</small>
-        </h3>
-        <!-- END PAGE TITLE-->
+
         <!-- END PAGE HEADER-->
+        @if($errors->all() )
         <div class="note note-info col-md-10">
             <p>
             <ul>
@@ -44,19 +40,19 @@ $moduleitems=$data['moduleitems'];
             </ul>
             </p>
         </div>
-
+        @endif
         <div class="row">
-            <?php $processed_ids = []; ?>
-            @foreach($moduleitems as $slideitem)
-            <?php $current_id = $slideitem['id']; ?>
-            @if(!in_array($slideitem['id'],$processed_ids) && !empty($slideitem['id']))
+            <?php $processed_ids = [] ?>
+            @foreach($moduleitems as $newitem)
+            <?php $current_id = $newitem['id']; ?>
+            @if(!in_array($newitem['id'],$processed_ids) && !empty($newitem['id']))
             <div class="col-md-6">
                 <!-- BEGIN Portlet PORTLET-->
                 <div class="portlet light bordered">
                     <div class="portlet-title">
                         <div class="caption font-green-sharp">
                             <i class="icon-speech font-green-sharp"></i>
-                            <span id="slide_title" class="caption-subject bold uppercase"> {!!$slideitem['title']!!}</span>
+                            <span id="newsitem_title" class="caption-subject bold uppercase"> {!!$newitem['title']!!}</span>
                             <!--<span class="caption-helper">weekly stats...</span>-->
                         </div>
                         <div class="actions">
@@ -71,18 +67,18 @@ $moduleitems=$data['moduleitems'];
                     </div>
                     <div class="portlet-body">
                         <div class="scroller" style="height:200px" data-rail-visible="1" data-rail-color="yellow" data-handle-color="#a1b2bd">
-                            <input type="hidden" id="slide_id" value="{{$slideitem['id']}}">
-                            <input type="hidden" id="type" value="{{$slideitem['type']}}">
-                            <input type="hidden" id="slide_position" value="{{$slideitem['position']}}">
-                            <input type="hidden" id="slide_display" value="{{$slideitem['display']}}">
-                            <div id="slide_details"> {!!$slideitem['details']!!}</div>
+                            <input type="hidden" id="newsitem_id" value="{{$newitem['id']}}">
+                            <input type="hidden" id="type" value="{{$newitem['type']}}">
+                            <input type="hidden" id="newsitem_position" value="{{$newitem['position']}}">
+                            <input type="hidden" id="newsitem_display" value="{{$newitem['display']}}">
+                            <div id="newsitem_details"> {!!$newitem['details']!!}</div>
                             <div>                                
                                 <div class="row">
-                                    @foreach($moduleitems as $slide_inneritem)
-                                    @if($current_id == $slide_inneritem['imageid'] && !empty($slide_inneritem['imageid']))
-                                    <div class="col-sm-12 col-md-6">
+                                    @foreach($moduleitems as $news_inneritem)
+                                    @if($current_id == $news_inneritem['imageid'] && !empty($news_inneritem['imageid']))
+                                    <div class="col-sm-6 col-md-3">
                                         <a href="#" class="thumbnail">
-                                            <img src="{{asset('/site/img/'.$slide_inneritem['filename'])}}" alt="100%x180" style="height: 180px; width: 100%; display: block;">
+                                            <img src="{{asset('/site/img/'.$news_inneritem['filename'])}}" alt="100%x180" style="height: 180px; width: 100%; display: block;">
                                         </a>
                                     </div>
                                     @endif
@@ -94,7 +90,7 @@ $moduleitems=$data['moduleitems'];
                 </div>
                 <!-- END Portlet PORTLET-->
             </div>
-            <?php array_push($processed_ids,$slideitem['id'])?>
+            <?php array_push($processed_ids,$newitem['id'])?>
             @endif
             @endforeach
 
@@ -112,9 +108,55 @@ $moduleitems=$data['moduleitems'];
                     </div>
                     <div class="portlet-body">
                         <!-- BEGIN FORM-->
-                        <form role="form" action="{{ route('processm')}}" method="post" id="slide_form" class="form-horizontal" enctype="multipart/form-data">
+                        
+                        <!-- END FORM-->
+                    </div>
+                    <!-- END VALIDATION STATES-->
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">                            
+                <!--BEGIN MODALS FOR EDIT-->
+                <div class="portlet ">
+
+                    <div class="portlet-body form">                                    
+
+                        <!--full width--> 
+                        <div id="newsitem_delete_modal" class="modal fade" tabindex="-1">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                <h4 class="modal-title" id="newsitem_header">Delete Item</h4>
+                            </div>
+                            <div class="modal-body">
+                                <h4>
+                                    Are you sure you want to delete this item?
+                                </h4>
+                                <form role="form" action="{{ route('delete_item')}}" method="post" id="newsitem_delete_form" class="form-horizontal">
+                                    <input type="hidden" name="id"  id="id" value="">
+                                    <input type="hidden" name="type"  id="type" value="newsitem">
+                                    <input type="submit" class="btn blue" name="submit" value="Delete" />
+                                    <input type="hidden" value="{{Session::token()}}" name="_token"/>                            
+                                </form>
+
+                            </div>
+
+                        </div>
+                        
+                        
+                        <!--full width--> 
+                        <div id="newsitem_edit_modal" class="modal fade" tabindex="2" >
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                <h4 class="modal-title" id="newsitem_header">Add/Update Items</h4>
+                            </div>
+                            <div class="modal-body">
+                                <!-- BEGIN FORM-->
+                        <form role="form" action="{{ route('processm')}}" method="post" id="newsitem_form" class="form-horizontal" enctype="multipart/form-data">
                             <input type="hidden" name="id"  id="id" value="0">
-                            <input type="hidden" name="type"  id="type"  value="slide">
+                            <input type="hidden" name="type"  id="type"  value="newsitem">
                             <div class="form-body">
                                 <div class="alert alert-danger display-hide">
                                     <button class="close" data-close="alert"></button> You have some form errors. Please check below. </div>
@@ -122,7 +164,7 @@ $moduleitems=$data['moduleitems'];
                                     <button class="close" data-close="alert"></button> Your form validation is successful! </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-2">Name
+                                    <label class="control-label col-md-2">Title
                                         <span class="required"> * </span>
                                     </label>
                                     <div class="col-md-6">
@@ -132,14 +174,6 @@ $moduleitems=$data['moduleitems'];
                                     <label class="control-label col-md-2">Position&nbsp;&nbsp;</label>
                                     <div class="col-md-2">
                                         <input name="position" id="position" type="number" value="{{count($processed_ids)+1}}" class="form-control" /> 
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label class="control-label col-md-2">URL                                        
-                                    </label>
-                                    <div class="col-md-6">
-                                        <input type="text" name="url" id="url" data-required="1" class="form-control" /> 
                                     </div>
                                 </div>
 
@@ -162,16 +196,15 @@ $moduleitems=$data['moduleitems'];
                                     </div>
                                 </div>
                                 
-<!--                                 <div class="form-group">
-                                    <label class="control-label col-md-2">Slide
+                                 <div class="form-group">
+                                    <label class="control-label col-md-2">News
                                         <span class="required"> * </span>
                                     </label>
                                     <div class="col-md-10">
-                                        <textarea class="form-control" rows="6" name="details" id="details"></textarea>
-                                        <textarea class="ckeditor form-control" rows="6" name="details" id="details" ></textarea>
+                                        <textarea class="form-control" rows="6" name="details" id="details" ></textarea>
                                         <div id="details_error"> </div>
                                     </div>
-                                </div>-->
+                                </div>
                                 <hr>
                                 <h4>Image Details</h4>
                                 <div class="form-group">
@@ -190,11 +223,11 @@ $moduleitems=$data['moduleitems'];
                                     <div class="col-md-2">
                                         <div class="mt-radio-list" data-error-container="#form_2_image_error">
                                             <label class="mt-radio">
-                                                <input checked  type="radio" name="main" id="main_yes" value="1" /> Yes
+                                                <input  type="radio" name="main" id="main_yes" value="1" /> Yes
                                                 <span></span>
                                             </label>
                                             <label class="mt-radio">
-                                                <input  type="radio" name="main" id="main_no" value="0" /> No
+                                                <input checked type="radio" name="main" id="main_no" value="0" /> No
                                                 <span></span>
                                             </label>
                                         </div>
@@ -207,43 +240,13 @@ $moduleitems=$data['moduleitems'];
                                 <div class="row">
                                     <div class="col-md-offset-3 col-md-9">
                                         <input type="submit" class="btn blue" name="submit" value="Submit" />
-                                        <button onclick="resetForm('#slide_form');" type="button" class="btn default">Reset</button>
+                                        <button onclick="resetForm('#newsitem_form');" type="button" class="btn default">Reset</button>
                                     </div>
                                 </div>
                             </div>
                             <input type="hidden" value="{{Session::token()}}" name="_token"/>
                         </form>
                         <!-- END FORM-->
-                    </div>
-                    <!-- END VALIDATION STATES-->
-                </div>
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-md-12">                            
-                <!--BEGIN MODALS FOR EDIT-->
-                <div class="portlet ">
-
-                    <div class="portlet-body form">                                    
-
-                        <!--full width--> 
-                        <div id="slide_delete_modal" class="modal fade" tabindex="-1">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                                <h4 class="modal-title" id="slide_header">Delete Item</h4>
-                            </div>
-                            <div class="modal-body">
-                                <h4>
-                                    Are you sure you want to delete this item?
-                                </h4>
-                                <form role="form" action="{{ route('delete_item')}}" method="post" id="slide_delete_form" class="form-horizontal">
-                                    <input type="hidden" name="id"  id="id" value="">
-                                    <input type="hidden" name="type"  id="type" value="slide">
-                                    <input type="submit" class="btn blue" name="submit" value="Delete" />
-                                    <input type="hidden" value="{{Session::token()}}" name="_token"/>                            
-                                </form>
 
                             </div>
 

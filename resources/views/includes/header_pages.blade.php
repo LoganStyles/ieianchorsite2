@@ -294,7 +294,7 @@
                             </a>
                         </li>-->
                                                 
-                        @if(session()->has('users') && session('users') >1)<!--can view-->
+                        @if(session()->has('users') && session('users') >3)<!--super users-->
                         <li class="nav-item <?php if($page_name=='personnel' || $page_name=='role'){echo 'active open';}?>">
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-users"></i>

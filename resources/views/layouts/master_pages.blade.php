@@ -9,6 +9,11 @@
     <head>
         <meta charset="utf-8" />
         <title>IEI Anchor | @yield('title') </title>
+        <style>
+            .table_row:hover{
+                cursor: pointer
+            }
+        </style>
         @include('includes.header_pages')        
         
         @yield('content')

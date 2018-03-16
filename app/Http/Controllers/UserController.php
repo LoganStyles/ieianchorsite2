@@ -21,7 +21,8 @@ class UserController extends BaseController {
 //        $this->middleware('auth');
     }
     
-    public function index() {
+    public function index() {//get list of users
+        if(session()->has('users') && session('users') >3){//allow only super users
         $users = DB::table('users')
                 ->leftjoin('userimages', 'users.id', '=', 'userimages.itemid')
                 ->leftjoin('roles', 'users.role', '=', 'roles.id')
@@ -34,72 +35,82 @@ class UserController extends BaseController {
             $arrays[] = (array) $object;
         }
         return view('/backend/users', ['users' => $arrays, 'page_name' => 'personnel']);
+        }else{
+           return redirect()->route('logout'); 
+        }
     }
     
     public function showUserGroups() {
-        $usergroups = DB::table('roles')
-                ->where('id', '>', 1)
-                ->orderBy('id', 'asc')
-                ->get();
-        $arrays = [];
-        foreach ($usergroups as $object) {
-            $arrays[] = (array) $object;
-        }
-        return view('/backend/roles', ['usergroups' => $arrays, 'page_name' => 'role']);
-    }
-    
-    public function processUserGroups(Request $request) {
-        
-        if ($request['id'] > 0) {
-            Role::where('id', $request['id'])->update([
-                'title' => $request['title'],
-                'description' => trim($request['description']),
-                'user' => $request['user'],
-                'role' => $request['role'],
-                'management' => $request['management'],
-                'board' => $request['board'],
-                'newsitem' => $request['newsitem'],
-                'article' => $request['article'],
-                'banner' => $request['banner'],
-                'slide' => $request['slide'],
-                'state' => $request['state'],
-                'award' => $request['award'],
-                'testimonial' => $request['testimonial'],
-                'service' => $request['service'],
-                'about' => $request['about'],
-                'report' => $request['report'],
-                'delete_group' => $request['delete_group']
-            ]);
+        if (session()->has('users') && session('users') > 3) {//allow only super users
+            $usergroups = DB::table('roles')
+                    ->where('id', '>', 1)
+                    ->orderBy('id', 'asc')
+                    ->get();
+//        ->paginate(5);
+            $arrays = [];
+            foreach ($usergroups as $object) {
+                $arrays[] = (array) $object;
+            }
+            return view('/backend/roles', ['usergroups' => $arrays, 'page_name' => 'role']);
         } else {
-            
-            $this->validate($request, [
-                'title' => 'required|unique:roles'
-            ]);
-            //insert aboutitems
-            $role = new Role();
-            $role->title = $request['title'];
-            $role->description = trim($request['description']);
-            $role->user = $request['user'];
-            $role->role = $request['role'];
-            $role->management = $request['management'];
-            $role->board = $request['board'];
-            $role->newsitem = $request['newsitem'];
-            $role->article = $request['article'];
-            $role->banner = $request['banner'];
-            $role->slide = $request['slide'];
-            $role->state = $request['state'];
-            $role->award = $request['award'];
-            $role->testimonial = $request['testimonial'];
-            $role->service = $request['service'];
-            $role->about = $request['about'];
-            $role->report = $request['report']; 
-            $role->delete_group = $request['delete_group'];
-            $role->save();
+            return redirect()->route('logout');
         }
-        return redirect()->route('show_usergroups');
     }
-    
-    
+
+    public function processUserGroups(Request $request) {
+        if (session()->has('users') && session('users') > 3) {//allow only super users
+            if ($request['id'] > 0) {
+                Role::where('id', $request['id'])->update([
+                    'title' => $request['title'],
+                    'description' => trim($request['description']),
+                    'user' => $request['user'],
+                    'role' => $request['role'],
+                    'management' => $request['management'],
+                    'board' => $request['board'],
+                    'newsitem' => $request['newsitem'],
+                    'article' => $request['article'],
+                    'banner' => $request['banner'],
+                    'slide' => $request['slide'],
+                    'state' => $request['state'],
+                    'award' => $request['award'],
+                    'testimonial' => $request['testimonial'],
+                    'service' => $request['service'],
+                    'about' => $request['about'],
+                    'report' => $request['report'],
+                    'delete_group' => $request['delete_group']
+                ]);
+            } else {
+
+                $this->validate($request, [
+                    'title' => 'required|unique:roles'
+                ]);
+                //insert aboutitems
+                $role = new Role();
+                $role->title = $request['title'];
+                $role->description = trim($request['description']);
+                $role->user = $request['user'];
+                $role->role = $request['role'];
+                $role->management = $request['management'];
+                $role->board = $request['board'];
+                $role->newsitem = $request['newsitem'];
+                $role->article = $request['article'];
+                $role->banner = $request['banner'];
+                $role->slide = $request['slide'];
+                $role->state = $request['state'];
+                $role->award = $request['award'];
+                $role->testimonial = $request['testimonial'];
+                $role->service = $request['service'];
+                $role->about = $request['about'];
+                $role->report = $request['report'];
+                $role->delete_group = $request['delete_group'];
+                $role->save();
+            }
+            return redirect()->route('show_usergroups');
+        } else {
+            return redirect()->route('logout');
+        }
+    }
+
     /* display roles in create administrator page */
     public function createAdmin() {
         $users = DB::table('roles')
@@ -189,14 +200,12 @@ class UserController extends BaseController {
                     'page_name' => 'dashboard'
                 ]);
             }else{
-                //user not found:set errors & redirect
-//                echo 'user not found';exit;
+                //user not found:set errors & redirect to login
                 return redirect()->route('login');
             }
             
         } else {
             //return back since already logged in
-//            return redirect()->back();
             return view('/backend/dashboard', [
                     'prices' => $this->latest_prices,
                     'page_name' => 'dashboard'

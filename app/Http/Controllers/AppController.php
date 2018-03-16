@@ -31,6 +31,7 @@ use App\Boardimage;
 use App\Management;
 use App\Managementimage;
 use Session;
+use Debugbar;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -40,32 +41,34 @@ use Illuminate\Support\Facades\Auth;
 class AppController extends BaseController {
     
     public function __construct(){
-//        $this->middleware('auth');
         parent::__construct();
     }
     
-     public function webRegister(){
+    public function webRegister(){
         return view('/site/register');
+    }
+    
+    private function checkLoggedStatus() {
+        if (!$this->isLoggedIn()) {return redirect()->route('login');}
     }
 
     public function showPage($page, $sub_item = NULL, $data = []) {
-        /* check if logged in, then redirect to requested page */
-        if (!$this->isLoggedIn()) {
-            //user not logged in: redirect
-            return redirect()->route('login');
-        } else {
+        /*if its an admin page check if logged in, then redirect to requested page */        
+            //get default data
             $data['siteitems'] = $this->getDBData('site');
             $data['services'] = $this->getDBData('service');
             $data['newsitem'] = $this->latest_news;
             $path = '/site/' . $page;
             $items = $page . 's';
 
-            if ($sub_item) {               
+            if ($sub_item) {
+                //get details page data
                 $path = '/site/' . $page.'_details';
                 $data['listed_items'] = $this->showPaginatedList($page);//get paginated range                
                 $data['fetched_item'] = $this->getDBData($page, $sub_item, false);//get selected item details,set page
                 $page=$page."_details";
             } else {
+                //site pages
                 switch ($page) {
                     case 'index':
                     case 'investment':
@@ -87,12 +90,14 @@ class AppController extends BaseController {
                         break;
                     
                     case 'states':
+                        $this->checkLoggedStatus();
                         $data['states'] = DB::table('ref_states_teams')->paginate(5);
                         $path = '/backend/' . $page;
                         break;
                     case 'activity':/* system generated */
                     case 'setup':
                     case 'dashboard':
+                        $this->checkLoggedStatus();
                         $path = '/backend/' . $page;
                         break;
                     case 'faq_site':
@@ -124,16 +129,22 @@ class AppController extends BaseController {
                     case 'testimonial':
                     case 'banner':
                     case 'slide':
-                    case 'award':
-                    case 'newsitem':
+                    case 'award':                    
                     case 'article':
                     case 'faqcat':
                     case 'board':
                     case 'management':
+                        $this->checkLoggedStatus();
                         $path = '/backend/' . $page;
                         $data['moduleitems'] = $this->getDBData($page);
                         break;
+                    case 'newsitem':
+                        $this->checkLoggedStatus();
+                        $path = '/backend/' . $page;
+                        $data['moduleitems'] = $this->getDBPaginatedData($page);
+                        break;
                     default:
+                        $this->checkLoggedStatus();
                         break;
                 }
             }
@@ -143,13 +154,10 @@ class AppController extends BaseController {
                 'data' => $data,
                 'page_name' => $page
             ]);
-        }
     }
     
     /* process contact/enquiries */
-
     public function processContact(Request $request) {
-
         if ($request['id'] > 0) {//validate and already existing module item
             $this->validate($request, [
                 'name' => 'required',
@@ -200,7 +208,6 @@ class AppController extends BaseController {
     }
 
     /* process site info */
-
     public function updateSite(Request $request) {
         if ($request['id'] > 0) {
             $this->validate($request, [
@@ -286,18 +293,7 @@ class AppController extends BaseController {
         return redirect()->back();
     }
 
-    /*
-     * client registration
-     * validates data received from registration
-     * sends email to validate client email address
-     */
-//    public function webRegisterPost(Request $request)
-//    {
-//        
-//        print('write your other code here.');exit;
-//    }
-
-    public function processRegister(Request $request) {        
+    public function processRegister(Request $request) {       
         $this->validate($request, [
             'fname' => 'required',
             'lname' => 'required',
@@ -403,7 +399,6 @@ class AppController extends BaseController {
     }
 
     public function processStates(Request $request) {
-
         if ($request['id'] > 0) {//validate and already existing module item
             $this->validate($request, [
                 'contact_email' => 'required'
@@ -434,7 +429,6 @@ class AppController extends BaseController {
     /* process modules create & edit */
 
     public function processModule(Request $request) {
-
         if ($request['id'] > 0) {//validate and already existing module item
             $this->validate($request, [
                 'title' => 'required',
@@ -675,7 +669,6 @@ class AppController extends BaseController {
             }
         }
 
-        //    return redirect()->route('view');
         return redirect()->back();
     }
 
@@ -685,7 +678,6 @@ class AppController extends BaseController {
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request) {
-
         if (session()->has('delete_group') && session('delete_group') == 1) {//can delete
             //chk for module type
             $del_type = $request['type'];
@@ -731,6 +723,7 @@ class AppController extends BaseController {
                     break;
 
                 case'newsitem':
+                    
                     $moduleitem = Newsitem::find($request['id']);
                     $moduleitem->delete();
                     break;
@@ -744,6 +737,8 @@ class AppController extends BaseController {
                     DB::table($del_type)->where('id', '=', $request['id'])->delete();
                     break;
             }
+        }else{
+            $request->session()->flash('del_status', 'You are not authorised to perform this action!');
         }
 
         return redirect()->back();
@@ -762,7 +757,6 @@ class AppController extends BaseController {
                 ->whereBetween('report_date', [$from, $to])
                 ->orderBy('report_date', 'desc')
                 ->get();
-//        print_r($range_of_prices);exit;
         if($range_of_prices){
             $result=$range_of_prices;
         }

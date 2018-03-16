@@ -37,7 +37,7 @@
         <script src="{{asset('/assets/global/plugins/jquery-validation/js/jquery.validate.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('/assets/global/plugins/jquery-validation/js/additional-methods.min.js')}}" type="text/javascript"></script>
         <!--<script src="{{asset('/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}" type="text/javascript"></script>-->        
-        <script src="{{asset('/assets/global/plugins/ckeditor/ckeditor.js')}}" type="text/javascript"></script>
+        <!--<script src="{{asset('/assets/global/plugins/ckeditor/ckeditor.js')}}" type="text/javascript"></script>-->
         <script src="{{asset('/assets/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js')}}" type="text/javascript"></script>
         <script src="{{asset('/assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js')}}" type="text/javascript"></script>
         <script src="{{asset('/assets/pages/scripts/ui-extended-modals.min.js')}}" type="text/javascript"></script>
@@ -113,22 +113,14 @@
         <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/quick_insert.min.js')}}"></script>
         
         <script type="text/javascript">
+            
             $(document).ready(function(){
-                $('#details').froalaEditor({});
-//                tinymce.init({ 
-//                            selector:'textarea#details',
-//                            height: 250,
-//                            menubar: false,
-//                            plugins: [
-//                              'advlist autolink lists link image charmap print preview anchor textcolor',
-//                              'searchreplace visualblocks code fullscreen',
-//                              'insertdatetime media table contextmenu paste code help wordcount'
-//                            ],
-//                            toolbar: 'insert | undo redo |  formatselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
-//                            content_css: [
-//                              '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
-//                              '//www.tinymce.com/css/codepen.min.css']
-//                        }); 
+                $('#details').froalaEditor({
+                    heightMin: 100,
+                    heightMax: 200,
+                    toolbarButtons: ['bold', 'italic', 'underline', 'insertImage', 'insertLink', 'insertTable', 'undo', 'redo', 'formatOL', 'formatUL','align']
+                });
+
                 //fetch specific content & display in form
                 $('body').on('click','.clicked_button',function(){
                     var $this =$(this);
@@ -187,11 +179,10 @@
                         console.log('display is 0 ');
                     }
                     $(form_display).text(display_val);
-                    $(form_details).text(details_val).focus();
-                    //initTinyMice(form_details,details_val);
+                    //$(form_details).text(details_val).focus();
+                    $(form_details).froalaEditor('html.set', details_val);
                     console.log('details val '+details_val);
-                    $('#newsitem_edit_modal').modal({backdrop:false,keyboard:false});
-                    //tinymce.activeEditor.setContent(details_val);
+                    //$('#newsitem_edit_modal').modal({backdrop:false,keyboard:false});
                     
                 });
                 
@@ -212,6 +203,86 @@
                     $(delete_modal).modal({backdrop:false,keyboard:false});
                 });
                 
+                /*for pages that use tables*/
+                $('body').on('click','.new_item',function(){
+                    var form_type=$('form #type').val();
+                    //console.log('row_type '+form_type);
+                    var form_id="#"+form_type+"_form";
+                    var form_modal="#"+form_type+"_edit_modal";
+                    $(form_id).trigger('reset');
+                    $(form_modal).modal({backdrop: false, keyboard: false});
+                });
+                
+                $('body').on('click','.delete_item',function(){//delete items
+                    var row_id=$('table tbody .table_row.active input.row_id').val();
+                    var row_type=$('table tbody .table_row.active input.row_type').val();
+                    
+                    var delete_form_id='#'+row_type+'_delete_form #id';//delete form id field
+                    var delete_modal='#'+row_type+'_delete_modal';
+                    console.log('row_id '+row_id);
+                    console.log('delete_form_id '+delete_form_id);
+                    console.log('delete_modal '+delete_modal);
+                    
+                    $(delete_form_id).val(row_id);
+                    $(delete_modal).modal({backdrop: false, keyboard: false});
+                });
+                
+                $('body').on('click','.edit_item',function(){
+                    var row_id=$('table tbody .table_row.active input.row_id').val();
+                    var row_type=$('table tbody .table_row.active input.row_type').val();
+                    var row_position=$('table tbody .table_row.active input.row_position').val();
+                    var row_display=$('table tbody .table_row.active input.row_display').val();
+                    var row_title=$('table tbody .table_row.active .row_title').text();
+//                    var row_description=$('table tbody .table_row.active .row_description').text();
+                    var row_details=$('table tbody .table_row.active .row_details').html();
+//                    console.log('row_idss '+row_id);
+//                    console.log('row_type '+row_type);
+//                    console.log('row_position '+row_position);
+//                    console.log('row_display '+row_display);
+//                    console.log('row_title '+row_title);
+//                    console.log('row_details '+row_details);
+//                    console.log('row_description '+row_description);
+                    
+                    var form_id="#"+row_type+"_form";
+                    var form_modal="#"+row_type+"_edit_modal";
+                    
+                    var form_title=form_id+" #title";
+                    var id=form_id+" #id";
+                    var form_type=form_id+" #type";
+                    var form_position=form_id+" #position";
+                    var form_display_yes=form_id+" #display_yes";
+                    var form_display_no=form_id+" #display_no";
+                    var form_details=form_id+" #details";
+                    
+                    //form fields vars
+//                    console.log('form_id '+form_id);
+//                    console.log('id '+id);
+//                    console.log('form_title '+form_title);
+//                    console.log('form_type '+form_type);
+//                    console.log('form_position '+form_position);
+//                    console.log('form_details '+form_details);
+//                    console.log('form_display_yes '+form_display_yes);
+//                    console.log('form_display_no '+form_display_no);
+                    
+                    //set values
+                    $(id).val(row_id);
+                    $(form_type).val(row_type);
+                    $(form_title).val(row_title);
+                    $(form_position).val(row_position);
+                    
+                    if(row_display==1){
+                        //console.log('display is 1 ');
+                        $(form_display_yes).prop('checked', true);
+                    }else{
+                        $(form_display_no).prop('checked', true);
+                        //console.log('display is 0 ');
+                    }
+                    
+                    //$(form_details).val(row_description);
+                    $(form_details).froalaEditor('html.set', row_details);                    
+                    $(form_modal).modal({backdrop: false, keyboard: false});
+                });
+                
                 $('body').on('click', '.table_row', function () {
                     //select or deselect a row
                     console.log('a radio was clicked');
@@ -221,6 +292,7 @@
                     
                     var row_id=$this.find('.row_id').val();
                     var row_type=$this.find('.row_type').val();
+                    console.log('row_id '+row_id);
                     console.log('row_type '+row_type);
                     if(row_type==="ref_states_teams"){
                         var row_team_code=$this.find('.row_team_code').val();

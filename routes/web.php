@@ -19,12 +19,12 @@ Route::get('/create_user', 'UserController@createAdmin')->name('create_user'); /
 Route::post('create_administrator', 'UserController@postCreateUser')->name('create_u'); //..submit post data to create an administrator
 Route::get('/usergroups', 'UserController@showUserGroups')->name('show_usergroups')->middleware('auth'); //..display usergroups page
 Route::get('/page/{generic}', 'AppController@showPage');//display a page
-Route::get('/page/{generic}', 'AppController@showPage')->name('dashboard')->middleware('auth');//display the dashboard
+//Route::get('/page/{generic}', 'AppController@showPage')->name('dashboard')->middleware('auth');//display the dashboard
 Route::get('/page/{service}/{generic}', 'AppController@showPage');//display news
 //Route::get('/page/{service}/{generic}', 'AppController@showPaginatedList');//display news
-Route::get('/module/{generic}', 'AppController@showPage')->middleware('auth');//display a module::about,services
 
-Route::post('/page/dashboard', 'UserController@postLoginUser')->name('login_u'); //..process login
+Route::get('/module/{generic}', 'AppController@showPage')->middleware('auth');//display a module::about,services
+Route::post('/module/dashboard', 'UserController@postLoginUser')->name('login_u'); //..process login
 Route::post('site_update', 'AppController@updateSite')->name('update_site')->middleware('auth'); //process site info
 Route::post('delete', 'AppController@destroy')->name('delete_item')->middleware('auth');
 

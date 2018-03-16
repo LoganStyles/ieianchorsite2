@@ -7,7 +7,9 @@ Admin | States
 @section('content')
 <?php 
 $page_name="states";
-$states=$data['states'];?>
+$states=$data['states'];
+//print_r($states);exit;
+?>
 
 <!-- BEGIN CONTENT -->
 <div class="page-content-wrapper">

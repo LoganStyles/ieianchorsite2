@@ -19,7 +19,7 @@ $moduleitems=$data['moduleitems'];
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="{{url('/page/dashboard')}}">Home</a>
+                    <a href="{{url('/module/dashboard')}}">Home</a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>

@@ -5,7 +5,7 @@ Dashboard
 @endsection   
 
     @section('content')      
-        <?php $page_name="dashboard"; ?>
+        <?php //$page_name="dashboard";?>
             <!-- BEGIN CONTENT -->
             <div class="page-content-wrapper">
                 <!-- BEGIN CONTENT BODY -->
@@ -33,6 +33,22 @@ Dashboard
                     <!-- END PAGE TITLE-->
                     <!-- END PAGE HEADER-->
                     <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="dashboard-stat2 ">
+                                <div class="display">
+                                    <div class="number">
+                                        <h3 class="font-green-sharp">
+                                            <span data-counter="counterup" data-value="130"></span>
+                                            <small class="font-green-sharp"></small>
+                                        </h3>
+                                        <small>Online Registrations </small>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-line-chart"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <div class="dashboard-stat2 ">
                                 <div class="display">
