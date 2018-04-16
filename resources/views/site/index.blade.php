@@ -97,7 +97,7 @@ Retire Happy
                     </div>
                     
                     <div class="col-md-4 col-lg-4 col-sm-12 w3_agile_services_grid">
-                        <a href="#">
+                        <a href="{{url('/page/investment_portfolio')}}">
                             <div class="agile_services_grid1">
                                 <div style="width:100%;">
                                     <div style="width:30%;float: left;"><img  class="products_icon" src="{{ asset('/site/images/portfolio.png')}}" /></div>
@@ -114,7 +114,7 @@ Retire Happy
                     </div>
                     
                     <div class="col-md-4 col-lg-4 col-sm-12 w3_agile_services_grid">
-                        <a href="#">
+                        <a href="{{url('/page/rate_of_return')}}">
                             <div class="agile_services_grid1">
                                 <div style="width:100%;">
                                     <div style="width:30%;float: left;"><img  class="products_icon" src="{{ asset('/site/images/rate_of_return.png')}}" /></div>
@@ -168,10 +168,18 @@ Retire Happy
                 </div>
             </div>
             <div class="col-md-2 col-lg-2 col-sm-12">
-                @if(count($banners) >0 && $banners[1])
+                <div>
+                    @if(count($banners) >0 && $banners[1])
                     <a href="{{$banners[1]['url']}}" target="_blank">
                     <img src="{{ asset('/site/img/'.$banners[1]['filename'])}}" style="max-width: 100%;" />
                     </a>
+                </div>
+                
+                <div>
+                    <!--twitter feeds-->
+                    <a class="twitter-timeline" data-height="400" href="https://twitter.com/ieiapensionmgrs?ref_src=twsrc%5Etfw">Tweets by ieiapensionmgrs</a> 
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
                 @endif
             </div>
             
@@ -208,7 +216,7 @@ Retire Happy
 <div class="testimonials">
     <div class="container">
         <h3 class="w3l_header w3_agileits_header">Testimonials</h3>
-        <p class="sub_para_agile">What others say about us</p>
+        
         <div class="w3ls_testimonials_grids">
             <section class="center slider">
                 <?php foreach($data['testimonials'] as $item){ ?>
@@ -228,6 +236,9 @@ Retire Happy
             </section>
         </div>
     </div>
+    <p class="sub_para_agile">
+        <a class="btn btn-primary" target="_blank" href="{{url('/page/feedback/')}}"><i class="fa fa-thumbs-up"></i>&nbsp;Give us your feedback </a>
+        </p>
 </div>
 <!-- //testimonials -->
 <!-- small-banner -->
@@ -237,4 +248,32 @@ Retire Happy
     </div>
 </div>
 <!-- //small-banner -->	
+
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" style="background-color: #09347a;color: #fff;padding: 2%;text-align: center;">CAVEAT</h4>
+      </div>
+      <div class="modal-body">
+          <p style="color: #000;font-weight: 500;">Please do not give money to any staff of IEI-Anchor Pensions as charges for services 
+                    rendered or to be rendered.
+            </p>
+            <p style="color: #000;font-weight: 500;">
+                IEI-Anchor Pensions will not ask for gratification in any form (e.g: money, recharge cards etc) 
+                before or after processing withdrawal applications on your retirement savings account.
+            </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
 @endsection

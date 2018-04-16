@@ -15,9 +15,10 @@ class CreateDownloadsTable extends Migration
     {
         Schema::create('downloads', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('category_id');
             $table->string('title');
             $table->string('filename');
-            $table->enum('enable',['0','1'])->default('0');
+            $table->enum('display',['0','1'])->default('0');
             $table->string('type')->default('download');
             $table->integer('download_count')->default(0);
             $table->rememberToken();

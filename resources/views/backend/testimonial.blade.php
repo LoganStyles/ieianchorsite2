@@ -166,7 +166,6 @@ $moduleitems=$data['moduleitems'];
                                 <hr>
                                 <h4>Image Details</h4>
                                 <div class="form-group">
-                                    <!--<label for="image" col-md-2>Image Upload</label>-->
                                     <div class="col-md-2">
                                         <input type="file" id="image" name="image">
                                         <p class="help-block"> (optional) </p>

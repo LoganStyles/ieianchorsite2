@@ -69,6 +69,7 @@ class UserController extends BaseController {
                     'board' => $request['board'],
                     'newsitem' => $request['newsitem'],
                     'article' => $request['article'],
+                    'faq' => $request['faq'],
                     'banner' => $request['banner'],
                     'slide' => $request['slide'],
                     'state' => $request['state'],
@@ -94,6 +95,7 @@ class UserController extends BaseController {
                 $role->board = $request['board'];
                 $role->newsitem = $request['newsitem'];
                 $role->article = $request['article'];
+                $role->faq = $request['faq'];
                 $role->banner = $request['banner'];
                 $role->slide = $request['slide'];
                 $role->state = $request['state'];
@@ -180,6 +182,7 @@ class UserController extends BaseController {
                 session(['board' => $user[0]->board]);
                 session(['newsitem' => $user[0]->newsitem]);
                 session(['article' => $user[0]->article]);
+                session(['faq' => $user[0]->faq]);
                 session(['banner' => $user[0]->banner]);
                 session(['slide' => $user[0]->slide]);
                 session(['state' => $user[0]->state]);

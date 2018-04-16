@@ -28,7 +28,7 @@ class RegistrationRec extends Mailable
      */
     public function build()
     {
-        return $this->from('reelgold2@yahoo.com')
+        return $this->from('register@ieianchorpensions.com')
                 ->view('emails.mailEvent');
     }
 }

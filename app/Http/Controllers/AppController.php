@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 use App\Registration;
+use App\Registrationimage;
 use App\Response;
 use App\About;
 use App\Aboutimage;
@@ -26,6 +27,7 @@ use App\Newsitem;
 use App\Newsitemimage;
 use App\Article;
 use App\Articleimage;
+use App\Faqcat;
 use App\Board;
 use App\Boardimage;
 use App\Management;
@@ -37,6 +39,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class AppController extends BaseController {
     
@@ -51,6 +54,15 @@ class AppController extends BaseController {
     private function checkLoggedStatus() {
         if (!$this->isLoggedIn()) {return redirect()->route('login');}
     }
+    
+    /*
+     * handles file downloads
+     * implement headers later
+     */
+    public function downloadFile($item){
+        $pathToFile=public_path('/site/downloads/'.$item);
+        return response()->download($pathToFile);
+    }
 
     public function showPage($page, $sub_item = NULL, $data = []) {
         /*if its an admin page check if logged in, then redirect to requested page */        
@@ -64,8 +76,9 @@ class AppController extends BaseController {
             if ($sub_item) {
                 //get details page data
                 $path = '/site/' . $page.'_details';
-                $data['listed_items'] = $this->showPaginatedList($page);//get paginated range                
+                $data['listed_items'] = $this->showPaginatedList($page);//get paginated range    
                 $data['fetched_item'] = $this->getDBData($page, $sub_item, false);//get selected item details,set page
+                //print_r($data['fetched_item'][0]);exit;
                 $page=$page."_details";
             } else {
                 //site pages
@@ -86,6 +99,7 @@ class AppController extends BaseController {
                             'total_package' => '0.00');
                         break;
                     case 'register':
+                    case 'feedback':
                         $data['states'] = $this->getDBData('ref_states_team', $sub_item, true);
                         break;
                     
@@ -102,6 +116,9 @@ class AppController extends BaseController {
                         break;
                     case 'faq_site':
                         $data['moduleitems']= DB::table('faqcats')->select('*')->distinct()->get();
+                        break;
+                    case 'download_site':
+                        $data['moduleitems']= DB::table('downloadcats')->select('*')->distinct()->get();
                         break;
                     case 'branch_site':
                         $data['moduleitems']= DB::table('branches')->select('*')->distinct()->get();
@@ -124,21 +141,26 @@ class AppController extends BaseController {
                     case 'article_site':
                         $data['moduleitems'] = $this->getDBData('article');
                         break;
-                    case 'about':
-                    case 'service':
+                    case 'about':                    
                     case 'testimonial':
                     case 'banner':
                     case 'slide':
-                    case 'award':                    
-                    case 'article':
-                    case 'faqcat':
+                    case 'award':                
                     case 'board':
                     case 'management':
                         $this->checkLoggedStatus();
                         $path = '/backend/' . $page;
                         $data['moduleitems'] = $this->getDBData($page);
                         break;
+                    case 'service':
+                    case 'article':
                     case 'newsitem':
+                    case 'faqcat':
+                        $this->checkLoggedStatus();
+                        $path = '/backend/' . $page;
+                        $data['moduleitems'] = $this->getDBPaginatedData($page);
+                        break;
+                    case 'faq':
                         $this->checkLoggedStatus();
                         $path = '/backend/' . $page;
                         $data['moduleitems'] = $this->getDBPaginatedData($page);
@@ -293,55 +315,75 @@ class AppController extends BaseController {
         return redirect()->back();
     }
 
-    public function processRegister(Request $request) {       
+    public function processRegister(Request $request) {   
+        
         $this->validate($request, [
             'fname' => 'required',
             'lname' => 'required',
+            'dob' => 'required',
             'states' => 'required',
             'phone' => 'required',
             'employer' => 'required',
             'email' => 'required|email',
+            'image' => 'image|mimes:jpeg,jpg,png,gif|max:2048',
             'CaptchaCode' => 'required|valid_captcha'
-        ]);
+        ]);            
 
         $moduleitem = new Registration();
+        $moduleimage = new Registrationimage();
 
         //insert modules            
         $moduleitem->fname = trim($request['fname']);
         $moduleitem->lname = trim($request['lname']);
         $moduleitem->email = trim($request['email']);
         $moduleitem->phone = trim($request['phone']);
+        
+        $client_dob  = ($request['dob'])?($request['dob']):(date('m/d/Y'));
+        $moduleitem->dob = date('Y-m-d', strtotime($client_dob));
+        
         $moduleitem->employer = trim($request['employer']);
+        $moduleitem->employer_address = trim($request['employer_address']);
         $moduleitem->states = $request['states'];
         $moduleitem->oname = trim($request['oname']);
         $moduleitem->validated = 'no';
         $moduleitem->save();
         
+        //if image exists
+        $image = $request->file('image');
+        if (!empty($image)) {
+            $input['imagename'] = time() . '.' . $image->getClientOriginalExtension();
+
+            $destinationPath = public_path('/site/img');
+            $image->move($destinationPath, $input['imagename']);
+
+            //save the image                
+            $moduleimage->filename = $input['imagename'];
+            $moduleimage->itemid = $moduleitem->id;
+            $moduleimage->alt = $request['caption'];
+            $moduleimage->caption = $request['caption'];
+            $moduleimage->main = $request['main'];
+            $moduleimage->save();
+        }
+        
         //select contact email & send mail
-//        $agent_details=DB::table('ref_states_teams')->select('contact_email')
-//                    ->where('title', $request['states'])
-//                ->get();
-//        $agent_email=$agent_details[0];
-//        
-//        $data=array(
-//            'email'=>trim($request['email']),
-//            'phone'=>trim($request['phone']),
-//            'states'=>trim($request['states']),
-//            'subject'=>'RSA Generation',
-//            'agent_email'=>$agent_email->contact_email,
-//            'clientname'=>trim($request['fname']).' '.trim($request['lname'])
-//        );  
+        $agent_details=DB::table('ref_states_teams')->select('contact_email')->where('title', $request['states'])
+                ->get();
+        
+        foreach ($agent_details as $object) {
+            $agent_details_arr[] = (array) $object;
+        }
+        $agent_email=$agent_details_arr[0]['contact_email'];
         
         //send client validation email
         $data=array(
-            'email'=>'cservice@ieianchorpensions.com',
+            'email'=>'register@ieianchorpensions.com',
             'phone'=>trim($request['phone']),
             'states'=>trim($request['states']),
             'subject'=>'RSA Generation',
-            'agent_email'=>trim($request['email']),
+            'client_email'=>trim($request['email']),
+            'agent_email'=>trim($agent_email),
             'clientname'=>trim($request['fname']).' '.trim($request['lname'])
         );
-        
                 
         Mail::send('emails.mailEvent', $data, function($message) use ($data) {
             $message->from($data['email']);
@@ -351,8 +393,55 @@ class AppController extends BaseController {
         $request->session()->flash('reg_status', 'Registration was successful!');
         return redirect()->back();
     }
+    
+    public function processClientTestimonial(Request $request) {   
+        $this->validate($request, [
+            'title' => 'required|unique:testimonials',
+            'email' => 'required|email',
+            'image' => 'image|mimes:jpeg,jpg,png,gif|max:2048',
+            'CaptchaCode' => 'required|valid_captcha'
+        ]);  
 
+        $moduleitem = new Testimonial();
+        $moduleimage = new Testimonialimage();
+        
+        $moduleitem->title = $request['title'];
+        $moduleitem->details = trim($request['details']);
+        $moduleitem->position = $request['position'];
+        $moduleitem->display = (!empty($request['display'])?($request['display']):('0'));
+        $moduleitem->link_label = preg_replace('/[^A-Za-z0-9]/', '_', strtolower($request['title']));
+        $moduleitem->excerpt = substr($request['details'], 0, 100);
+        $moduleitem->save();
+        
+        //if image exists
+        $image = $request->file('image');
+        if (!empty($image)) {
+            $input['imagename'] = time() . '.' . $image->getClientOriginalExtension();
+
+            $destinationPath = public_path('/site/img');
+            $image->move($destinationPath, $input['imagename']);
+
+            //save the image                
+            $moduleimage->filename = $input['imagename'];
+            $moduleimage->itemid = $moduleitem->id;
+            $moduleimage->alt = "";
+            $moduleimage->caption = "";
+            $moduleimage->main = "0";
+            $moduleimage->save();
+        }
+        
+        $request->session()->flash('feedback_status', 'Thank you for your feedback.');
+        return redirect()->back();
+    }
+    
     public function pensionCalculator(Request $request) {
+        $this->validate($request, [
+            'rsa_balance' => 'required|numeric',
+            'monthly_contribution' => 'required|numeric',
+            'years_before_retirement' => 'required|numeric',
+            'percentage_return' => 'required|numeric'
+        ]);
+        
         //default values
         $data = [];
         $result = array('lumpsum' => '0.00',
@@ -360,43 +449,90 @@ class AppController extends BaseController {
             'qualify_for_lumpsum' => 'No',
             'qualify_for_programmed_withdrawal' => 'No',
             'total_package' => '0.00');
+        
+        $rsaBalance=$request['rsa_balance'];
+        $monthlyContribution=$request['monthly_contribution'];
+        $yearsBeforeRetirement=$request['years_before_retirement'];
+        $percentageReturn=$request['percentage_return'];
+        
+        
+        if (is_numeric($rsaBalance) && is_numeric($monthlyContribution) && is_numeric($yearsBeforeRetirement) && is_numeric($percentageReturn)) {
+            $percentageReturn = $percentageReturn / 100;
+            $totalPackage = ($monthlyContribution * $yearsBeforeRetirement * 12) + ($rsaBalance * pow((1 + $percentageReturn), $yearsBeforeRetirement));
 
-        $this->validate($request, [
-            'rsa_balance' => 'numeric',
-            'monthly_contribution' => 'numeric',
-            'years_before_retirement' => 'numeric',
-            'percentage_return' => 'numeric'
-        ]);
+            $result['total_package'] = number_format($totalPackage, 2);
 
-        $percentageReturn = ($request['percentage_return']) / 100;
-        $totalPackage = ($request['monthly_contribution'] * $request['years_before_retirement'] * 12) + ($request['rsa_balance'] * pow((1 + $request['percentage_return']), $request['years_before_retirement']));
-
-        //format & set total package
-        $result['total_package'] = number_format($totalPackage, 2);
-
-        if ($totalPackage > 550000) {
-            $result['qualify_for_lumpsum'] = 'Yes';
-            $result['lumpsum'] = number_format(($totalPackage * .25), 2);
-            $result['qualify_for_programmed_withdrawal'] = 'Yes';
-            $result['monthly_pension'] = number_format(((0.75 * $totalPackage) / 120), 2);
-        } else {
-            $result['qualify_for_lumpsum'] = 'No';
-            $result['lumpsum'] = $totalPackage;
-            $result['qualify_for_programmed_withdrawal'] = 'No';
+            if ($totalPackage > 550000) {
+                $result['qualify_for_lumpsum'] = 'Yes';
+                $result['lumpsum'] = number_format(($totalPackage * .25), 2);
+                $result['qualify_for_programmed_withdrawal'] = 'Yes';
+                $result['monthly_pension'] = number_format(((0.75 * $totalPackage) / 120), 2);
+            } else {
+                $result['qualify_for_lumpsum'] = 'No';
+                $result['lumpsum'] = $totalPackage;
+                $result['qualify_for_programmed_withdrawal'] = 'No';
+            }
         }
+        
         $page = "pension_calculator";
         $data['resultitems'] = $result;
         $data['siteitems'] = $this->getDBData('site');
         $data['services'] = $this->getDBData('service');
         $data['newsitem'] = $this->latest_news;
         $path = '/site/' . $page;
-
+        
         return view($path, [
             'prices' => $this->latest_prices,
             'data' => $data,
             'page_name' => $page
         ]);
     }
+
+//    public function pensionCalculator(Request $request) {
+//        //default values
+//        $data = [];
+//        $result = array('lumpsum' => '0.00',
+//            'monthly_pension' => '0.00',
+//            'qualify_for_lumpsum' => 'No',
+//            'qualify_for_programmed_withdrawal' => 'No',
+//            'total_package' => '0.00');
+//
+//        $this->validate($request, [
+//            'rsa_balance' => 'numeric',
+//            'monthly_contribution' => 'numeric',
+//            'years_before_retirement' => 'numeric',
+//            'percentage_return' => 'numeric'
+//        ]);
+//
+//        $percentageReturn = ($request['percentage_return']) / 100;
+//        $totalPackage = ($request['monthly_contribution'] * $request['years_before_retirement'] * 12) + ($request['rsa_balance'] * pow((1 + $request['percentage_return']), $request['years_before_retirement']));
+//
+//        //format & set total package
+//        $result['total_package'] = number_format($totalPackage, 2);
+//
+//        if ($totalPackage > 550000) {
+//            $result['qualify_for_lumpsum'] = 'Yes';
+//            $result['lumpsum'] = number_format(($totalPackage * .25), 2);
+//            $result['qualify_for_programmed_withdrawal'] = 'Yes';
+//            $result['monthly_pension'] = number_format(((0.75 * $totalPackage) / 120), 2);
+//        } else {
+//            $result['qualify_for_lumpsum'] = 'No';
+//            $result['lumpsum'] = $totalPackage;
+//            $result['qualify_for_programmed_withdrawal'] = 'No';
+//        }
+//        $page = "pension_calculator";
+//        $data['resultitems'] = $result;
+//        $data['siteitems'] = $this->getDBData('site');
+//        $data['services'] = $this->getDBData('service');
+//        $data['newsitem'] = $this->latest_news;
+//        $path = '/site/' . $page;
+//
+//        return view($path, [
+//            'prices' => $this->latest_prices,
+//            'data' => $data,
+//            'page_name' => $page
+//        ]);
+//    }
 
     public function processStates(Request $request) {
         if ($request['id'] > 0) {//validate and already existing module item
@@ -432,7 +568,6 @@ class AppController extends BaseController {
         if ($request['id'] > 0) {//validate and already existing module item
             $this->validate($request, [
                 'title' => 'required',
-//                'details' => 'required',
                 'image' => 'image|mimes:jpeg,jpg,png,gif|max:2048'
             ]);
 
@@ -542,7 +677,7 @@ class AppController extends BaseController {
                         'title' => $request['title'],
                         'details' => trim($request['details']),
                         'position' => $request['position'],
-                        'display' => $request['display'],
+                        'display' => (!empty($request['display'])?($request['display']):('0')),
                         'link_label' => preg_replace('/[^A-Za-z0-9]/', '_', strtolower($request['title'])),
                         'excerpt' => substr($request['details'], 0, 100)
                     ]);
@@ -554,11 +689,18 @@ class AppController extends BaseController {
                         'title' => $request['title'],
                         'details' => trim($request['details']),
                         'position' => $request['position'],
-                        'display' => $request['display'],
+                        'display' => (!empty($request['display'])?($request['display']):('0')),
                         'link_label' => preg_replace('/[^A-Za-z0-9]/', '_', strtolower($request['title'])),
                         'excerpt' => substr($request['details'], 0, 100)
                     ]);
                     $moduleimage = new Articleimage();
+                    break;
+                
+                case'faqcat':
+                    Faqcat::where('id', $request['id'])->update([
+                        'title' => $request['title'],
+                        'description' => trim($request['details'])
+                    ]);
                     break;
             }
 
@@ -579,13 +721,11 @@ class AppController extends BaseController {
                 $moduleimage->save();
             }
         } else {
-            //validate and already existing module item
+            //validate new module item
             $this->validate($request, [
                 'title' => 'required|unique:abouts',
-//                'details' => 'required',
                 'image' => 'image|mimes:jpeg,jpg,png,gif|max:2048'
-            ]);
-
+            ]);            
             //chk for module type
             switch ($request['type']) {
                 case'about':
@@ -640,17 +780,26 @@ class AppController extends BaseController {
                     $moduleitem = new Management();
                     $moduleimage = new Managementimage();
                     break;
+                
+                case'faqcat':
+                    $moduleitem = new Faqcat();
+                    break;
             }
 
-            //insert modules            
+            //insert modules   
+            if($request['type'] !="faqcat"){
             $moduleitem->title = $request['title'];
             $moduleitem->details = trim($request['details']);
             $moduleitem->position = $request['position'];
-            $moduleitem->display = $request['display'];
+            $moduleitem->display = (!empty($request['display'])?($request['display']):('0'));
             $moduleitem->link_label = preg_replace('/[^A-Za-z0-9]/', '_', strtolower($request['title']));
             $moduleitem->excerpt = substr($request['details'], 0, 100);
+            
+            }else{
+            $moduleitem->title = $request['title'];
+            $moduleitem->description = trim($request['details']);
+            }
             $moduleitem->save();
-
             //if image exists
             $image = $request->file('image');
             if (!empty($image)) {
@@ -681,55 +830,92 @@ class AppController extends BaseController {
         if (session()->has('delete_group') && session('delete_group') == 1) {//can delete
             //chk for module type
             $del_type = $request['type'];
-            switch ($del_type) {
+            
+            if ($del_type != "faqcat") {
+                $itemimages = $del_type . 'images';
+
+                //get filename and remove it if exists
+                $moduleimages = DB::table($itemimages)
+                        ->select('filename')
+                        ->where('itemid', $request['id'])
+                        ->get();
+
+                foreach ($moduleimages as $object) {
+                    $imgarrays[] = (array) $object;
+                }
+
+                foreach ($imgarrays as $image) {
+                    //delete file
+                    $deletePath = public_path('/site/img/' . $image['filename']);
+                    Storage::delete($deletePath);
+                }
+            }
+
+
+            //remove from tbls
+            switch ($del_type) {                
                 case'about':
                     $moduleitem = About::find($request['id']);
                     $moduleitem->delete();
+                    Aboutimage::where('itemid', $request['id'])->delete();
                     break;
 
                 case'service':
                     $moduleitem = Service::find($request['id']);
                     $moduleitem->delete();
+                    Serviceimage::where('itemid', $request['id'])->delete();
                     break;
 
                 case'testimonial':
                     $moduleitem = Testimonial::find($request['id']);
                     $moduleitem->delete();
+                    Testimonialimage::where('itemid', $request['id'])->delete();
                     break;
 
                 case'banner':
                     $moduleitem = Banner::find($request['id']);
                     $moduleitem->delete();
+                    Bannerimage::where('itemid', $request['id'])->delete();
                     break;
 
                 case'slide':
                     $moduleitem = Slide::find($request['id']);
                     $moduleitem->delete();
+                    Slideimage::where('itemid', $request['id'])->delete();
                     break;
 
                 case'award':
                     $moduleitem = Award::find($request['id']);
                     $moduleitem->delete();
+                    Awardimage::where('itemid', $request['id'])->delete();
                     break;
 
                 case'board':
                     $moduleitem = Board::find($request['id']);
                     $moduleitem->delete();
+                    Boardimage::where('itemid', $request['id'])->delete();
                     break;
 
                 case'management':
                     $moduleitem = Management::find($request['id']);
                     $moduleitem->delete();
+                    Managementimage::where('itemid', $request['id'])->delete();
                     break;
 
-                case'newsitem':
-                    
+                case'newsitem':                    
                     $moduleitem = Newsitem::find($request['id']);
                     $moduleitem->delete();
+                    Newsitemimage::where('itemid', $request['id'])->delete();
                     break;
 
-                case'article':
+                case'article':                    
                     $moduleitem = Article::find($request['id']);
+                    $moduleitem->delete();
+                    Articleimage::where('itemid', $request['id'])->delete();
+                    break;
+                
+                case'faqcat':                    
+                    $moduleitem = Faqcat::find($request['id']);
                     $moduleitem->delete();
                     break;
 

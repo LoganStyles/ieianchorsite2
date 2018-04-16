@@ -1512,7 +1512,7 @@ p.b_label {
 }
 .w3_agile_services_grid{
 	margin-top:2em;
-        height: 450px;
+        height: 250px;
 }
 .wthree_services_grid1{
 	/*background:url(../images/g4.png) no-repeat 0px 0px;*/
@@ -1534,8 +1534,7 @@ p.b_label {
 	background:url(../images/invest.jpg) no-repeat 0px 0px;
 	background-size:cover;
 	-webkit-background-size:cover;
-	-moz-background-size:cover;
-	-o-background-size:cover;
+	-moz-background-size:cover;.w3_agile_services_grid
 	-ms-background-size:cover;
 }
 .wthree_services_grid4{

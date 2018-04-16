@@ -7,8 +7,6 @@ Admin - News Page
 @section('content')
 <?php $page_name = "newsitem";
 $moduleitems=$data['moduleitems'];
-//print_r($moduleitems);exit;
-//echo $moduleitems->total();exit;
 ?>
 
 <!-- BEGIN CONTENT -->
@@ -60,13 +58,13 @@ $moduleitems=$data['moduleitems'];
                                 <div class="portlet-title">
                                     <div class="actions">
                                         <div class="btn-group btn-group-devided" data-toggle="buttons">
-                                            <a class="btn btn-circle btn-default btn-sm new_item" href="">
+                                            <a class="btn btn-circle btn-default btn-sm new_item" href="javascript:;">
                                                 <i class="fa fa-plus"></i>New 
                                             </a>
                                             <a class="btn btn-circle btn-default btn-sm edit_item" >
                                                 <i class="fa fa-pencil"></i>Edit 
                                             </a>
-                                            <a class="btn btn-circle btn-default btn-sm delete_item" href="">
+                                            <a class="btn btn-circle btn-default btn-sm delete_item" href="javascript:;">
                                                 <i class="fa fa-remove"></i>Delete 
                                             </a>
                                         </div>
@@ -137,6 +135,7 @@ $moduleitems=$data['moduleitems'];
                                     <input type="hidden" name="id"  id="id" value="">
                                     <input type="hidden" name="type"  id="type" value="newsitem">
                                     <input type="submit" class="btn blue" name="submit" value="Delete" />
+                                    <button class="btn default" type="button" data-dismiss="modal" aria-hidden="true">Cancel</button>
                                     <input type="hidden" value="{{Session::token()}}" name="_token"/>                            
                                 </form>
 
@@ -202,7 +201,7 @@ $moduleitems=$data['moduleitems'];
                                                 <span class="required"> * </span>
                                             </label>
                                             <div class="col-md-10">
-                                                <textarea class="form-control" rows="6" name="details" id="details" ></textarea>
+                                                <textarea class="form-control summer_details" rows="6" name="details" id="details" ></textarea>
                                                 <div id="details_error"> </div>
                                             </div>
                                         </div>

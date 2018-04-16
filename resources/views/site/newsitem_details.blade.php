@@ -47,16 +47,40 @@ News
                     <div class="w3ls_courses_left_grids">
                     @foreach($fetched_item as $subitem)
                         <div class="w3ls_courses_left_grid">
-                            <h2>
-                                {!!$subitem['title']!!}</h2><br>
+                            <h2>{!!$subitem['title']!!}</h2><br>
                             <div>
                                 <img src="{{ asset('/site/img/'.$subitem['filename'])}}" style="max-width: 100%;" />
                             </div>
                             <div class="item_page_details">{!!$subitem['details']!!}</div>
                         
-                    </div>
+                        </div>
                     @endforeach
-                </div>
+                    </div>
+                    
+                    <div>
+                        <!--disqus-->
+                        <div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://https-ieianchorpensions-com-ieiweb.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            
+                    </div>
                 </div>
                 
             </div>
@@ -65,5 +89,6 @@ News
         </div>
     </div>
 </div>
-<!--services-->
+<!--NEWS-->
+<script id="dsq-count-scr" src="//https-ieianchorpensions-com-ieiweb.disqus.com/count.js" async></script>
 @endsection

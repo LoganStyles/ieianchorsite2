@@ -4,7 +4,7 @@
         <meta content="" name="description" />
         <meta content="" name="author" />
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
         <link href="{{asset('/assets/global/plugins/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('/assets/global/plugins/simple-line-icons/simple-line-icons.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('/assets/global/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
@@ -17,10 +17,6 @@
         <link href="{{ asset('/assets/global/plugins/morris/morris.css')}}" rel="stylesheet" type="text/css" />        
         <link href="{{asset('/assets/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('/assets/global/plugins/bootstrap-modal/css/bootstrap-modal.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{asset('/assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css')}}" rel="stylesheet" type="text/css" />
-        <!--<link href="{{asset('/assets/global/plugins/bootstrap-wysihtml5/wysiwyg-color.css')}}" rel="stylesheet" type="text/css" />-->
-        <!--<link href="{{asset('/assets/global/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css')}}" rel="stylesheet" type="text/css" />-->
-        <link href="{{asset('/assets/global/plugins/bootstrap-summernote/summernote.css')}}" rel="stylesheet" type="text/css" />
         
         <link href="{{asset('/assets/global/plugins/datatables/datatables.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css')}}" rel="stylesheet" type="text/css" />
@@ -39,26 +35,8 @@
 
         <link rel="shortcut icon" href="{{ asset('/assets/pages/img/favicon.ico')}}" /> 
         
-        <!--froala-->
-        
-        <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">-->
-        <link rel="stylesheet" href="{{ asset('/assets/froala/css/froala_editor.css')}}">
-        <link rel="stylesheet" href="{{ asset('/assets/froala/css/froala_style.css')}}">
-        <link rel="stylesheet" href="{{ asset('/assets/froala/css/plugins/code_view.css')}}">
-        <link rel="stylesheet" href="{{ asset('/assets/froala/css/plugins/colors.css')}}">
-        <link rel="stylesheet" href="{{ asset('/assets/froala/css/plugins/draggable.css')}}">
-        <link rel="stylesheet" href="{{ asset('/assets/froala/css/plugins/emoticons.css')}}">
-        <link rel="stylesheet" href="{{ asset('/assets/froala/css/plugins/image_manager.css')}}">
-        <link rel="stylesheet" href="{{ asset('/assets/froala/css/plugins/image.css')}}">
-        <link rel="stylesheet" href="{{ asset('/assets/froala/css/plugins/line_breaker.css')}}">
-        <link rel="stylesheet" href="{{ asset('/assets/froala/css/plugins/table.css')}}">
-        <link rel="stylesheet" href="{{ asset('/assets/froala/css/plugins/char_counter.css')}}">
-        <link rel="stylesheet" href="{{ asset('/assets/froala/css/plugins/video.css')}}">
-        <link rel="stylesheet" href="{{ asset('/assets/froala/css/plugins/fullscreen.css')}}">
-        <link rel="stylesheet" href="{{ asset('/assets/froala/css/plugins/file.css')}}">
-        <link rel="stylesheet" href="{{ asset('/assets/froala/css/plugins/quick_insert.css')}}">
-        <link rel="stylesheet" href="{{ asset('/assets/froala/css/plugins/image.css')}}">        
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
+        <!-- include summernote css/js -->
+        <link href="{{ asset('/assets/summernote/summernote.css')}}" rel="stylesheet" type="text/css" />
         
         </head>
     <!-- END HEAD -->
@@ -230,20 +208,23 @@
                                 <span class="title">Testimonials</span>
                             </a>
                         </li>
-                        
+                        @if(session()->has('newsitem') && session('newsitem') >2)<!--content developers-->
                         <li class="nav-item  <?php if($page_name=='newsitem'){echo 'active ';}?>">
                             <a href="{{url('/module/newsitem')}}" class="nav-link ">
                                 <i class="fa fa-newspaper-o"></i>
                                 <span class="title">News</span>
                             </a>
                         </li>
+                        @endif
                         
+                        @if(session()->has('article') && session('article') >2)<!--content developers-->
                         <li class="nav-item  <?php if($page_name=='article'){echo 'active ';}?>">
                             <a href="{{url('/module/article')}}" class="nav-link ">
                                 <i class="fa fa-newspaper-o"></i>
                                 <span class="title">Articles</span>
                             </a>
                         </li>
+                        @endif
                         
                         <li class="nav-item  <?php if($page_name=='banner'){echo 'active ';}?>">
                             <a href="{{url('/module/banner')}}" class="nav-link ">
@@ -287,12 +268,21 @@
                             </a>
                         </li>
                         
-<!--                        <li class="nav-item  <?php if($page_name=='faq_cats'){echo 'active ';}?>">
+                        @if(session()->has('faq') && session('faq') >2)
+                        <li class="nav-item  <?php if($page_name=='faq_cats'){echo 'active ';}?>">
                             <a href="{{url('/module/faqcat')}}" class="nav-link ">
                                 <i class="fa fa-group"></i>
                                 <span class="title">FAQ Categories</span>
                             </a>
-                        </li>-->
+                        </li>
+                        
+                        <li class="nav-item  <?php if($page_name=='faq'){echo 'active ';}?>">
+                            <a href="{{url('/module/faq')}}" class="nav-link ">
+                                <i class="fa fa-group"></i>
+                                <span class="title">FAQs</span>
+                            </a>
+                        </li>
+                        @endif
                                                 
                         @if(session()->has('users') && session('users') >3)<!--super users-->
                         <li class="nav-item <?php if($page_name=='personnel' || $page_name=='role'){echo 'active open';}?>">

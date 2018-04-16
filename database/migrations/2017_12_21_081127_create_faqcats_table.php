@@ -15,8 +15,10 @@ class CreateFaqcatsTable extends Migration
     {
         Schema::create('faqcats', function (Blueprint $table) {
             $table->increments('id');
+            $table->enum('display',['0','1']);
             $table->string('title');
             $table->text('description')->nullable();
+            $table->string('type')->default('faqcat');
             $table->timestamps();
         });
     }

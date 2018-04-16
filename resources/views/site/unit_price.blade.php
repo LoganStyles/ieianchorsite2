@@ -92,9 +92,6 @@ Unit Price History
             "paging": true
         });
         
-//        $('#example').dataTable( {
-//            "paging": false
-//        } );
         
         $('body').on('submit','#fetch_price_history',function(e){
             e.preventDefault();

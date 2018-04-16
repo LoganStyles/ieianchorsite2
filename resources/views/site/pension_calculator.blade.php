@@ -37,7 +37,7 @@ Pension Calculator
                             <input type="text" id="monthly_contribution" name="monthly_contribution" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label class="control-label">How long do you have to retirement?</label>
+                            <label class="control-label">How long do you have to retirement? (In years)</label>
                             <input type="text" id="years_before_retirement" name="years_before_retirement" class="form-control" required>
                         </div>
                         <div class="form-group">
@@ -62,23 +62,23 @@ Pension Calculator
                     <tbody>
                         <tr>
                             <td><h4>What will you get at retirement?</h4></td>
-                            <td><span class="badge badge-warning">{{$resultitems['total_package']}}</span></td>
+                            <td><span class="badge badge-primary">{{$resultitems['total_package']}}</span></td>
                         </tr>
                         <tr>
                             <td><strong><h4>Do I qualify for lumpsum payment?</h4></strong></td>
-                            <td><span class="badge badge-warning">{{$resultitems['qualify_for_lumpsum']}}</span></td>
+                            <td><span class="badge badge-primary">{{$resultitems['qualify_for_lumpsum']}}</span></td>
                         </tr>
                         <tr>
                             <td><strong><h4>My total lumpsum package: </h4></strong></td>
-                            <td><span class="badge badge-warning">{{$resultitems['lumpsum']}}</span></td>
+                            <td><span class="badge badge-primary">{{$resultitems['lumpsum']}}</span></td>
                         </tr>
                         <tr>
                             <td><strong><h4>Do I qualify for programmed redrawal?</h4></strong></td>
-                            <td><span class="badge badge-warning">{{$resultitems['qualify_for_programmed_withdrawal']}}</span></td>
+                            <td><span class="badge badge-primary">{{$resultitems['qualify_for_programmed_withdrawal']}}</span></td>
                         </tr>
                         <tr>
                             <td><strong><h4>My monthly pension allowance</h4></strong></td>
-                            <td><span class="badge badge-warning">{{$resultitems['qualify_for_lumpsum']}}</span></td>
+                            <td><span class="badge badge-primary">{{$resultitems['qualify_for_lumpsum']}}</span></td>
                         </tr>
                        
                     </tbody>

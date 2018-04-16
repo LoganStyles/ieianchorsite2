@@ -63,19 +63,34 @@ class BaseController extends Controller {
                     ->select('*')
                     ->where('category_id',$subitem)
                     ->get();
-        } else if($ref){
+        }
+        else if($item == "download"){
+            $moduleitems = DB::table($items)
+                    ->select('*')
+                    ->where('category_id',$subitem)
+                    ->get();
+        }
+        /*else if($item == "newsitem" || $item == "article"){
+            echo 'inside newsitw';exit;
+            $moduleitems = DB::table($items)
+                    ->select('*')
+                    ->where('display','1')
+                    ->get();
+        }*/ else if($ref){
             $moduleitems = DB::table($items)->get();
 
         }else if ($subitem) {
+            //echo 'inside subitem';exit;
             $moduleitems = DB::table($items)
                     ->leftjoin($itemimages, $items . '.id', '=', $itemimages . '.itemid')
                     ->select($items . '.*', $itemimages . '.filename', $itemimages . '.itemid as imageid', $itemimages . '.alt', $itemimages . '.caption', $itemimages . '.main')
-                    ->where($items . '.link_label', $subitem)
+                    ->where([[$items . '.link_label', $subitem],['display','1']])
                     ->get();
         } else {
             $moduleitems = DB::table($items)
                     ->leftjoin($itemimages, $items . '.id', '=', $itemimages . '.itemid')
                     ->select($items . '.*', $itemimages . '.filename', $itemimages . '.itemid as imageid', $itemimages . '.alt', $itemimages . '.caption', $itemimages . '.main')
+                    ->where('display','1')
                     ->orderBy('id', 'desc')
                     ->take(10)
                     ->get();
@@ -103,13 +118,22 @@ class BaseController extends Controller {
                     ->leftjoin('siteimages', 'sites.id', '=', 'siteimages.itemid')
                     ->select('sites.*', 'siteimages.filename', 'siteimages.itemid as imageid', 'siteimages.alt', 'siteimages.caption', 'siteimages.main')
                     ->paginate(5);
-        } else if($item == "faq"){
+        } else if($item == "faq" && $subitem){
             $moduleitems = DB::table($items)
                     ->select('*')
                     ->where('category_id',$subitem)
                     ->paginate(5);
         } else if($ref){
-            $moduleitems = DB::table($items)->paginate(5);;
+            $moduleitems = DB::table($items)->paginate(5);
+
+        }else if($item == "faqcat"){
+            $moduleitems = DB::table($items)->paginate(5);
+
+        }else if( $item == "faq"){
+            $moduleitems = DB::table('faqs')
+                    ->leftjoin('faqcats','faqs.category_id','=','faqcats.id')
+                    ->select('faqcats.title','faqs.question','faqs.*')
+                    ->paginate(5);
 
         }else if ($subitem) {
             $moduleitems = DB::table($items)
@@ -123,8 +147,6 @@ class BaseController extends Controller {
                     ->select($items . '.*', $itemimages . '.filename', $itemimages . '.itemid as imageid', $itemimages . '.alt', $itemimages . '.caption', $itemimages . '.main')
                     ->orderBy('id', 'desc')
                     ->paginate(5);
-
-        //      print_r($moduleitems);exit;
         }
 
         return $moduleitems;
@@ -136,9 +158,11 @@ class BaseController extends Controller {
         if($item=="faq"){
             $items="faqcats";
         }
-
-        $paginateditems= DB::table($items)->paginate(5);
+        
+        if($item=="download"){
+            $items="downloadcats";
+        }
+        $paginateditems= DB::table($items)->where('display','1')->paginate(5);
         return $paginateditems;
     }
-
 }

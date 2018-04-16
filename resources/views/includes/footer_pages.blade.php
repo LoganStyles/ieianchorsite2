@@ -36,27 +36,17 @@
         <script src="{{asset('/assets/global/plugins/select2/js/select2.full.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('/assets/global/plugins/jquery-validation/js/jquery.validate.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('/assets/global/plugins/jquery-validation/js/additional-methods.min.js')}}" type="text/javascript"></script>
-        <!--<script src="{{asset('/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}" type="text/javascript"></script>-->        
-        <!--<script src="{{asset('/assets/global/plugins/ckeditor/ckeditor.js')}}" type="text/javascript"></script>-->
+        
         <script src="{{asset('/assets/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js')}}" type="text/javascript"></script>
         <script src="{{asset('/assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js')}}" type="text/javascript"></script>
         <script src="{{asset('/assets/pages/scripts/ui-extended-modals.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('/assets/pages/scripts/form-validation.min.js')}}" type="text/javascript"></script>        
-        
-        <!--<script src="{{asset('/assets/global/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js')}}" type="text/javascript"></script>-->
-        <!--<script src="{{asset('/assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js')}}" type="text/javascript"></script>-->
-        
-        <!--<script src="{{asset('/assets/global/plugins/bootstrap-summernote/summernote.min.js')}}" type="text/javascript"></script>-->
-        
-        <!--<script src="{{asset('/assets/pages/scripts/components-editors.min.js')}}" type="text/javascript"></script>-->
         
         <script src="{{asset('/assets/global/plugins/moment.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('/assets/global/plugins/morris/morris.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('/assets/global/plugins/morris/raphael-min.js')}}" type="text/javascript"></script>
         <script src="{{asset('/assets/global/plugins/counterup/jquery.waypoints.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('/assets/global/plugins/counterup/jquery.counterup.min.js')}}" type="text/javascript"></script>
-        
-        
         
         <script src="{{asset('/assets/global/plugins/flot/jquery.flot.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('/assets/global/plugins/flot/jquery.flot.resize.min.js')}}" type="text/javascript"></script>
@@ -77,49 +67,20 @@
         <script src="{{asset('/assets/layouts/layout/scripts/layout.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('/assets/layouts/layout/scripts/demo.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('/assets/layouts/global/scripts/quick-sidebar.min.js')}}" type="text/javascript"></script>
+        <!--summernote-->
+        <script src="{{asset('/assets/summernote/summernote.min.js')}}" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
-        <!--<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>-->
-        <!--froala-->
-        <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
-
-        <script type="text/javascript" src="{{asset('/assets/froala/js/froala_editor.min.js')}}" ></script>
-        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/align.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/code_beautifier.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/code_view.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/colors.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/draggable.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/emoticons.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/font_size.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/font_family.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/image.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/file.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/image_manager.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/line_breaker.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/link.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/lists.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/paragraph_format.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/paragraph_style.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/video.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/table.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/url.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/entities.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/char_counter.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/inline_style.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/save.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/fullscreen.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/quote.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('/assets/froala/js/plugins/quick_insert.min.js')}}"></script>
         
         <script type="text/javascript">
             
             $(document).ready(function(){
-                $('#details').froalaEditor({
-                    heightMin: 100,
-                    heightMax: 200,
-                    toolbarButtons: ['bold', 'italic', 'underline', 'insertImage', 'insertLink', 'insertTable', 'undo', 'redo', 'formatOL', 'formatUL','align']
+                $('.summer_details').summernote({
+                    placeholder: 'Type the details...',
+                    tabsize: 2,
+                    height: 120
                 });
+                
+                
 
                 //fetch specific content & display in form
                 $('body').on('click','.clicked_button',function(){
@@ -180,10 +141,8 @@
                     }
                     $(form_display).text(display_val);
                     //$(form_details).text(details_val).focus();
-                    $(form_details).froalaEditor('html.set', details_val);
+                    $(form_details).summernote('code', details_val);
                     console.log('details val '+details_val);
-                    //$('#newsitem_edit_modal').modal({backdrop:false,keyboard:false});
-                    
                 });
                 
                 $('body').on('click','.del_button',function(){
@@ -209,6 +168,8 @@
                     //console.log('row_type '+form_type);
                     var form_id="#"+form_type+"_form";
                     var form_modal="#"+form_type+"_edit_modal";
+                    var form_details=form_id+" #details";
+                    $(form_details).summernote('code', '');
                     $(form_id).trigger('reset');
                     $(form_modal).modal({backdrop: false, keyboard: false});
                 });
@@ -235,12 +196,12 @@
                     var row_title=$('table tbody .table_row.active .row_title').text();
 //                    var row_description=$('table tbody .table_row.active .row_description').text();
                     var row_details=$('table tbody .table_row.active .row_details').html();
-//                    console.log('row_idss '+row_id);
-//                    console.log('row_type '+row_type);
-//                    console.log('row_position '+row_position);
-//                    console.log('row_display '+row_display);
-//                    console.log('row_title '+row_title);
-//                    console.log('row_details '+row_details);
+                    console.log('row_idss '+row_id);
+                    console.log('row_type '+row_type);
+                    console.log('row_position '+row_position);
+                    console.log('row_display '+row_display);
+                    console.log('row_title '+row_title);
+                    console.log('row_details '+row_details);
 //                    console.log('row_description '+row_description);
                     
                     var form_id="#"+row_type+"_form";
@@ -279,7 +240,7 @@
                     }
                     
                     //$(form_details).val(row_description);
-                    $(form_details).froalaEditor('html.set', row_details);                    
+                    $(form_details).summernote('code', row_details);
                     $(form_modal).modal({backdrop: false, keyboard: false});
                 });
                 

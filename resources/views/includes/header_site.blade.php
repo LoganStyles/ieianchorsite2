@@ -25,8 +25,6 @@
         <link href="{{asset('/site/css/datatables/jquery.dataTables.min.css')}}" rel="stylesheet" />
         <!--coin slider-->
         <link href="{{asset('/assets/global/coin-slider/coin-slider-styles.css')}}" rel="stylesheet" />
-        <!--<link rel="stylesheet" type="text/css" href="{{asset('/site/css/flexslider/styles.css')}}" media="all" />
-        <!--<link rel="stylesheet" type="text/css" href="{{asset('/site/css/flexslider/demo.css')}}" media="all" />-->
         <style>
             .dataTables_filter, .dataTables_length, .dataTables_info, .dataTables_paginate {
                 /*display: none;*/
@@ -58,21 +56,6 @@
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="{{asset('/site/images/icons2/ms-icon-144x144.png')}}">
         <meta name="theme-color" content="#ffffff">
-        <style>
-            
-/*            .navbar-brand .img_logo{
-                width: 120px;
-                height: 100px;
-                overflow: hidden;
-            }
-
-            .navbar-brand .img_logo img{
-                width: 100%;
-                min-width: 100%;
-                min-height: 100%;
-            }*/
-        </style>
-
     </head>	
     <body>
                
@@ -87,6 +70,8 @@
                         <li><a href="{{$site['instagram']}}" target="_blank"><img src="{{asset('/site/images/icons/instagram.png')}}" /></a></li>
                         <li><a href="{{$site['youtube']}}" target="_blank"><img src="{{asset('/site/images/icons/youtube.png')}}" /></a></li>
                         <li><a href="{{$site['linkedin']}}" target="_blank"><img src="{{asset('/site/images/icons/linkedin.png')}}" /></a></li>
+                        <li><a href="https://api.whatsapp.com/send?phone=+2348165722731&text=Hello, how may we help you? Just send us a message now to get assistance." class="social-icon whatsapp" target="_blank"><img src="{{asset('/site/images/icons/whatsapp2.png')}}" /></a></li>
+
                     </ul>
                 </div>
             </div>
@@ -115,11 +100,18 @@
                             <div class="w3l_header_contact_details_agile">
                                 <div class="header-contact-detail-title">Send us a Message</div> 
                                 {{$site['email']}}
-                                <br><br><br><br>
+                                <br>
+                            </div>
+                        </div>
+                        
+                        <div class="header_contact_details_agile"><i class="fa fa-phone" aria-hidden="true"></i>
+                            <div class="w3l_header_contact_details_agile">
+                                <div class="header-contact-detail-title">Give us a Call</div> 
+                                <span class="w3l_header_contact_details_agile-info_inner">{{$site['phone1']}}, {{$site['phone2']}} </span>
                             </div>
                         </div>
                     </li>
-                    <li>
+<!--                    <li>
                         <div class="header_contact_details_agile"><i class="fa fa-phone" aria-hidden="true"></i>
                             <div class="w3l_header_contact_details_agile">
                                 <div class="header-contact-detail-title">Give us a Call</div> 
@@ -127,7 +119,7 @@
                                 <br><br><br><br>
                             </div>
                         </div>
-                    </li>
+                    </li>-->
 
                     <li>
                         <div class="header_contact_details_agile"><i class="fa fa-map-marker" aria-hidden="true"></i>
@@ -138,6 +130,17 @@
                             </div>
                         </div>
                     </li>
+                    
+                    <li>
+                        <div class="header_contact_details_agile"><i class="fa fa-institution" aria-hidden="true"></i>
+                            <div class="w3l_header_contact_details_agile">
+                                <!--<div class="header-contact-detail-title">Bank Details</div>-->
+                                <span class="w3l_header_contact_details_agile-info_inner"><strong>Bank:</strong> UBA </span><br>
+                                <span class="w3l_header_contact_details_agile-info_inner"><strong>Account Name:</strong> UPCL/IEI-ANCHOR PENSIONS RSA CONTRIBUTION A/C </span><br>
+                                <span class="w3l_header_contact_details_agile-info_inner"><strong>Account Number:</strong> 1006236132 </span>
+                            </div>
+                        </div>
+                    </li>
                      <li>
                         <div class="header_contact_details_agile"><i class="fa fa-list-alt" aria-hidden="true"></i>
                             <div class="w3l_header_contact_details_agile">
@@ -145,7 +148,8 @@
                                 <span class="w3l_header_contact_details_agile-info_inner">RSA Unit Price: {{$prices->rsa}} </span><br>
                                 <span class="w3l_header_contact_details_agile-info_inner">Retiree Unit Price: {{$prices->retiree}} </span><br>
                                 <span class="w3l_header_contact_details_agile-info_inner">Administrative Fee: 100 </span><br>
-                                <a href="{{url('/page/unit_price/')}}"><span class="label label-primary">View History</span></a>
+                                <a href="{{url('/page/unit_price/')}}"><span class="label label-primary">View Price History</span></a>&nbsp;&nbsp;
+                                
                             </div>
                         </div>
                     </li>
@@ -177,8 +181,8 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span data-hover="About Us">About Us</span> <b class="caret"></b></a>
                                 <ul class="dropdown-menu agile_short_dropdown">
                                     <li><a href="{{url('/page/about_site')}}">About Us</a></li>
-                                    <li><a href="{{url('/page/board_site')}}">Board of Directors</a></li>
-                                    <li><a href="{{url('/page/management_site')}}">Management Team</a></li>
+                                    <li><a href="{{url('/page/board_site')}}">Directors</a></li>
+                                    <li><a href="{{url('/page/management_site')}}">Management</a></li>
                                 </ul>
                             </li>
                             <li class="<?php if($page=="service"){echo "active";}?> dropdown">
@@ -196,9 +200,15 @@
                                 </ul>
                             </li>
                             
-                            <li class="<?php if($page=="investment"){echo "active";}?>"><a href="{{route('investment')}}"><span data-hover="Investment">Investment</span></a></li>
+                            <li class="<?php if($page=="investment"){echo "active";}?> dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span data-hover="Investment">Investment</span> <b class="caret"></b></a>
+                                <ul class="dropdown-menu agile_short_dropdown">                                    
+                                    <li><a href="{{route('investment')}}">Strategy</a></li>
+                                    <li><a href="{{url('/page/investment_portfolio')}}">Portfolio</a></li>
+                                </ul>
+                            </li>
                             
-                            <li class="<?php if($page=="newsitem"){echo "active";}?>"><a href="{{url('/page/newsitem/'.$newslink)}}"><span data-hover="News">News</span></a></li>
+                            <li class="<?php if($page=="newsitem"){echo "active";}?>"><a href="{{url('/page/newsitem_site')}}"><span data-hover="News">News</span></a></li>
                             
                             <li class="<?php if($page=="faq_site"||$page=="contact"){echo "active";}?>dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span data-hover="Contact Us">Contact Us</span> <b class="caret"></b></a>

@@ -4,6 +4,7 @@ function resetForm(formid){
     $(formid+" #details").text("");
     $(formid+" #title").text("");
     $(formid+" #id").val(0);
+    $(formid+" #details").summernote('code', '');
 }
 
 function resetStatesForm(formid){

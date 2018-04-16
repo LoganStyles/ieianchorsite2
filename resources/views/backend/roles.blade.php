@@ -97,6 +97,7 @@ $user_role=session('users');
                                 <input type="hidden" value="{{$usergroup['board']}}" class="row_board"/>
                                 <input type="hidden" value="{{$usergroup['newsitem']}}" class="row_newsitem"/>
                                 <input type="hidden" value="{{$usergroup['article']}}" class="row_article"/>
+                                <input type="hidden" value="{{$usergroup['faq']}}" class="row_faq"/>
                                 <input type="hidden" value="{{$usergroup['banner']}}" class="row_banner"/>
                                 <input type="hidden" value="{{$usergroup['slide']}}" class="row_slide"/>
                                 <input type="hidden" value="{{$usergroup['state']}}" class="row_state"/>
@@ -295,15 +296,15 @@ $user_role=session('users');
                                         </select>
                                     </div>
 
-<!--                                    <label class="control-label col-md-2">States</label>
+                                    <label class="control-label col-md-2">Faqs</label>
                                     <div class="col-lg-4 col-sm-4" >
-                                        <select class="form-control " name="state" id="state">
+                                        <select class="form-control " name="faq" id="faq">
                                             <option value="1">NONE</option>
                                             <option value="2">READ</option>
                                             <option value="3">WRITE</option>
                                             <option value="4">SPECIAL</option>
                                         </select>
-                                    </div>-->
+                                    </div>
                                 </div>
                                 
                                 <div class="form-group">

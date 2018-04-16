@@ -34,7 +34,7 @@ Register
                 <div class="panel panel-primary">
                     <div class="panel-heading"> <span style="color: #800;">(*Required Fields)</span></div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/web-register') }}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/web-register') }}" enctype="multipart/form-data">
                             {!! csrf_field() !!}
                             
                             <span style="color: #0086B3;font-size: 1.1em;"><strong>{{Session::get('reg_status')}}</strong></span>
@@ -87,6 +87,18 @@ Register
                                 </div>
                             </div>
                             
+                            <div class="form-group{{ $errors->has('dob') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label"><span style="color: #f00">*</span>Date of birth</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control date-picker" name="dob" value="{{ old('dob') }}">
+                                    @if ($errors->has('dob'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('dob') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            
                             <div class="form-group{{ $errors->has('employer') ? ' has-error' : '' }}">
                                 <label class="col-md-4 control-label"><span style="color: #f00">*</span>Employer Name</label>
                                 <div class="col-md-6">
@@ -94,6 +106,30 @@ Register
                                     @if ($errors->has('employer'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('employer') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            
+                            <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label"><span style="color: #f00">*</span>Photo</label>
+                                <div class="col-md-6">
+                                    <input type="file" id="image" name="image">
+                                    @if ($errors->has('image'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('image') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            
+                            <div class="form-group{{ $errors->has('employer_address') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label"><span style="color: #f00">*</span>Employer Address</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="employer_address" value="{{ old('employer_address') }}">
+                                    @if ($errors->has('employer_address'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('employer_address') }}</strong>
                                         </span>
                                     @endif
                                 </div>
@@ -125,8 +161,6 @@ Register
                                 </select>                                    
                                 </div>
                             </div>
-                            
-
 
                             <div class="form-group{{ $errors->has('CaptchaCode') ? ' has-error' : '' }}">
                                 <label class="col-md-4 control-label">Captcha</label>

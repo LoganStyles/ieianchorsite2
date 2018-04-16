@@ -36,7 +36,7 @@ About Us
                 </div>
             </div>
             <div class="col-md-6 agileits_courses_right">
-                <img src="{{asset('/site/images/2.jpg')}}" alt=" " class="img-responsive" />
+                <img src="{{asset('/site/images/building.png')}}" alt=" " class="img-responsive" />
             </div>
             <div class="clearfix"> </div>
         </div>

@@ -24,6 +24,7 @@ class CreateRolesTable extends Migration
             $table->enum('board',['1','2','3','4'])->default(1);
             $table->enum('newsitem',['1','2','3','4'])->default(1);
             $table->enum('article',['1','2','3','4'])->default(1);
+            $table->enum('faq',['1','2','3','4'])->default(1);
             $table->enum('banner',['1','2','3','4'])->default(1);
             $table->enum('slide',['1','2','3','4'])->default(1);
             $table->enum('award',['1','2','3','4'])->default(1);

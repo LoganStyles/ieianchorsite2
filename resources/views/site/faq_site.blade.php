@@ -13,7 +13,7 @@ foreach ($moduleitems as $object) {
 ?>
 @extends('layouts.master_site')
 @section('title')
-Board of Directors
+FAQs
 @endsection 
 
 @section('content')

@@ -39,7 +39,7 @@ News
                         <a href="{{url('/page/newsitem/'.$item['link_label'])}}">
                             <div class="agile_services_grid1" >
                                 <div class="agile_services_grid1_sub">
-                                    <p style="color: #cd9536; font-weight: 600; font-size: 13px;">{!!$item['title']!!}</p>
+                                    <p style="color: #cd9536; font-weight: 600; font-size: 1.2em;">{!!$item['title']!!}</p>
                                 </div>
                                 
                             </div>
@@ -58,7 +58,7 @@ News
             </div>
             </div>
             <div class="col-md-2 col-lg-2 col-sm-12">
-            <!--             <a href="https://www.instagram.com/ieianchorpensions/" target="_blank">
+            <!--<a href="https://www.instagram.com/ieianchorpensions/" target="_blank">
                 <img src="{{ asset('/site/images/not-late.png')}}" style="max-width: 100%;" />
                 </a>-->
             </div>

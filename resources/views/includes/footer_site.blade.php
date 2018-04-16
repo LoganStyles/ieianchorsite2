@@ -1,4 +1,3 @@
-
 <!-- footer -->
         <div class="footer_agile_w3ls">
             <div class="container">
@@ -20,19 +19,19 @@
                             <li><a href="{{route('home')}}">Home</a></li>                           
                             <li><a href="{{url('/page/service_site')}}">Services</a></li>
                             <li><a href="#">Retirement Planning</a></li>
-                            <?php //$newslink=$news->link_label;
-                            $newslink=""; ?>
-                            <li><a href="{{url('/page/newsitem_site'.$newslink)}}">News</a></li>
+                            <li><a href="{{url('/page/newsitem_site')}}">News</a></li>
                             <li><a href="#">Unit Prices</a></li>
                         </ul>
                     </div>
                     <div class="col-md-3 footer-wthree">
                         <br><br>
                         <ul>
-                            <li><a href="{{url('/page/article_site'.$newslink)}}">Articles</a></li> 
-                            <li><a href="{{url('http://www.pencom.gov.ng/')}}">Pencom</a></li> 
-                            <li><a href="{{url('/downloads/Whistle_Blowing_Guidelines_for_Pensions')}}">Whistle Blowing Guidelines</a></li>
-                            <li><a href="{{url('/downloads/RSA_Transfer_Guidelines.pdf')}}">RSA Transfer Guidelines</a></li>
+                            <li><a href="{{url('/page/article_site')}}">Articles</a></li> 
+                            <li><a target="_blank" href="{{url('http://www.pencom.gov.ng/')}}">Pencom</a></li> 
+                            <li><a target="_blank" href="{{url('/downloads/Whistle_Blowing_Guidelines_for_Pensions')}}">Whistle Blowing Guidelines</a></li>
+                            <li><a target="_blank" href="{{url('/downloads/RSA_Transfer_Guidelines.pdf')}}">RSA Transfer Guidelines</a></li>
+                            <!--<li><a target="_blank" href="{{url('http://apml-ict01/reports/Pages/Folder.aspx')}}">View Report Manager</a></li>-->
+                            <li><a target="_blank" href="{{url('https://apps.nibss-plc.com.ng/EPCCOS/login;jsessionid=26AB9979142CA84F38202ACA6726646F')}}">EPCCOS</a></li>
                         </ul>
                     </div>
 
@@ -46,6 +45,7 @@
                             <li><a href="{{url('/downloads/CHECKLIST_FOR_25_LUMP_SUM_WITHDRAWAL_REQUEST.pdf')}}">Checklist For 25% Lump Sum</a></li>
                             <li><a href="{{url('/downloads/CHECKLIST_DEATH_BENEFIT_REQUEST_FGN_EMPLOYEES.pdf')}}">Checklist For Death Benefit</a></li>
                             <li><a href="{{url('/downloads/CHECKLIST-FOR-VOLUNTARY-CONTRIBUTION.pdf')}}">Checklist For Voluntary Contribution</a></li>
+                            <li><a href="{{url('/page/download_site/')}}">All Downloads</a></li>
                             
                         </ul>
                     </div>
@@ -66,6 +66,9 @@
                             <li><a href="{{$site['instagram']}}" target="_blank"><img src="{{asset('/site/images/icons/instagram.png')}}" /></a></li>
                             <li><a href="{{$site['youtube']}}" target="_blank"><img src="{{asset('/site/images/icons/youtube.png')}}" /></a></li>
                             <li><a href="{{$site['linkedin']}}" target="_blank"><img src="{{asset('/site/images/icons/linkedin.png')}}" /></a></li>
+                            <li><a href="https://api.whatsapp.com/send?phone=+2348165722731&text=Hello, how may we help you? Just send us a message now to get assistance." class="social-icon whatsapp" target="_blank">
+                                    <img src="{{asset('/site/images/icons/whatsapp2.png')}}" />
+                                </a></li>
                         </ul>
                     </div>
 
@@ -134,13 +137,16 @@
 <script type="text/javascript" src="{{asset('site/js/jqPlot/plugins/jqplot.highlighter.js')}}"></script>
 <script type="text/javascript" src="{{asset('site/js/moment/moment.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('site/js/slick.js')}}"  charset="utf-8"></script>
-<!-- jQuery -->
-    <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>-->
-    <!-- FlexSlider -->
-    <script type="text/javascript" src="{{asset('site/js/jquery.flexslider-min.js')}}"></script>
+<!-- FlexSlider -->
+<script type="text/javascript" src="{{asset('site/js/jquery.flexslider-min.js')}}"></script>
 <script type="text/javascript">
 $(document).on('ready', function () {
-    
+    var page_name="<?php echo $page;?>";
+    if(page_name=="home"){
+        $(window).load(function(){        
+        $('#myModal').modal('show');
+         }); 
+    }
     //sliders
     $('#coin-slider').coinslider({
         width:1250,
@@ -153,18 +159,18 @@ $(document).on('ready', function () {
           animation: "fade"
     });
 	
-	$(function() {
-		$('.show_menu').click(function(){
-				$('.menu').fadeIn();
-				$('.show_menu').fadeOut();
-				$('.hide_menu').fadeIn();
-		});
-		$('.hide_menu').click(function(){
-				$('.menu').fadeOut();
-				$('.show_menu').fadeIn();
-				$('.hide_menu').fadeOut();
-		});
-	});
+    $(function() {
+        $('.show_menu').click(function(){
+            $('.menu').fadeIn();
+            $('.show_menu').fadeOut();
+            $('.hide_menu').fadeIn();
+        });
+        $('.hide_menu').click(function(){
+            $('.menu').fadeOut();
+            $('.show_menu').fadeIn();
+            $('.hide_menu').fadeOut();
+        });
+    });
 //        
 //   slider for testimonials     
     $(".center").slick({
@@ -266,6 +272,11 @@ $(document).on('ready', function () {
         <!-- here stars scrolling icon -->
         <script type="text/javascript">
             $(document).ready(function () {
+                //downloads files from all downloads page
+                $('body').on('click','.accordion',function(){
+                    var $location =$(this).attr('id');
+                    window.location=$location;
+                });
                 
                  var defaults = {
                  containerID: 'toTop', // fading element id
@@ -273,8 +284,6 @@ $(document).on('ready', function () {
                  scrollSpeed: 1200,
                  easingType: 'linear' 
                  };
-                 
-
                 $().UItoTop({easingType: 'easeOutQuart'});
 
             });

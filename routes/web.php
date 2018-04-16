@@ -34,10 +34,16 @@ Route::get('/page/investment', 'AppController@showInvestment')->name('investment
 Route::post('pension_calculator', 'AppController@pensionCalculator')->name('pension_calc'); //pension calculator
 Route::get('/unitprice/range','AppController@fetchRangeOfPrices')->name('unitprice_range');
 
-//Route::get('web-register', 'AppController@webRegister');
 Route::post('web-register', 'AppController@processRegister');
+//client testimonials
+Route::post('web-feedback', 'AppController@processClientTestimonial');
+
+//File downloads
+Route::get('/downloads/{file}', 'AppController@downloadFile');//download an item
 
 //PROCESSING
+Route::post('process_register', 'AppController@processRegister')->name('process_register'); //process register item
+//
 Route::post('process_register', 'AppController@processRegister')->name('process_register'); //process register item
 //States
 Route::post('process_states', 'AppController@processStates')->name('process_states'); //process state items
