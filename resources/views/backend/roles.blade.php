@@ -6,14 +6,7 @@ Admin | User Groups
 
 @section('content')
 <?php $page_name="role";
-//$data = $request->session()->all();
-//print_r($data);exit;
 $user_role=session('users');
-
-//echo 'management '.session('management');
-//echo 'users '.session('users');
-//echo 'users_email '.session('users_email');
-//exit;
 ?>
 
 <!-- BEGIN CONTENT -->
@@ -164,7 +157,7 @@ $user_role=session('users');
                                             <option value="1">NONE</option>
                                             <option value="2">READ</option>
                                             <option value="3">WRITE</option>
-                                            <option value="4">SPECIAL</option>
+                                            <option value="4">FULL</option>
                                         </select>
                                     </div>
 
@@ -183,7 +176,7 @@ $user_role=session('users');
                                             <option value="1">NONE</option>
                                             <option value="2">READ</option>
                                             <option value="3">WRITE</option>
-                                            <option value="4">SPECIAL</option>
+                                            <option value="4">FULL</option>
                                         </select>
                                     </div>
 
@@ -193,7 +186,7 @@ $user_role=session('users');
                                             <option value="1">NONE</option>
                                             <option value="2">READ</option>
                                             <option value="3">WRITE</option>
-                                            <option value="4">SPECIAL</option>
+                                            <option value="4">FULL</option>
                                         </select>
                                     </div>
                                 </div>
@@ -205,7 +198,7 @@ $user_role=session('users');
                                             <option value="1">NONE</option>
                                             <option value="2">READ</option>
                                             <option value="3">WRITE</option>
-                                            <option value="4">SPECIAL</option>
+                                            <option value="4">FULL</option>
                                         </select>
                                     </div>
 
@@ -215,7 +208,7 @@ $user_role=session('users');
                                             <option value="1">NONE</option>
                                             <option value="2">READ</option>
                                             <option value="3">WRITE</option>
-                                            <option value="4">SPECIAL</option>
+                                            <option value="4">FULL</option>
                                         </select>
                                     </div>
                                 </div>
@@ -227,7 +220,7 @@ $user_role=session('users');
                                             <option value="1">NONE</option>
                                             <option value="2">READ</option>
                                             <option value="3">WRITE</option>
-                                            <option value="4">SPECIAL</option>
+                                            <option value="4">FULL</option>
                                         </select>
                                     </div>
 
@@ -237,7 +230,7 @@ $user_role=session('users');
                                             <option value="1">NONE</option>
                                             <option value="2">READ</option>
                                             <option value="3">WRITE</option>
-                                            <option value="4">SPECIAL</option>
+                                            <option value="4">FULL</option>
                                         </select>
                                     </div>
                                 </div>
@@ -249,7 +242,7 @@ $user_role=session('users');
                                             <option value="1">NONE</option>
                                             <option value="2">READ</option>
                                             <option value="3">WRITE</option>
-                                            <option value="4">SPECIAL</option>
+                                            <option value="4">FULL</option>
                                         </select>
                                     </div>
 
@@ -259,7 +252,7 @@ $user_role=session('users');
                                             <option value="1">NONE</option>
                                             <option value="2">READ</option>
                                             <option value="3">WRITE</option>
-                                            <option value="4">SPECIAL</option>
+                                            <option value="4">FULL</option>
                                         </select>
                                     </div>
                                 </div>
@@ -271,7 +264,7 @@ $user_role=session('users');
                                             <option value="1">NONE</option>
                                             <option value="2">READ</option>
                                             <option value="3">WRITE</option>
-                                            <option value="4">SPECIAL</option>
+                                            <option value="4">FULL</option>
                                         </select>
                                     </div>
 
@@ -281,7 +274,7 @@ $user_role=session('users');
                                             <option value="1">NONE</option>
                                             <option value="2">READ</option>
                                             <option value="3">WRITE</option>
-                                            <option value="4">SPECIAL</option>
+                                            <option value="4">FULL</option>
                                         </select>
                                     </div>
                                 </div>
@@ -292,7 +285,7 @@ $user_role=session('users');
                                             <option value="1">NONE</option>
                                             <option value="2">READ</option>
                                             <option value="3">WRITE</option>
-                                            <option value="4">SPECIAL</option>
+                                            <option value="4">FULL</option>
                                         </select>
                                     </div>
 
@@ -302,7 +295,7 @@ $user_role=session('users');
                                             <option value="1">NONE</option>
                                             <option value="2">READ</option>
                                             <option value="3">WRITE</option>
-                                            <option value="4">SPECIAL</option>
+                                            <option value="4">FULL</option>
                                         </select>
                                     </div>
                                 </div>
@@ -314,7 +307,7 @@ $user_role=session('users');
                                             <option value="1">NONE</option>
                                             <option value="2">READ</option>
                                             <option value="3">WRITE</option>
-                                            <option value="4">SPECIAL</option>
+                                            <option value="4">FULL</option>
                                         </select>
                                     </div>
 
@@ -324,7 +317,7 @@ $user_role=session('users');
                                             <option value="1">NONE</option>
                                             <option value="2">READ</option>
                                             <option value="3">WRITE</option>
-                                            <option value="4">SPECIAL</option>
+                                            <option value="4">FULL</option>
                                         </select>
                                     </div>
                                 </div>

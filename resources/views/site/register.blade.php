@@ -13,13 +13,6 @@ Register
 
 @section('content')
 <link href="{{ captcha_layout_stylesheet_url() }}" type="text/css" rel="stylesheet">
-
-        <!-- //banner -->	
-<!--        <div class="banner1">
-            <div class="wthree_banner1_info">
-                <h3><span>R</span>egister with us</h3>
-            </div>
-        </div>-->
         <!-- //banner -->	
         <!-- mail -->
         <div class="team">
@@ -112,7 +105,7 @@ Register
                             </div>
                             
                             <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label"><span style="color: #f00">*</span>Photo</label>
+                                <label class="col-md-4 control-label">Photo</label>
                                 <div class="col-md-6">
                                     <input type="file" id="image" name="image">
                                     @if ($errors->has('image'))

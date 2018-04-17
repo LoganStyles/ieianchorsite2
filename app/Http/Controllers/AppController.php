@@ -374,23 +374,29 @@ class AppController extends BaseController {
         }
         $agent_email=$agent_details_arr[0]['contact_email'];
         
-        //send client validation email
-        $data=array(
-            'email'=>'register@ieianchorpensions.com',
-            'phone'=>trim($request['phone']),
-            'states'=>trim($request['states']),
-            'subject'=>'RSA Generation',
-            'client_email'=>trim($request['email']),
-            'agent_email'=>trim($agent_email),
-            'clientname'=>trim($request['fname']).' '.trim($request['lname'])
-        );
-                
-        Mail::send('emails.mailEvent', $data, function($message) use ($data) {
-            $message->from($data['email']);
-            $message->to($data['agent_email']);
-            $message->subject('RSA Registration');
-        });
-        $request->session()->flash('reg_status', 'Registration was successful!');
+        if ($agent_email) {
+            //send client validation email
+            $data = array(
+                'email' => 'register@ieianchorpensions.com',
+                'phone' => trim($request['phone']),
+                'states' => trim($request['states']),
+                'subject' => 'RSA Generation',
+                'client_email' => trim($request['email']),
+                'agent_email' => trim($agent_email),
+                'clientname' => trim($request['fname']) . ' ' . trim($request['lname'])
+            );
+
+            Mail::send('emails.mailEvent', $data, function($message) use ($data) {
+                $message->from($data['email']);
+                $message->to($data['agent_email']);
+                $message->subject('RSA Registration');
+            });
+            $request->session()->flash('reg_status', 'Registration was successful!');
+        }else{
+            $request->session()->flash('reg_status', 'No Agent assigned to the selected location!');
+        }
+
+
         return redirect()->back();
     }
     
@@ -717,7 +723,7 @@ class AppController extends BaseController {
                 $moduleimage->itemid = $request['id'];
                 $moduleimage->alt = $request['caption'];
                 $moduleimage->caption = $request['caption'];
-                $moduleimage->main = $request['main'];
+                $moduleimage->main = 0;
                 $moduleimage->save();
             }
         } else {
@@ -813,7 +819,7 @@ class AppController extends BaseController {
                 $moduleimage->itemid = $moduleitem->id;
                 $moduleimage->alt = $request['caption'];
                 $moduleimage->caption = $request['caption'];
-                $moduleimage->main = $request['main'];
+                $moduleimage->main =0;
                 $moduleimage->save();
             }
         }
@@ -830,6 +836,7 @@ class AppController extends BaseController {
         if (session()->has('delete_group') && session('delete_group') == 1) {//can delete
             //chk for module type
             $del_type = $request['type'];
+            $imgarrays=array();
             
             if ($del_type != "faqcat") {
                 $itemimages = $del_type . 'images';
