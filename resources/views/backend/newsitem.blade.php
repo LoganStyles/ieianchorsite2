@@ -91,11 +91,11 @@ $moduleitems=$data['moduleitems'];
                                 <input type="hidden" value="{{$row->position}}" class="row_position"/>
                                 <input type="hidden" value="{{$row->display}}" class="row_display"/>
                                 <input type="hidden" value="{{$loop->index +1}}" class="row_loop_index"/>
-                                    <td> {{$row->id}}  </td>
+                                    <td> {{$loop->index +1}}  </td>
                                     <td class="row_title"> {{$row->title}} </td>                                    
                                     <td class="row_details"> {!!$row->details!!} </td>
                                     <td> {{$row->keywords}}</td>
-                                    <td> {!!$row->excerpt!!}</td>
+                                    <td> {!!$row->excerpt!!}...</td>
                                     @if($row->display =='1')
                                     <td>YES</td>
                                     @else

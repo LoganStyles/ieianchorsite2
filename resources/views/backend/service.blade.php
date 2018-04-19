@@ -23,7 +23,7 @@ $moduleitems=$data['moduleitems'];
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Articles</span>
+                    <span>Services</span>
                 </li>
             </ul>
 
@@ -77,11 +77,10 @@ $moduleitems=$data['moduleitems'];
                                 <tr>
                                     <th>S/N </th>
                                     <th> Title </th>
+                                    <th> Details </th>
                                     <th> Keywords </th>
                                     <th> Excerpt </th>
-                                    <th> Details </th>
                                     <th> Approved? </th>
-                                    <!--<th> Description </th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -92,17 +91,16 @@ $moduleitems=$data['moduleitems'];
                                 <input type="hidden" value="{{$row->position}}" class="row_position"/>
                                 <input type="hidden" value="{{$row->display}}" class="row_display"/>
                                 <input type="hidden" value="{{$loop->index +1}}" class="row_loop_index"/>
-                                    <td> {{$row->id}}  </td>
+                                    <td> {{$loop->index +1}}  </td>
                                     <td class="row_title"> {{$row->title}} </td>
-                                    <td> {{$row->keywords}}</td>
-                                    <td> {!!$row->excerpt!!}</td>
                                     <td class="row_details"> {!!$row->details!!} </td>
+                                    <td> {{$row->keywords}}</td>
+                                    <td> {!!$row->excerpt!!}...</td>                                    
                                     @if($row->display =='1')
                                     <td>YES</td>
                                     @else
                                     <td>NO</td>  
                                     @endif
-                                    <!--<td class="row_description"> {{$row->details}} </td>-->
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -218,7 +216,7 @@ $moduleitems=$data['moduleitems'];
                                                 <input type="text" name="caption" id="caption" class="form-control" /> 
                                             </div>  
 
-                                            <label class="control-label col-md-3">Make this the main image </label>
+<!--                                            <label class="control-label col-md-3">Make this the main image </label>
                                             <div class="col-md-2">
                                                 <div class="mt-radio-list" data-error-container="#form_2_image_error">
                                                     <label class="mt-radio">
@@ -231,7 +229,7 @@ $moduleitems=$data['moduleitems'];
                                                     </label>
                                                 </div>
                                                 <div id="form_2_image_error"> </div>
-                                            </div>
+                                            </div>-->
                                         </div>
 
                                     </div>

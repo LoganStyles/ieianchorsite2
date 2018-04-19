@@ -77,7 +77,15 @@
                 $('.summer_details').summernote({
                     placeholder: 'Type the details...',
                     tabsize: 2,
-                    height: 120
+                    height: 120,
+                    toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']]
+                  ]
                 });
                 
                 

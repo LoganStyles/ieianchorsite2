@@ -85,7 +85,7 @@ DOWNLOADs
                     @foreach($fetched_item as $f_item)
                     <button id="{{url('/downloads/'.$f_item['filename'])}}" class="accordion">{!!$f_item['title']!!}</button>
                     @endforeach
-                </div>
+                    </div>
                 </div>
                 
             </div>

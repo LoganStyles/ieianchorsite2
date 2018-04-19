@@ -1,0 +1,205 @@
+Application path: /livechat/php/app.php?install-wizard-2
+2017-02-01 07:51:16 [error] SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: NO)
+Stack trace:
+/home3/ieiancho/public_html/livechat/php/service/Database.php:46 (Logger:error())
+/home3/ieiancho/public_html/livechat/php/service/Database.php:64 (Database:connect())
+/home3/ieiancho/public_html/livechat/php/service/Database.php:25 (Database:reconnect())
+/home3/ieiancho/public_html/livechat/php/lib/Service.php:17 (Database:onRegister())
+/home3/ieiancho/public_html/livechat/php/lib/ServiceContainer.php:47 (Service:setServiceContainer())
+/home3/ieiancho/public_html/livechat/php/lib/Controller.php:33 (ServiceContainer:get())
+/home3/ieiancho/public_html/livechat/php/controller/InstallController.php:74 (Controller:get())
+/home3/ieiancho/public_html/livechat/php/app/Application.php:155 (InstallController:wizard2Action())
+/home3/ieiancho/public_html/livechat/php/app/Application.php:79 (Application:runAction())
+/home3/ieiancho/public_html/livechat/php/app.php:26 (Application:run())
+
+Application path: /livechat/php/app.php?install-wizard-2
+2017-02-01 07:51:16 Undefined index:  smtp on line 78 in /home3/ieiancho/public_html/livechat/views/admin/install-wizard-2.html
+2017-02-01 07:51:16 Undefined index:  smtp on line 151 in /home3/ieiancho/public_html/livechat/views/admin/install-wizard-2.html
+Application path: /livechat/php/app.php?install-wizard-2
+2017-02-01 07:52:28 [error] SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: NO)
+Stack trace:
+/home3/ieiancho/public_html/livechat/php/service/Database.php:46 (Logger:error())
+/home3/ieiancho/public_html/livechat/php/service/Database.php:64 (Database:connect())
+/home3/ieiancho/public_html/livechat/php/service/Database.php:25 (Database:reconnect())
+/home3/ieiancho/public_html/livechat/php/lib/Service.php:17 (Database:onRegister())
+/home3/ieiancho/public_html/livechat/php/lib/ServiceContainer.php:47 (Service:setServiceContainer())
+/home3/ieiancho/public_html/livechat/php/lib/Controller.php:33 (ServiceContainer:get())
+/home3/ieiancho/public_html/livechat/php/controller/InstallController.php:74 (Controller:get())
+/home3/ieiancho/public_html/livechat/php/app/Application.php:155 (InstallController:wizard2Action())
+/home3/ieiancho/public_html/livechat/php/app/Application.php:79 (Application:runAction())
+/home3/ieiancho/public_html/livechat/php/app.php:26 (Application:run())
+
+Application path: /livechat/php/app.php?install-wizard-2
+2017-02-01 07:52:28 Undefined index:  smtp on line 78 in /home3/ieiancho/public_html/livechat/views/admin/install-wizard-2.html
+2017-02-01 07:52:28 Undefined index:  smtp on line 151 in /home3/ieiancho/public_html/livechat/views/admin/install-wizard-2.html
+Application path: /livechat/php/app.php?operator-get-typing-status
+2017-02-15 00:38:36 parse_ini_file(/home3/ieiancho/public_html/livechat/php/../data/memory.dat) [<a href='function.parse-ini-file'>function.parse-ini-file</a>]: failed to open stream: No such file or directory on line 97 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+Application path: /livechat/php/app.php?operator-get-typing-status
+2017-02-15 00:38:41 parse_ini_file(/home3/ieiancho/public_html/livechat/php/../data/memory.dat) [<a href='function.parse-ini-file'>function.parse-ini-file</a>]: failed to open stream: No such file or directory on line 97 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+Application path: /livechat/php/app.php?operator-get-typing-status
+2017-02-15 00:38:46 parse_ini_file(/home3/ieiancho/public_html/livechat/php/../data/memory.dat) [<a href='function.parse-ini-file'>function.parse-ini-file</a>]: failed to open stream: No such file or directory on line 97 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+Application path: /livechat/php/app.php?operator-get-typing-status
+2017-02-15 00:38:50 parse_ini_file(/home3/ieiancho/public_html/livechat/php/../data/memory.dat) [<a href='function.parse-ini-file'>function.parse-ini-file</a>]: failed to open stream: No such file or directory on line 97 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+Application path: /livechat/php/app.php?operator-get-typing-status
+2017-02-15 03:08:20 parse_ini_file(/home3/ieiancho/public_html/livechat/php/../data/memory.dat) [<a href='function.parse-ini-file'>function.parse-ini-file</a>]: failed to open stream: No such file or directory on line 97 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+Application path: /livechat/php/app.php?operator-get-typing-status
+2017-02-15 03:08:25 parse_ini_file(/home3/ieiancho/public_html/livechat/php/../data/memory.dat) [<a href='function.parse-ini-file'>function.parse-ini-file</a>]: failed to open stream: No such file or directory on line 97 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+Application path: /livechat/php/app.php?operator-get-typing-status
+2017-02-15 03:08:30 parse_ini_file(/home3/ieiancho/public_html/livechat/php/../data/memory.dat) [<a href='function.parse-ini-file'>function.parse-ini-file</a>]: failed to open stream: No such file or directory on line 97 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+Application path: /livechat/php/app.php?operator-get-typing-status
+2017-02-15 03:08:35 parse_ini_file(/home3/ieiancho/public_html/livechat/php/../data/memory.dat) [<a href='function.parse-ini-file'>function.parse-ini-file</a>]: failed to open stream: No such file or directory on line 97 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+Application path: /livechat/php/app.php?operator-get-typing-status
+2017-02-15 03:08:40 parse_ini_file(/home3/ieiancho/public_html/livechat/php/../data/memory.dat) [<a href='function.parse-ini-file'>function.parse-ini-file</a>]: failed to open stream: No such file or directory on line 97 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+Application path: /livechat/php/app.php?operator-get-typing-status
+2017-02-15 03:08:45 parse_ini_file(/home3/ieiancho/public_html/livechat/php/../data/memory.dat) [<a href='function.parse-ini-file'>function.parse-ini-file</a>]: failed to open stream: No such file or directory on line 97 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+Application path: /livechat/php/app.php?operator-get-typing-status
+2017-02-15 03:08:50 parse_ini_file(/home3/ieiancho/public_html/livechat/php/../data/memory.dat) [<a href='function.parse-ini-file'>function.parse-ini-file</a>]: failed to open stream: No such file or directory on line 97 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+Application path: /livechat/php/app.php?operator-get-typing-status
+2017-02-15 03:08:55 parse_ini_file(/home3/ieiancho/public_html/livechat/php/../data/memory.dat) [<a href='function.parse-ini-file'>function.parse-ini-file</a>]: failed to open stream: No such file or directory on line 97 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+Application path: /livechat/php/app.php?operator-get-typing-status
+2017-02-15 03:09:00 parse_ini_file(/home3/ieiancho/public_html/livechat/php/../data/memory.dat) [<a href='function.parse-ini-file'>function.parse-ini-file</a>]: failed to open stream: No such file or directory on line 97 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+Application path: /livechat/php/app.php?operator-get-typing-status
+2017-02-15 03:09:05 parse_ini_file(/home3/ieiancho/public_html/livechat/php/../data/memory.dat) [<a href='function.parse-ini-file'>function.parse-ini-file</a>]: failed to open stream: No such file or directory on line 97 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+Application path: /livechat/php/app.php?operator-get-typing-status
+2017-02-15 03:09:10 parse_ini_file(/home3/ieiancho/public_html/livechat/php/../data/memory.dat) [<a href='function.parse-ini-file'>function.parse-ini-file</a>]: failed to open stream: No such file or directory on line 97 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+Application path: /livechat/php/app.php?operator-get-typing-status
+2017-02-15 03:09:15 parse_ini_file(/home3/ieiancho/public_html/livechat/php/../data/memory.dat) [<a href='function.parse-ini-file'>function.parse-ini-file</a>]: failed to open stream: No such file or directory on line 97 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+Application path: /livechat/php/app.php?operator-get-typing-status
+2017-02-15 03:09:20 parse_ini_file(/home3/ieiancho/public_html/livechat/php/../data/memory.dat) [<a href='function.parse-ini-file'>function.parse-ini-file</a>]: failed to open stream: No such file or directory on line 97 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+Application path: /livechat/php/app.php?operator-get-typing-status
+2017-02-15 03:09:25 parse_ini_file(/home3/ieiancho/public_html/livechat/php/../data/memory.dat) [<a href='function.parse-ini-file'>function.parse-ini-file</a>]: failed to open stream: No such file or directory on line 97 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+Application path: /livechat/php/app.php?operator-get-typing-status
+2017-02-15 03:09:30 parse_ini_file(/home3/ieiancho/public_html/livechat/php/../data/memory.dat) [<a href='function.parse-ini-file'>function.parse-ini-file</a>]: failed to open stream: No such file or directory on line 97 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+Application path: /livechat/php/app.php?operator-get-typing-status
+2017-02-15 03:09:36 parse_ini_file(/home3/ieiancho/public_html/livechat/php/../data/memory.dat) [<a href='function.parse-ini-file'>function.parse-ini-file</a>]: failed to open stream: No such file or directory on line 97 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+Application path: /livechat/php/app.php?operator-get-typing-status
+2017-02-15 03:09:40 parse_ini_file(/home3/ieiancho/public_html/livechat/php/../data/memory.dat) [<a href='function.parse-ini-file'>function.parse-ini-file</a>]: failed to open stream: No such file or directory on line 97 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+Application path: /livechat/php/app.php?operator-get-typing-status
+2017-02-15 03:09:45 parse_ini_file(/home3/ieiancho/public_html/livechat/php/../data/memory.dat) [<a href='function.parse-ini-file'>function.parse-ini-file</a>]: failed to open stream: No such file or directory on line 97 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+Application path: /livechat/php/app.php?operator-get-typing-status
+2017-02-15 03:09:50 parse_ini_file(/home3/ieiancho/public_html/livechat/php/../data/memory.dat) [<a href='function.parse-ini-file'>function.parse-ini-file</a>]: failed to open stream: No such file or directory on line 97 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+Application path: /livechat/php/app.php?operator-get-typing-status
+2017-02-15 03:09:55 parse_ini_file(/home3/ieiancho/public_html/livechat/php/../data/memory.dat) [<a href='function.parse-ini-file'>function.parse-ini-file</a>]: failed to open stream: No such file or directory on line 97 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+Application path: /livechat/php/app.php?operator-get-typing-status
+2017-02-15 03:10:01 parse_ini_file(/home3/ieiancho/public_html/livechat/php/../data/memory.dat) [<a href='function.parse-ini-file'>function.parse-ini-file</a>]: failed to open stream: No such file or directory on line 97 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+Application path: /livechat/php/app.php?operator-update-typing-status
+2017-02-15 03:10:01 parse_ini_file(/home3/ieiancho/public_html/livechat/php/../data/memory.dat) [<a href='function.parse-ini-file'>function.parse-ini-file</a>]: failed to open stream: No such file or directory on line 97 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+2017-02-15 03:10:01 parse_ini_file(/home3/ieiancho/public_html/livechat/php/../data/memory.dat) [<a href='function.parse-ini-file'>function.parse-ini-file</a>]: failed to open stream: No such file or directory on line 97 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+2017-02-15 03:10:01 array_merge() [<a href='function.array-merge'>function.array-merge</a>]: Argument #1 is not an array on line 102 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+2017-02-15 03:10:01 array_keys() [<a href='function.array-keys'>function.array-keys</a>]: The first argument should be an array on line 104 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+2017-02-15 03:10:01 Invalid argument supplied for foreach() on line 104 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+2017-02-15 03:10:01 Invalid argument supplied for foreach() on line 79 in /home3/ieiancho/public_html/livechat/php/service/Memory.php
+Application path: /livechat/php/app.php?widget-init.js
+2017-04-25 10:41:33 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-04-25 10:41:34 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?widget-init.js
+2017-04-25 10:41:41 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-04-25 10:41:41 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?widget-iframe-content&domain=www.ieianchorpensions.com
+2017-04-25 10:41:43 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-04-25 10:41:43 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?widget-theme-style.css
+2017-04-25 10:41:44 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-04-25 10:41:44 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?widget-custom-style.css
+2017-04-25 10:41:44 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-04-25 10:41:44 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?operator-is-online
+2017-04-25 10:41:46 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-04-25 10:41:46 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?widget-init.js
+2017-04-25 10:47:04 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-04-25 10:47:04 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?widget-iframe-content&domain=www.ieianchorpensions.com
+2017-04-25 10:47:09 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-04-25 10:47:09 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?widget-theme-style.css
+2017-04-25 10:47:10 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-04-25 10:47:10 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?widget-custom-style.css
+2017-04-25 10:47:11 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-04-25 10:47:11 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?operator-is-online
+2017-04-25 10:47:15 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-04-25 10:47:15 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?widget-init.js
+2017-04-25 10:48:12 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-04-25 10:48:12 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?widget-iframe-content&domain=www.ieianchorpensions.com
+2017-04-25 10:48:14 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-04-25 10:48:14 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?widget-theme-style.css
+2017-04-25 10:48:15 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-04-25 10:48:15 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?widget-custom-style.css
+2017-04-25 10:48:15 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-04-25 10:48:15 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?operator-is-online
+2017-04-25 10:48:17 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-04-25 10:48:17 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?widget-iframe-content&domain=www.ieianchorpensions.com
+2017-04-25 10:49:29 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-04-25 10:49:29 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?operator-is-online
+2017-04-25 10:49:32 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-04-25 10:49:32 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?widget-init.js
+2017-04-25 10:56:11 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-04-25 10:56:11 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?widget-iframe-content&domain=www.ieianchorpensions.com
+2017-04-25 10:56:13 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-04-25 10:56:13 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?widget-custom-style.css
+2017-04-25 10:56:13 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-04-25 10:56:13 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?widget-theme-style.css
+2017-04-25 10:56:13 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-04-25 10:56:13 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?widget-init.js
+2017-09-15 13:24:53 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-09-15 13:24:53 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?widget-iframe-content&domain=www.ieianchorpensions.com
+2017-09-15 13:24:56 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-09-15 13:24:56 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?widget-theme-style.css
+2017-09-15 13:24:57 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-09-15 13:24:57 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?widget-custom-style.css
+2017-09-15 13:24:58 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-09-15 13:24:58 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?operator-is-online
+2017-09-15 13:24:59 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-09-15 13:24:59 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?widget-init.js
+2017-09-15 13:36:47 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-09-15 13:36:47 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?widget-init.js
+2017-09-15 13:36:48 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-09-15 13:36:48 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?widget-iframe-content&domain=www.ieianchorpensions.com
+2017-09-15 13:36:49 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-09-15 13:36:49 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?widget-custom-style.css
+2017-09-15 13:36:49 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-09-15 13:36:49 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?widget-theme-style.css
+2017-09-15 13:36:50 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-09-15 13:36:50 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?operator-is-online
+2017-09-15 13:36:51 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-09-15 13:36:51 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?widget-init.js
+2017-09-15 14:01:24 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-09-15 14:01:24 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?widget-iframe-content&domain=www.ieianchorpensions.com
+2017-09-15 14:01:25 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-09-15 14:01:25 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?widget-theme-style.css
+2017-09-15 14:01:25 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-09-15 14:01:25 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?widget-custom-style.css
+2017-09-15 14:01:26 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-09-15 14:01:26 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown
+Application path: /livechat/php/app.php?operator-is-online
+2017-09-15 14:01:26 Unknown: write failed: No space left on device (28) on line 0 in Unknown
+2017-09-15 14:01:26 Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/tmp) on line 0 in Unknown

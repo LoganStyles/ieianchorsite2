@@ -141,7 +141,8 @@ a.w3l_header_contact_details_agile-info_inner,.w3l_header_contact_details_agile 
 .w3layouts_header_mid ul li {
     list-style: none;
     display: inline-block;
-    width: 24.5%;
+    width: 31.5%;
+    /*width: 24.5%;*/
     border-right: 1px ridge#b5c0d4;
 }
 .w3layouts_header_mid ul li:nth-child(4) {
@@ -335,7 +336,8 @@ h3.agileinfo_sign  {
     border: none;
 }
 .navbar {
-    margin-bottom: 3%;
+    margin-bottom: 0%;
+    /*margin-bottom: 3%;*/
 }
 .navbar-collapse {
     padding: 0;
@@ -1512,7 +1514,7 @@ p.b_label {
 }
 .w3_agile_services_grid{
 	margin-top:2em;
-        height: 250px;
+        height: 200px;
 }
 .wthree_services_grid1{
 	/*background:url(../images/g4.png) no-repeat 0px 0px;*/
@@ -4107,7 +4109,7 @@ p.about-w3text {
 
 
 .item_page_details{
-    padding:2% 0;
+    padding:1% 0;
     text-align: justify;
 }
 

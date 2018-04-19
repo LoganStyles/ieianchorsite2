@@ -47,7 +47,7 @@ Services
                     <div class="w3ls_courses_left_grids">
                     @foreach($fetched_item as $subitem)
                         <div class="w3ls_courses_left_grid">
-                            <h2>{!!$subitem['title']!!}</h2><br>
+                            <h2>{!!$subitem['title']!!}</h2>
                             <div>
                                 <img src="{{ asset('/site/img/'.$subitem['filename'])}}" style="max-width: 100%;" />
                             </div>

@@ -42,7 +42,7 @@ Board of Directors
                                     <p style="color: #cd9536; font-weight: 600; font-size: 1em;">{!!$item['title']!!}</p>
                                 </div>
                                 <div>
-                                    <img src="{{ asset('/site/img/'.$item['filename'])}}" style="max-width: 100%;" />
+                                    <!--<img src="{{ asset('/site/img/'.$item['filename'])}}" style="max-width: 100%;" />-->
                                 </div>
                             </div>
                             <div class="agileits_w3layouts_services_grid1">
@@ -59,15 +59,10 @@ Board of Directors
             <div class="clearfix"> </div>
             </div>
             </div>
-            <div class="col-md-2 col-lg-2 col-sm-12">
-<!--                <a href="https://www.instagram.com/ieianchorpensions/" target="_blank">
-                <img src="{{ asset('/site/images/not-late.png')}}" style="max-width: 100%;" />
-                </a>-->
-            </div>
+            <div class="col-md-2 col-lg-2 col-sm-12">  </div>
             
         </div>
     </div>
 </div>
 
 @endsection
-<?php //include 'includes/footer.php'; ?>

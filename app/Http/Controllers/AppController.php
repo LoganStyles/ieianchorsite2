@@ -120,6 +120,9 @@ class AppController extends BaseController {
                     case 'download_site':
                         $data['moduleitems']= DB::table('downloadcats')->select('*')->distinct()->get();
                         break;
+                    case 'financial_site':
+                        $data['moduleitems']= DB::table('financials')->select('*')->distinct()->get();
+                        break;
                     case 'branch_site':
                         $data['moduleitems']= DB::table('branches')->select('*')->distinct()->get();
                         break;
@@ -140,8 +143,7 @@ class AppController extends BaseController {
                         break;
                     case 'article_site':
                         $data['moduleitems'] = $this->getDBData('article');
-                        break;
-                    case 'about':                    
+                        break;                                        
                     case 'testimonial':
                     case 'banner':
                     case 'slide':
@@ -153,6 +155,7 @@ class AppController extends BaseController {
                         $data['moduleitems'] = $this->getDBData($page);
                         break;
                     case 'service':
+                    case 'about':
                     case 'article':
                     case 'newsitem':
                     case 'faqcat':
@@ -586,7 +589,7 @@ class AppController extends BaseController {
                         'position' => $request['position'],
                         'display' => $request['display'],
                         'link_label' => preg_replace('/[^A-Za-z0-9]/', '_', strtolower($request['title'])),
-                        'excerpt' => substr($request['details'], 0, 100)
+                        'excerpt' => substr(strip_tags($request['details']), 0, 100)
                     ]);
                     $moduleimage = new Aboutimage();
                     break;
@@ -598,7 +601,7 @@ class AppController extends BaseController {
                         'position' => $request['position'],
                         'display' => $request['display'],
                         'link_label' => preg_replace('/[^A-Za-z0-9]/', '_', strtolower($request['title'])),
-                        'excerpt' => substr($request['details'], 0, 100)
+                        'excerpt' => substr(strip_tags($request['details']), 0, 100)
                     ]);
                     $moduleimage = new Serviceimage();
                     break;
@@ -610,7 +613,7 @@ class AppController extends BaseController {
                         'position' => $request['position'],
                         'display' => $request['display'],
                         'link_label' => preg_replace('/[^A-Za-z0-9]/', '_', strtolower($request['title'])),
-                        'excerpt' => substr($request['details'], 0, 100)
+                        'excerpt' => substr(strip_tags($request['details']), 0, 100)
                     ]);
                     $moduleimage = new Testimonialimage();
                     break;
@@ -623,7 +626,7 @@ class AppController extends BaseController {
                         'url' => $request['url'],
                         'display' => $request['display'],
                         'link_label' => preg_replace('/[^A-Za-z0-9]/', '_', strtolower($request['title'])),
-                        'excerpt' => substr($request['details'], 0, 100)
+                        'excerpt' => substr(strip_tags($request['details']), 0, 100)
                     ]);
                     $moduleimage = new Bannerimage();
                     break;
@@ -636,7 +639,7 @@ class AppController extends BaseController {
                         'url' => $request['url'],
                         'display' => $request['display'],
                         'link_label' => preg_replace('/[^A-Za-z0-9]/', '_', strtolower($request['title'])),
-                        'excerpt' => substr($request['details'], 0, 100)
+                        'excerpt' => substr(strip_tags($request['details']), 0, 100)
                     ]);
                     $moduleimage = new Slideimage();
                     break;
@@ -649,7 +652,7 @@ class AppController extends BaseController {
                         'url' => $request['url'],
                         'display' => $request['display'],
                         'link_label' => preg_replace('/[^A-Za-z0-9]/', '_', strtolower($request['title'])),
-                        'excerpt' => substr($request['details'], 0, 100)
+                        'excerpt' => substr(strip_tags($request['details']), 0, 100)
                     ]);
                     $moduleimage = new Awardimage();
                     break;
@@ -661,7 +664,7 @@ class AppController extends BaseController {
                         'position' => $request['position'],
                         'display' => $request['display'],
                         'link_label' => preg_replace('/[^A-Za-z0-9]/', '_', strtolower($request['title'])),
-                        'excerpt' => substr($request['details'], 0, 100)
+                        'excerpt' => substr(strip_tags($request['details']), 0, 100)
                     ]);
                     $moduleimage = new Boardimage();
                     break;
@@ -673,7 +676,7 @@ class AppController extends BaseController {
                         'position' => $request['position'],
                         'display' => $request['display'],
                         'link_label' => preg_replace('/[^A-Za-z0-9]/', '_', strtolower($request['title'])),
-                        'excerpt' => substr($request['details'], 0, 100)
+                        'excerpt' => substr(strip_tags($request['details']), 0, 100)
                     ]);
                     $moduleimage = new Managementimage();
                     break;
@@ -685,7 +688,7 @@ class AppController extends BaseController {
                         'position' => $request['position'],
                         'display' => (!empty($request['display'])?($request['display']):('0')),
                         'link_label' => preg_replace('/[^A-Za-z0-9]/', '_', strtolower($request['title'])),
-                        'excerpt' => substr($request['details'], 0, 100)
+                        'excerpt' => substr(strip_tags($request['details']), 0, 100)
                     ]);
                     $moduleimage = new Newsitemimage();
                     break;
@@ -697,7 +700,7 @@ class AppController extends BaseController {
                         'position' => $request['position'],
                         'display' => (!empty($request['display'])?($request['display']):('0')),
                         'link_label' => preg_replace('/[^A-Za-z0-9]/', '_', strtolower($request['title'])),
-                        'excerpt' => substr($request['details'], 0, 100)
+                        'excerpt' => substr(strip_tags($request['details']), 0, 100)
                     ]);
                     $moduleimage = new Articleimage();
                     break;
@@ -713,18 +716,23 @@ class AppController extends BaseController {
             //if image exists
             $image = $request->file('image');
             if (!empty($image)) {
-                $input['imagename'] = time() . '.' . $image->getClientOriginalExtension();
+                //chk if a prev featured image exists & delete it
+                $del_status = $this->deleteImages($request['type'], $request['id']);
+                if ($del_status) {
+                    //create a new featured image name
+                    $input['imagename'] = time() . '.' . $image->getClientOriginalExtension();
 
-                $destinationPath = public_path('/site/img');
-                $image->move($destinationPath, $input['imagename']);
+                    $destinationPath = public_path('/site/img');
+                    $image->move($destinationPath, $input['imagename']);
 
-                //insert the image                
-                $moduleimage->filename = $input['imagename'];
-                $moduleimage->itemid = $request['id'];
-                $moduleimage->alt = $request['caption'];
-                $moduleimage->caption = $request['caption'];
-                $moduleimage->main = 0;
-                $moduleimage->save();
+                    //insert the image                
+                    $moduleimage->filename = $input['imagename'];
+                    $moduleimage->itemid = $request['id'];
+                    $moduleimage->alt = $request['caption'];
+                    $moduleimage->caption = $request['caption'];
+                    $moduleimage->main = '0';
+                    $moduleimage->save();
+                }
             }
         } else {
             //validate new module item
@@ -791,7 +799,7 @@ class AppController extends BaseController {
                     $moduleitem = new Faqcat();
                     break;
             }
-
+            
             //insert modules   
             if($request['type'] !="faqcat"){
             $moduleitem->title = $request['title'];
@@ -799,7 +807,7 @@ class AppController extends BaseController {
             $moduleitem->position = $request['position'];
             $moduleitem->display = (!empty($request['display'])?($request['display']):('0'));
             $moduleitem->link_label = preg_replace('/[^A-Za-z0-9]/', '_', strtolower($request['title']));
-            $moduleitem->excerpt = substr($request['details'], 0, 100);
+            $moduleitem->excerpt = substr(strip_tags($request['details']), 0, 100);
             
             }else{
             $moduleitem->title = $request['title'];
@@ -819,24 +827,20 @@ class AppController extends BaseController {
                 $moduleimage->itemid = $moduleitem->id;
                 $moduleimage->alt = $request['caption'];
                 $moduleimage->caption = $request['caption'];
-                $moduleimage->main =0;
+                $moduleimage->main ='0';
                 $moduleimage->save();
             }
         }
 
         return redirect()->back();
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request) {
-        if (session()->has('delete_group') && session('delete_group') == 1) {//can delete
-            //chk for module type
-            $del_type = $request['type'];
+    
+    /*deletes items*/
+    public function deleteItem($item_type,$id) {
+        //chk for module type
+            $del_type = $item_type;
             $imgarrays=array();
+            $del_status=false;
             
             if ($del_type != "faqcat") {
                 $itemimages = $del_type . 'images';
@@ -844,7 +848,7 @@ class AppController extends BaseController {
                 //get filename and remove it if exists
                 $moduleimages = DB::table($itemimages)
                         ->select('filename')
-                        ->where('itemid', $request['id'])
+                        ->where('itemid', $id)
                         ->get();
 
                 foreach ($moduleimages as $object) {
@@ -857,79 +861,189 @@ class AppController extends BaseController {
                     Storage::delete($deletePath);
                 }
             }
-
-
+            
             //remove from tbls
             switch ($del_type) {                
                 case'about':
-                    $moduleitem = About::find($request['id']);
+                    $moduleitem = About::find($id);
                     $moduleitem->delete();
-                    Aboutimage::where('itemid', $request['id'])->delete();
+                    Aboutimage::where('itemid', $id)->delete(); 
+                    $del_status=true;
                     break;
 
                 case'service':
-                    $moduleitem = Service::find($request['id']);
+                    $moduleitem = Service::find($id);
                     $moduleitem->delete();
-                    Serviceimage::where('itemid', $request['id'])->delete();
+                    Serviceimage::where('itemid', $id)->delete();
+                    $del_status=true;
                     break;
 
                 case'testimonial':
-                    $moduleitem = Testimonial::find($request['id']);
+                    $moduleitem = Testimonial::find($id);
                     $moduleitem->delete();
-                    Testimonialimage::where('itemid', $request['id'])->delete();
+                    Testimonialimage::where('itemid', $id)->delete();
+                    $del_status=true;
                     break;
 
                 case'banner':
-                    $moduleitem = Banner::find($request['id']);
+                    $moduleitem = Banner::find($id);
                     $moduleitem->delete();
-                    Bannerimage::where('itemid', $request['id'])->delete();
+                    Bannerimage::where('itemid', $id)->delete();
+                    $del_status=true;
                     break;
 
                 case'slide':
-                    $moduleitem = Slide::find($request['id']);
+                    $moduleitem = Slide::find($id);
                     $moduleitem->delete();
-                    Slideimage::where('itemid', $request['id'])->delete();
+                    Slideimage::where('itemid', $id)->delete();
+                    $del_status=true;
                     break;
 
                 case'award':
-                    $moduleitem = Award::find($request['id']);
+                    $moduleitem = Award::find($id);
                     $moduleitem->delete();
-                    Awardimage::where('itemid', $request['id'])->delete();
+                    Awardimage::where('itemid', $id)->delete();
+                    $del_status=true;
                     break;
 
                 case'board':
-                    $moduleitem = Board::find($request['id']);
+                    $moduleitem = Board::find($id);
                     $moduleitem->delete();
-                    Boardimage::where('itemid', $request['id'])->delete();
+                    Boardimage::where('itemid', $id)->delete();
+                    $del_status=true;
                     break;
 
                 case'management':
-                    $moduleitem = Management::find($request['id']);
+                    $moduleitem = Management::find($id);
                     $moduleitem->delete();
-                    Managementimage::where('itemid', $request['id'])->delete();
+                    Managementimage::where('itemid', $id)->delete();
+                    $del_status=true;
                     break;
 
                 case'newsitem':                    
-                    $moduleitem = Newsitem::find($request['id']);
+                    $moduleitem = Newsitem::find($id);
                     $moduleitem->delete();
-                    Newsitemimage::where('itemid', $request['id'])->delete();
+                    Newsitemimage::where('itemid', $id)->delete();
+                    $del_status=true;
                     break;
 
                 case'article':                    
-                    $moduleitem = Article::find($request['id']);
+                    $moduleitem = Article::find($id);
                     $moduleitem->delete();
-                    Articleimage::where('itemid', $request['id'])->delete();
+                    Articleimage::where('itemid', $id)->delete();
+                    $del_status=true;
                     break;
                 
                 case'faqcat':                    
-                    $moduleitem = Faqcat::find($request['id']);
+                    $moduleitem = Faqcat::find($id);
                     $moduleitem->delete();
+                    $del_status=true;
                     break;
 
                 default:
-                    DB::table($del_type)->where('id', '=', $request['id'])->delete();
+                    DB::table($del_type)->where('id', '=', $id)->delete();
+                    $del_status=true;
                     break;
             }
+            return $del_status;
+    }
+    
+    /*deletes images*/
+    public function deleteImages($item_type,$id) {
+        //chk for module type
+            $del_type = $item_type;
+            $imgarrays=array();
+            $del_status=false;
+            
+            if ($del_type != "faqcat") {
+                $itemimages = $del_type . 'images';
+
+                //get filename and remove it if exists
+                $moduleimages = DB::table($itemimages)
+                        ->select('filename')
+                        ->where('itemid', $id)
+                        ->get();
+
+                foreach ($moduleimages as $object) {
+                    $imgarrays[] = (array) $object;
+                }
+
+                foreach ($imgarrays as $image) {
+                    //delete file
+                    $deletePath = public_path('/site/img/' . $image['filename']);
+                    Storage::delete($deletePath);
+                }
+            }
+            
+            //remove from tbls
+            switch ($del_type) {                
+                case'about':
+                    Aboutimage::where('itemid', $id)->delete(); 
+                    $del_status=true;
+                    break;
+
+                case'service':
+                    Serviceimage::where('itemid', $id)->delete();
+                    $del_status=true;
+                    break;
+
+                case'testimonial':
+                    Testimonialimage::where('itemid', $id)->delete();
+                    $del_status=true;
+                    break;
+
+                case'banner':
+                    Bannerimage::where('itemid', $id)->delete();
+                    $del_status=true;
+                    break;
+
+                case'slide':
+                    Slideimage::where('itemid', $id)->delete();
+                    $del_status=true;
+                    break;
+
+                case'award':
+                    Awardimage::where('itemid', $id)->delete();
+                    $del_status=true;
+                    break;
+
+                case'board':
+                    Boardimage::where('itemid', $id)->delete();
+                    $del_status=true;
+                    break;
+
+                case'management':
+                    Managementimage::where('itemid', $id)->delete();
+                    $del_status=true;
+                    break;
+
+                case'newsitem':                    
+                    Newsitemimage::where('itemid', $id)->delete();
+                    $del_status=true;
+                    break;
+
+                case'article':                    
+                    Articleimage::where('itemid', $id)->delete();
+                    $del_status=true;
+                    break;
+                
+                case'faqcat':                    
+                    $del_status=true;
+                    break;
+            }
+            return $del_status;
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request) {
+        if (session()->has('delete_group') && session('delete_group') == 1) {//can delete
+//            $item_type=$request['type'];
+//            $id=$request['id'];            
+            $del_status=$this->deleteItem($request['type'], $request['id']);
         }else{
             $request->session()->flash('del_status', 'You are not authorised to perform this action!');
         }

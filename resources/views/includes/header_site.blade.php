@@ -96,37 +96,13 @@
             <div class="w3layouts_header_mid">
                 <ul>
                     <li>
-                        <div class="header_contact_details_agile"><i class="fa fa-envelope-o" aria-hidden="true"></i>
-                            <div class="w3l_header_contact_details_agile">
-                                <div class="header-contact-detail-title">Send us a Message</div> 
-                                {{$site['email']}}
-                                <br>
-                            </div>
-                        </div>
-                        
-                        <div class="header_contact_details_agile"><i class="fa fa-phone" aria-hidden="true"></i>
-                            <div class="w3l_header_contact_details_agile">
-                                <div class="header-contact-detail-title">Give us a Call</div> 
-                                <span class="w3l_header_contact_details_agile-info_inner">{{$site['phone1']}}, {{$site['phone2']}} </span>
-                            </div>
-                        </div>
-                    </li>
-<!--                    <li>
-                        <div class="header_contact_details_agile"><i class="fa fa-phone" aria-hidden="true"></i>
-                            <div class="w3l_header_contact_details_agile">
-                                <div class="header-contact-detail-title">Give us a Call</div> 
-                                <span class="w3l_header_contact_details_agile-info_inner">{{$site['phone1']}}, {{$site['phone2']}} </span>
-                                <br><br><br><br>
-                            </div>
-                        </div>
-                    </li>-->
-
-                    <li>
                         <div class="header_contact_details_agile"><i class="fa fa-map-marker" aria-hidden="true"></i>
                             <div class="w3l_header_contact_details_agile">
                                 <div class="header-contact-detail-title">Head Office</div> 
-                                <span class="w3l_header_contact_details_agile-info_inner">{{$site['office']}} </span>
-                                <br><br>
+                                <div class="w3l_header_contact_details_agile-info_inner">{{$site['office']}} </div><br>
+                                <div class="w3l_header_contact_details_agile-info_inner"><strong>Email:</strong>{{$site['email']}} </div>
+                                <div class="w3l_header_contact_details_agile-info_inner"><strong>Call:</strong>{{$site['phone1']}}, {{$site['phone2']}} </div>
+                                
                             </div>
                         </div>
                     </li>
@@ -134,10 +110,10 @@
                     <li>
                         <div class="header_contact_details_agile"><i class="fa fa-institution" aria-hidden="true"></i>
                             <div class="w3l_header_contact_details_agile">
-                                <!--<div class="header-contact-detail-title">Bank Details</div>-->
                                 <span class="w3l_header_contact_details_agile-info_inner"><strong>Bank:</strong> UBA </span><br>
                                 <span class="w3l_header_contact_details_agile-info_inner"><strong>Account Name:</strong> UPCL/IEI-ANCHOR PENSIONS RSA CONTRIBUTION A/C </span><br>
-                                <span class="w3l_header_contact_details_agile-info_inner"><strong>Account Number:</strong> 1006236132 </span>
+                                <span class="w3l_header_contact_details_agile-info_inner"><strong>Account Number:</strong> 1006236132 </span><br><br>
+                                <strong>EPCCOS :</strong><a target="_blank" href="{{url('https://apps.nibss-plc.com.ng/EPCCOS/login;jsessionid=26AB9979142CA84F38202ACA6726646F')}}"><span class="label label-primary">Login to EPCCOS</span></a>&nbsp;&nbsp;
                             </div>
                         </div>
                     </li>
@@ -147,8 +123,8 @@
                                 <div class="header-contact-detail-title">Unit Prices as at {{date("M j, Y",strtotime($prices->report_date))}}</div> 
                                 <span class="w3l_header_contact_details_agile-info_inner">RSA Unit Price: {{$prices->rsa}} </span><br>
                                 <span class="w3l_header_contact_details_agile-info_inner">Retiree Unit Price: {{$prices->retiree}} </span><br>
-                                <span class="w3l_header_contact_details_agile-info_inner">Administrative Fee: 100 </span><br>
-                                <a href="{{url('/page/unit_price/')}}"><span class="label label-primary">View Price History</span></a>&nbsp;&nbsp;
+                                <span class="w3l_header_contact_details_agile-info_inner">Administrative Fee: 100 </span><br><br>
+                                <strong>Price History:</strong><a target="_blank" href="{{url('/page/unit_price/')}}"><span class="label label-primary">View Price History</span></a>&nbsp;&nbsp;
                                 
                             </div>
                         </div>
@@ -167,7 +143,7 @@
                     </button>
                     <a class="navbar-brand" href="{{route('home')}}">
                         <div class="img_logo">
-                        <img src="{{ asset('/site/img/'.$site['filename'])}}" alt="IEI Anchor Pensions" class="img-responsive" style="max-width: 80%;" />
+                        <img src="{{ asset('/site/img/'.$site['filename'])}}" alt="IEI Anchor Pensions" class="img-responsive" style="max-width: 60%;" />
                         </div>
                     </a>
                 </div>
@@ -177,7 +153,7 @@
                         <ul class="nav navbar-nav">
                             <li class="<?php if($page=="home"){echo "active";}?>"><a href="{{route('home')}}"><span data-hover="Home">Home</span></a></li>
                             
-                            <li class="<?php if($page=="about_site"||$page=="board_site"){echo "active";}?>dropdown">
+                            <li class="<?php if($page=="about_site"||$page=="board_site"||$page=="management_site"){echo "active";}?>dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span data-hover="About Us">About Us</span> <b class="caret"></b></a>
                                 <ul class="dropdown-menu agile_short_dropdown">
                                     <li><a href="{{url('/page/about_site')}}">About Us</a></li>
@@ -200,7 +176,7 @@
                                 </ul>
                             </li>
                             
-                            <li class="<?php if($page=="investment"){echo "active";}?> dropdown">
+                            <li class="<?php if($page=="investment"||$page=="investment_portfolio"){echo "active";}?> dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span data-hover="Investment">Investment</span> <b class="caret"></b></a>
                                 <ul class="dropdown-menu agile_short_dropdown">                                    
                                     <li><a href="{{route('investment')}}">Strategy</a></li>
@@ -210,25 +186,31 @@
                             
                             <li class="<?php if($page=="newsitem"){echo "active";}?>"><a href="{{url('/page/newsitem_site')}}"><span data-hover="News">News</span></a></li>
                             
-                            <li class="<?php if($page=="faq_site"||$page=="contact"){echo "active";}?>dropdown">
+                            <li class="<?php if($page=="financial_site"||$page=="download_site"||$page=="rate_of_return"||$page=="unit_price"||$page=="show_pension_calculator"){echo "active";}?>dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span data-hover="Resources">Resources</span> <b class="caret"></b></a>
+                                <ul class="dropdown-menu agile_short_dropdown">
+                                    <li><a href="{{url('/page/download_site/')}}">Downloads</a></li>
+                                    <li><a href="{{url('/page/financial_site')}}">Financial Reports</a></li>
+                                    <li><a href="{{url('/page/rate_of_return')}}">Rate of Return</a></li>
+                                    <li><a href="{{url('/page/unit_price/')}}">Unit Prices</a></li>
+                                    <li><a href="{{url('http://41.223.131.235/pfaweb')}}">Online Statement</a></li>
+                                    <li><a href="{{url('/page/show_pension_calculator')}}">Pension Calculator</a></li>
+                                </ul>
+                            </li> 
+                            
+                            <li class="<?php if($page=="faq_site"||$page=="contact"||$page=="branch_site"){echo "active";}?>dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span data-hover="Contact Us">Contact Us</span> <b class="caret"></b></a>
                                 <ul class="dropdown-menu agile_short_dropdown">
                                     <li><a href="{{url('/page/contact')}}">Feedback</a></li>
                                     <li><a href="{{url('/page/faq_site')}}">FAQ</a></li>
                                     <li><a href="{{url('/page/branch_site')}}">Our Office/Service Centers</a></li>
                                 </ul>
-                            </li>                                   
+                            </li> 
 
                         </ul>
                     </nav>
 
                 </div>
-<!--                <div style="position: absolute;top:10px;z-index: 10;right: 1%;">
-                    @if($page =="home")
-                <img src="{{ asset('/site/img/Award1_colored.png')}}" alt="IEI Anchor Pensions" class="img-responsive" style="float: right;" />
-                @endif
-                <div class="clearfix"></div>
-                </div>-->
                 <div class="clearfix"></div>
             </nav>
             

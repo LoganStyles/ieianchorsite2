@@ -128,7 +128,6 @@
 <script src="{{asset('/assets/global/coin-slider/coin-slider.min.js')}}" type="text/javascript"></script>
 
 <script src="{{asset('/site/js/datatables/jquery.dataTables.min.js')}}"></script>
-<!--[if lt IE 9]><script language="javascript" type="text/javascript" src="js/jqPlot/excanvas.js"></script><![endif]-->
 <script type="text/javascript" src="{{asset('site/js/jqPlot/jquery.jqplot.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('site/js/jqPlot/plugins/jqplot.dateAxisRenderer.js')}}"></script>
 <script type="text/javascript" src="{{asset('site/js/jqPlot/plugins/jqplot.logAxisRenderer.js')}}"></script>
@@ -139,6 +138,7 @@
 <script type="text/javascript" src="{{asset('site/js/slick.js')}}"  charset="utf-8"></script>
 <!-- FlexSlider -->
 <script type="text/javascript" src="{{asset('site/js/jquery.flexslider-min.js')}}"></script>
+<script type="text/javascript" src="https://ieianchorpensions.com/livechat/php/app.php?widget-init.js"></script>
 <script type="text/javascript">
 $(document).on('ready', function () {
     var page_name="<?php echo $page;?>";
@@ -149,8 +149,8 @@ $(document).on('ready', function () {
     }
     //sliders
     $('#coin-slider').coinslider({
-        width:1250,
-        height:400,
+        width:1262,
+        height:300,
         navigation:false,
         delay:5000
     });
