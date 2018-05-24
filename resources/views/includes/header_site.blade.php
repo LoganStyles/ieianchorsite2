@@ -113,7 +113,7 @@
                                 <span class="w3l_header_contact_details_agile-info_inner"><strong>Bank:</strong> UBA </span><br>
                                 <span class="w3l_header_contact_details_agile-info_inner"><strong>Account Name:</strong> UPCL/IEI-ANCHOR PENSIONS RSA CONTRIBUTION A/C </span><br>
                                 <span class="w3l_header_contact_details_agile-info_inner"><strong>Account Number:</strong> 1006236132 </span><br><br>
-                                <strong>EPCCOS :</strong><a target="_blank" href="{{url('https://apps.nibss-plc.com.ng/EPCCOS/login;jsessionid=26AB9979142CA84F38202ACA6726646F')}}"><span class="label label-primary">Login to EPCCOS</span></a>&nbsp;&nbsp;
+                                <strong>EPCCOS :&nbsp;</strong><a target="_blank" href="{{url('https://apps.nibss-plc.com.ng/EPCCOS/login;jsessionid=26AB9979142CA84F38202ACA6726646F')}}"><span class="label label-primary">Login to EPCCOS</span></a>&nbsp;&nbsp;
                             </div>
                         </div>
                     </li>
@@ -124,7 +124,7 @@
                                 <span class="w3l_header_contact_details_agile-info_inner">RSA Unit Price: {{$prices->rsa}} </span><br>
                                 <span class="w3l_header_contact_details_agile-info_inner">Retiree Unit Price: {{$prices->retiree}} </span><br>
                                 <span class="w3l_header_contact_details_agile-info_inner">Administrative Fee: 100 </span><br><br>
-                                <strong>Price History:</strong><a target="_blank" href="{{url('/page/unit_price/')}}"><span class="label label-primary">View Price History</span></a>&nbsp;&nbsp;
+                                <strong>Price History:&nbsp;</strong><a target="_blank" href="{{url('/page/unit_price/')}}"><span class="label label-primary">View Price History</span></a>&nbsp;&nbsp;
                                 
                             </div>
                         </div>

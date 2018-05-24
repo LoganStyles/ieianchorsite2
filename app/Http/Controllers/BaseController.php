@@ -86,7 +86,7 @@ class BaseController extends Controller {
                     ->select($items . '.*', $itemimages . '.filename', $itemimages . '.itemid as imageid', $itemimages . '.alt', $itemimages . '.caption', $itemimages . '.main')
                     ->where([[$items . '.link_label', $subitem],['display','1']])
                     ->get();
-        } else {
+        } else if($item == "newsitem" || $item == "article") {
             $moduleitems = DB::table($items)
                     ->leftjoin($itemimages, $items . '.id', '=', $itemimages . '.itemid')
                     ->select($items . '.*', $itemimages . '.filename', $itemimages . '.itemid as imageid', $itemimages . '.alt', $itemimages . '.caption', $itemimages . '.main')
@@ -94,8 +94,14 @@ class BaseController extends Controller {
                     ->orderBy('id', 'desc')
                     ->take(10)
                     ->get();
-
-        //      print_r($moduleitems);exit;
+        }else {
+            $moduleitems = DB::table($items)
+                    ->leftjoin($itemimages, $items . '.id', '=', $itemimages . '.itemid')
+                    ->select($items . '.*', $itemimages . '.filename', $itemimages . '.itemid as imageid', $itemimages . '.alt', $itemimages . '.caption', $itemimages . '.main')
+                    ->where('display','1')
+                    ->orderBy('position', 'asc')
+                    ->take(10)
+                    ->get();
         }
 
         foreach ($moduleitems as $object) {
@@ -141,11 +147,17 @@ class BaseController extends Controller {
                     ->select($items . '.*', $itemimages . '.filename', $itemimages . '.itemid as imageid', $itemimages . '.alt', $itemimages . '.caption', $itemimages . '.main')
                     ->where($items . '.link_label', $subitem)
                     ->paginate(5);
-        } else {
+        } else if($item == "newsitem" || $item == "article"){
             $moduleitems = DB::table($items)
                     ->leftjoin($itemimages, $items . '.id', '=', $itemimages . '.itemid')
                     ->select($items . '.*', $itemimages . '.filename', $itemimages . '.itemid as imageid', $itemimages . '.alt', $itemimages . '.caption', $itemimages . '.main')
                     ->orderBy('id', 'desc')
+                    ->paginate(5);
+        }else {
+            $moduleitems = DB::table($items)
+                    ->leftjoin($itemimages, $items . '.id', '=', $itemimages . '.itemid')
+                    ->select($items . '.*', $itemimages . '.filename', $itemimages . '.itemid as imageid', $itemimages . '.alt', $itemimages . '.caption', $itemimages . '.main')
+                    ->orderBy('position', 'asc')
                     ->paginate(5);
         }
 

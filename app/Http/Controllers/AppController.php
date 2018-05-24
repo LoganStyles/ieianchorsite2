@@ -146,14 +146,14 @@ class AppController extends BaseController {
                         break;                                        
                     case 'testimonial':
                     case 'banner':
-                    case 'slide':
                     case 'award':                
-                    case 'board':
-                    case 'management':
                         $this->checkLoggedStatus();
                         $path = '/backend/' . $page;
                         $data['moduleitems'] = $this->getDBData($page);
                         break;
+                    case 'management':
+                    case 'board':
+                    case 'slide':
                     case 'service':
                     case 'about':
                     case 'article':
