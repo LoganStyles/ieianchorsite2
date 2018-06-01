@@ -30,7 +30,6 @@
                             <li><a target="_blank" href="{{url('http://www.pencom.gov.ng/')}}">Pencom</a></li> 
                             <li><a target="_blank" href="{{url('/downloads/Whistle_Blowing_Guidelines_for_Pensions')}}">Whistle Blowing Guidelines</a></li>
                             <li><a target="_blank" href="{{url('/downloads/RSA_Transfer_Guidelines.pdf')}}">RSA Transfer Guidelines</a></li>
-                            <!--<li><a target="_blank" href="{{url('http://apml-ict01/reports/Pages/Folder.aspx')}}">View Report Manager</a></li>-->
                             <li><a target="_blank" href="{{url('https://apps.nibss-plc.com.ng/EPCCOS/login;jsessionid=26AB9979142CA84F38202ACA6726646F')}}">EPCCOS</a></li>
                         </ul>
                     </div>
@@ -45,7 +44,7 @@
                             <li><a href="{{url('/downloads/CHECKLIST_FOR_25_LUMP_SUM_WITHDRAWAL_REQUEST.pdf')}}">Checklist For 25% Lump Sum</a></li>
                             <li><a href="{{url('/downloads/CHECKLIST_DEATH_BENEFIT_REQUEST_FGN_EMPLOYEES.pdf')}}">Checklist For Death Benefit</a></li>
                             <li><a href="{{url('/downloads/CHECKLIST-FOR-VOLUNTARY-CONTRIBUTION.pdf')}}">Checklist For Voluntary Contribution</a></li>
-                            <li><a href="{{url('/page/download_site/')}}">All Downloads</a></li>
+                            <li><a href="{{url('/page/download_site/')}}"><strong>ALL DOWNLOADS</strong></a></li>
                             
                         </ul>
                     </div>
@@ -137,7 +136,7 @@
 <script type="text/javascript" src="{{asset('site/js/moment/moment.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('site/js/slick.js')}}"  charset="utf-8"></script>
 <!-- FlexSlider -->
-<script type="text/javascript" src="{{asset('site/js/jquery.flexslider-min.js')}}"></script>
+<!--<script type="text/javascript" src="{{asset('site/js/jquery.flexslider-min.js')}}"></script>-->
 <script type="text/javascript" src="https://ieianchorpensions.com/livechat/php/app.php?widget-init.js"></script>
 <script type="text/javascript">
 $(document).on('ready', function () {
@@ -153,10 +152,6 @@ $(document).on('ready', function () {
         height:300,
         navigation:false,
         delay:5000
-    });
-    
-    $(".flexslider").flexslider({
-          animation: "fade"
     });
 	
     $(function() {
@@ -240,19 +235,7 @@ $(document).on('ready', function () {
             });
         </script>
         <!-- //gallery-pop-up -->
-        <!-- flexSlider -->
-        <script defer src="{{ asset('/site/js/jquery.flexslider.js')}}"></script>
-        <script type="text/javascript">
-            $(window).load(function () {
-                $('.flexslider').flexslider({
-                    animation: "slide",
-                    start: function (slider) {
-                        $('body').removeClass('loading');
-                    }
-                });
-            });
-        </script>
-        <!-- //flexSlider -->
+        
 
         <!-- start-smooth-scrolling -->
         <script type="text/javascript" src="{{ asset('/site/js/move-top.js')}}"></script>

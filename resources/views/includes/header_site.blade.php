@@ -1,4 +1,4 @@
-<?php $newslink=$news->link_label;?>
+<?php $newslink=($news)?($news->link_label):("");?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -11,10 +11,9 @@
         <!-- //custom-theme -->
         <link href="{{asset('/site/css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all" />
         <link href="{{asset('/site/css/style.css')}}" rel="stylesheet" type="text/css" media="all" />
-        <!--<link rel="stylesheet" href="{{ asset('/site/css/mainStyles.css')}}" />-->
         <link rel='stylesheet' href="{{ asset('/site/css/dscountdown.css')}}" type='text/css' media='all' />
         <link href="{{asset('/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')}}" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="{{ asset('/site/css/flexslider.css')}}" type="text/css" media="screen" property="" />
+        <!--<link rel="stylesheet" href="{{ asset('/site/css/flexslider.css')}}" type="text/css" media="screen" property="" />-->
         <!-- gallery -->
         <link href="{{asset('/site/css/lsb.css')}}" rel="stylesheet" type="text/css">
         <!-- //gallery -->
@@ -77,8 +76,8 @@
             </div>
             <div class="w3layouts_header_left">
                 <ul>
-                    <li><a target="_blank" title="Login to Client Portal" href="{{$site['client_url']}}">RSA Account Login</a></li>
-                    <li><a target="_blank" title="Login to Client Portal" href="{{url('/page/register/')}}">Register With Us</a></li>
+                    <li><a target="_blank" title="RSA Account Login" href="{{$site['client_url']}}">RSA Account Login</a></li>
+                    <li><a target="_blank" title="Register With Us" href="{{url('/page/register/')}}">Register With Us</a></li>
                 </ul>
 
             </div>
@@ -193,7 +192,7 @@
                                     <li><a href="{{url('/page/financial_site')}}">Financial Reports</a></li>
                                     <li><a href="{{url('/page/rate_of_return')}}">Rate of Return</a></li>
                                     <li><a href="{{url('/page/unit_price/')}}">Unit Prices</a></li>
-                                    <li><a href="{{url('http://41.223.131.235/pfaweb')}}">Online Statement</a></li>
+                                    <li><a href="{{url('http://ffpro.ieianchorpensions.com/pfaweb/')}}">Online Statement</a></li>
                                     <li><a href="{{url('/page/show_pension_calculator')}}">Pension Calculator</a></li>
                                 </ul>
                             </li> 

@@ -15,6 +15,11 @@ class CreateFaqcatsTable extends Migration
     {
         Schema::create('faqcats', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('position')->default(0);
+            $table->string('keywords')->nullable();
+            $table->string('link_label')->nullable();
+            $table->text('details')->nullable();
+            $table->string('excerpt')->nullable();
             $table->enum('display',['0','1']);
             $table->string('title');
             $table->text('description')->nullable();

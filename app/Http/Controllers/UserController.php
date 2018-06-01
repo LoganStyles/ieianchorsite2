@@ -51,7 +51,7 @@ class UserController extends BaseController {
             foreach ($usergroups as $object) {
                 $arrays[] = (array) $object;
             }
-            return view('/backend/roles', ['usergroups' => $arrays, 'page_name' => 'role']);
+            return view('/backend/roles', ['usergroups' => $arrays, 'page_name' => 'roles']);
         } else {
             return redirect()->route('logout');
         }

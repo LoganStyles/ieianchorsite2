@@ -5,7 +5,7 @@ Admin | User Groups
 @endsection 
 
 @section('content')
-<?php $page_name="role";
+<?php 
 $user_role=session('users');
 ?>
 

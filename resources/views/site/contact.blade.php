@@ -13,7 +13,7 @@ Contact Us
 
         <div class="team">
             <div class="container">
-                <h3 class="w3l_header w3_agileits_header">FEED <span>BACK</span></h3>
+                <h3 class="w3l_header w3_agileits_header">CONTACT <span>US</span></h3>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-primary">

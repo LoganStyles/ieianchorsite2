@@ -63,22 +63,18 @@ DOWNLOADs
         <div class="agile_team_grids_top">
             <div class="col-md-12 w3ls_banner_bottom_left w3ls_courses_left">
                 <div class="col-md-4">
-                    <!--<h3>Categories</h3>-->
                     <table class="table table-bordered">
                         <thead>
                         </thead>
                         <tbody>
                             @foreach($downloads as $item)
-                            <tr 
-                                class="@if($item['id'] ==$current_cat_id)accordion @endif "
-                                >
+                            <tr class="@if($item['id'] ==$current_cat_id)accordion @endif ">
                                 <td><a href="{!!$item['id']!!}">{!!$item['title']!!}</a></td>
                             </tr>    
                             @endforeach
                         </tbody>
                     </table> 
                     <br>
-                    <?php //echo $listed_items->links(); ?>
                 </div>
                 <div class="col-md-8">
                     <div class="w3ls_courses_left_grids">

@@ -138,7 +138,7 @@ class BaseController extends Controller {
         }else if( $item == "faq"){
             $moduleitems = DB::table('faqs')
                     ->leftjoin('faqcats','faqs.category_id','=','faqcats.id')
-                    ->select('faqcats.title','faqs.question','faqs.*')
+                    ->select('faqcats.title','faqcats.id as cat_id','faqs.question','faqs.*')
                     ->paginate(5);
 
         }else if ($subitem) {

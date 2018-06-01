@@ -29,7 +29,7 @@ Route::post('site_update', 'AppController@updateSite')->name('update_site')->mid
 Route::post('delete', 'AppController@destroy')->name('delete_item')->middleware('auth');
 
 //site pages & content
-Route::get('/page/index', 'AppController@index')->name('home');//display the home page
+Route::get('/', 'AppController@showPage')->name('home');//display the home page
 Route::get('/page/investment', 'AppController@showInvestment')->name('investment'); //..display investment strategy
 Route::post('pension_calculator', 'AppController@pensionCalculator')->name('pension_calc'); //pension calculator
 Route::get('/unitprice/range','AppController@fetchRangeOfPrices')->name('unitprice_range');

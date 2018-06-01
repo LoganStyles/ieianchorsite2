@@ -63,7 +63,7 @@ Retire Happy
             <div class="col-md-8 col-lg-8 col-sm-12">
                 <div class="col-md-12 col-lg-12 "col-sm-12>
                     <div class="col-md-4 col-lg-4 col-sm-12 w3_agile_services_grid">
-                        <a target="_blank" href="{{url('http://41.223.131.235/pfaweb')}}">
+                        <a target="_blank" href="{{url('http://ffpro.ieianchorpensions.com/pfaweb/')}}">
                             <div class="agile_services_grid1" >
                                 <div style="width:100%;">
                                     <div style="width:30%;float: left;"><img  class="products_icon" src="{{ asset('/site/images/statements.png')}}" /></div>
@@ -148,8 +148,8 @@ Retire Happy
                     </div> 
                     
                     <div class="col-md-4 col-lg-4 col-sm-12 w3_agile_services_grid">
-                        <?php $link=$data['newsitem']->link_label; ?>
-                        <a href="{{url('/page/newsitem/'.$link)}}">
+                        <?php $link=($news)?($news->link_label):(""); ?>
+                        <a href="{{url('/page/newsitem_site/'.$link)}}">
                             <div class="agile_services_grid1">
                                 <div style="width:100%;">
                                     <div style="width:30%;float: left;"><img  class="products_icon" src="{{ asset('/site/images/news.png')}}" /></div>

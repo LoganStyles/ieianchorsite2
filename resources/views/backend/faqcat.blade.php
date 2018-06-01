@@ -23,7 +23,7 @@ $moduleitems=$data['moduleitems'];
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Articles</span>
+                    <span>FAQ Categories</span>
                 </li>
             </ul>
 
@@ -85,7 +85,6 @@ $moduleitems=$data['moduleitems'];
                                 <tr class="table_row @if($loop->index ==0)active @endif ">
                                 <input type="hidden" value="{{$row->id}}" class="row_id"/>
                                 <input type="hidden" value="{{$row->type}}" class="row_type"/>
-                                <!--<input type="hidden" value="{{$row->description}}" class="row_details"/>-->
                                 <input type="hidden" value="{{$loop->index +1}}" class="row_loop_index"/>
                                     <td> {{$row->id}}  </td>
                                     <td class="row_title"> {{$row->title}} </td>
@@ -157,7 +156,7 @@ $moduleitems=$data['moduleitems'];
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-md-2">Details
+                                            <label class="control-label col-md-2">Description
                                                 <span class="required"> * </span>
                                             </label>
                                             <div class="col-md-10">

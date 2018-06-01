@@ -5,6 +5,8 @@ $site=$data['siteitems'][0];
 $services=$data['services'];
 $news=$data['newsitem'];
 $fetched_item=$data['fetched_item'];
+$current_cat_item=$data['fetched_item'][0];//current cat item
+$current_cat_id=$current_cat_item['category_id'];//current cat_id
 $listed_items=$data['listed_items'];
 
 
@@ -70,32 +72,27 @@ FAQs
                         </thead>
                         <tbody>
                             @foreach($faqs as $item)
-                            <tr>
+                            <tr class="@if($item['id'] ==$current_cat_id)accordion @endif ">
                                 <td><a href="{!!$item['id']!!}">{!!$item['title']!!}</a></td>
                             </tr>    
                             @endforeach
                         </tbody>
                     </table> 
                     <br>
-                    <?php //echo $listed_items->links(); ?>
                 </div>
                 <div class="col-md-8">
                     <div class="w3ls_courses_left_grids">
-                        
-                        
-                    <!--<h2>Animated Accordion</h2>-->
-<!--<p>Click on the buttons to open the collapsible content.</p>-->
-@foreach($fetched_item as $f_item)
-<button class="accordion">{!!$f_item['question']!!}</button>
-<div class="panel">
-  <p>{!!$f_item['answer']!!}</p>
-</div>
-@endforeach
+                    @foreach($fetched_item as $f_item)
+                    <p class="accordion">{!!$f_item['question']!!}</p>
+                    <div class="panel">
+                      <p>{!!$f_item['answer']!!}</p>
+                    </div>
+                    @endforeach
 
 
                 </div>
                 </div>
-                
+                               
             </div>
             
             <div class="clearfix"> </div>
@@ -107,7 +104,9 @@ var acc = document.getElementsByClassName("accordion");
 var i;
 
 for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
+  acc[i].addEventListener("click", function(e) {
+      e.preventDefault(); // Cancel the native event
+      e.stopPropagation();// Don't bubble/capture the even
     this.classList.toggle("active");
     var panel = this.nextElementSibling;
     if (panel.style.maxHeight){
@@ -115,7 +114,8 @@ for (i = 0; i < acc.length; i++) {
     } else {
       panel.style.maxHeight = panel.scrollHeight + "px";
     } 
-  });
+    return false;
+  },false);
 }
 </script>
 

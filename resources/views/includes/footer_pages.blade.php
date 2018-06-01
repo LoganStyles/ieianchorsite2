@@ -68,7 +68,7 @@
         <script src="{{asset('/assets/layouts/layout/scripts/demo.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('/assets/layouts/global/scripts/quick-sidebar.min.js')}}" type="text/javascript"></script>
         <!--summernote-->
-        <script src="{{asset('/assets/summernote/summernote.min.js')}}" type="text/javascript"></script>
+        <script src="{{asset('/assets/summernote/summernote.js')}}" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
         
         <script type="text/javascript">
@@ -77,7 +77,7 @@
                 $('.summer_details').summernote({
                     placeholder: 'Type the details...',
                     tabsize: 2,
-                    height: 120,
+                    height: 200,
                     toolbar: [
                     ['style', ['bold', 'italic', 'underline', 'clear']],
                     ['font', ['strikethrough', 'superscript', 'subscript']],
@@ -202,7 +202,6 @@
                     var row_position=$('table tbody .table_row.active input.row_position').val();
                     var row_display=$('table tbody .table_row.active input.row_display').val();
                     var row_title=$('table tbody .table_row.active .row_title').text();
-//                    var row_description=$('table tbody .table_row.active .row_description').text();
                     var row_details=$('table tbody .table_row.active .row_details').html();
                     console.log('row_idss '+row_id);
                     console.log('row_type '+row_type);
@@ -210,7 +209,6 @@
                     console.log('row_display '+row_display);
                     console.log('row_title '+row_title);
                     console.log('row_details '+row_details);
-//                    console.log('row_description '+row_description);
                     
                     var form_id="#"+row_type+"_form";
                     var form_modal="#"+row_type+"_edit_modal";
@@ -222,17 +220,7 @@
                     var form_display_yes=form_id+" #display_yes";
                     var form_display_no=form_id+" #display_no";
                     var form_details=form_id+" #details";
-                    
-                    //form fields vars
-//                    console.log('form_id '+form_id);
-//                    console.log('id '+id);
-//                    console.log('form_title '+form_title);
-//                    console.log('form_type '+form_type);
-//                    console.log('form_position '+form_position);
-//                    console.log('form_details '+form_details);
-//                    console.log('form_display_yes '+form_display_yes);
-//                    console.log('form_display_no '+form_display_no);
-                    
+                                        
                     //set values
                     $(id).val(row_id);
                     $(form_type).val(row_type);
@@ -248,6 +236,38 @@
                     }
                     
                     //$(form_details).val(row_description);
+                    $(form_details).summernote('code', row_details);
+                    $(form_modal).modal({backdrop: false, keyboard: false});
+                });
+                
+                $('body').on('click','.edit_faq_item',function(){
+                    var row_id=$('table tbody .table_row.active input.row_id').val();//faqid
+                    var row_cat_id=$('table tbody .table_row.active input.row_cat_id').val();//faq_catid
+                    var row_type=$('table tbody .table_row.active input.row_type').val();//faqtype
+                    var row_title=$('table tbody .table_row.active .row_title').text();//faqcat title
+                    var row_question=$('table tbody .table_row.active .row_question').text();//faq question
+                    var row_details=$('table tbody .table_row.active .row_details').html();//faq answer
+                    console.log('row_idss '+row_id);
+                    console.log('row_type '+row_type);
+                    console.log('row_title '+row_title);
+                    console.log('row_question '+row_question);
+                    console.log('row_details '+row_details);
+                    
+                    var form_id="#"+row_type+"_form";
+                    var form_modal="#"+row_type+"_edit_modal";
+                    
+                    var form_title=form_id+" #title";
+                    var form_category=form_id+" #category";
+                    var id=form_id+" #id";
+                    //var cat_id=form_id+" #cat_id";
+                    var form_type=form_id+" #type";
+                    var form_details=form_id+" #details";
+                                        
+                    //set values
+                    $(id).val(row_id);
+                    $(form_type).val(row_type);
+                    $(form_title).val(row_question);
+                    $(form_category).val(row_cat_id);
                     $(form_details).summernote('code', row_details);
                     $(form_modal).modal({backdrop: false, keyboard: false});
                 });
@@ -328,6 +348,10 @@
                         var row_article=$this.find('.row_article').val();
                         console.log('row_article '+row_article);
                         $('#article').val(row_article);
+                        
+                        var row_faq=$this.find('.row_faq').val();
+                        console.log('row_faq '+row_faq);
+                        $('#faq').val(row_faq);
                         
                         var row_banner=$this.find('.row_banner').val();
                         console.log('row_banner '+row_banner);

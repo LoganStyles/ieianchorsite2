@@ -1,13 +1,20 @@
 @extends('layouts.master_pages')
 
+<?php 
+$template_delete_modal=$page_name."_delete_modal";
+$template_header=$page_name."_header";
+$template_delete_form=$page_name."_delete_form";
+$template_form=$page_name."_form";
+$template_form_id="#".$page_name."_form";
+$template_edit_modal=$page_name."_edit_modal";
+?>
+
 @section('title')
-Admin - Board of Directors Page
+Admin - <?php echo ucfirst($page_name); $moduleitems=$data['moduleitems'];?> Page
 @endsection 
 
 @section('content')
-<?php $page_name = "board";
-$moduleitems=$data['moduleitems'];
-?>
+
 
 <!-- BEGIN CONTENT -->
 <div class="page-content-wrapper">
@@ -23,7 +30,7 @@ $moduleitems=$data['moduleitems'];
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Directors</span>
+                    <span><?php echo ucfirst($page_name); ?></span>
                 </li>
             </ul>
 
@@ -76,7 +83,7 @@ $moduleitems=$data['moduleitems'];
                             <thead>
                                 <tr>
                                     <th>S/N </th>
-                                    <th> Title </th>
+                                    <th> Name/Title </th>
                                     <th> Details </th>
                                     <th> Keywords </th>
                                     <th> Excerpt </th>                                    
@@ -120,18 +127,18 @@ $moduleitems=$data['moduleitems'];
                     <div class="portlet-body form">                                    
 
                         <!--full width--> 
-                        <div id="board_delete_modal" class="modal fade" tabindex="-1">
+                        <div id="<?php echo $template_delete_modal;?>" class="modal fade" tabindex="-1">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                                <h4 class="modal-title" id="board_header">Delete Item</h4>
+                                <h4 class="modal-title" id="<?php echo $template_header;?>">Delete Item</h4>
                             </div>
                             <div class="modal-body">
                                 <h4>
                                     Are you sure you want to delete this item?
                                 </h4>
-                                <form role="form" action="{{ route('delete_item')}}" method="post" id="board_delete_form" class="form-horizontal">
+                                <form role="form" action="{{ route('delete_item')}}" method="post" id="<?php echo $template_delete_form;?>" class="form-horizontal">
                                     <input type="hidden" name="id"  id="id" value="">
-                                    <input type="hidden" name="type"  id="type" value="board">
+                                    <input type="hidden" name="type"  id="type" value="<?php echo $page_name;?>">
                                     <input type="submit" class="btn blue" name="submit" value="Delete" />
                                     <button class="btn default" type="button" data-dismiss="modal" aria-hidden="true">Cancel</button>
                                     <input type="hidden" value="{{Session::token()}}" name="_token"/>                            
@@ -143,16 +150,16 @@ $moduleitems=$data['moduleitems'];
                         
                         
                         <!--full width--> 
-                        <div id="board_edit_modal" class="modal fade" tabindex="2" >
+                        <div id="<?php echo $template_edit_modal;?>" class="modal fade" tabindex="2" >
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                                <h4 class="modal-title" id="board_header">Add/Update Articles</h4>
+                                <h4 class="modal-title" id="<?php echo $template_header;?>">Add/Update <?php echo ucfirst($page_name)."s";?></h4>
                             </div>
                             <div class="modal-body">
                                 <!-- BEGIN FORM-->
-                                <form role="form" action="{{ route('processm')}}" method="post" id="board_form" class="form-horizontal" enctype="multipart/form-data">
+                                <form role="form" action="{{ route('processm')}}" method="post" id="<?php echo $template_form;?>" class="form-horizontal" enctype="multipart/form-data">
                                     <input type="hidden" name="id"  id="id" value="0">
-                                    <input type="hidden" name="type"  id="type"  value="board">
+                                    <input type="hidden" name="type"  id="type"  value="<?php echo $page_name; ?>">
                                     <div class="form-body">
                                         <div class="alert alert-danger display-hide">
                                             <button class="close" data-close="alert"></button> You have some form errors. Please check below. </div>
@@ -172,8 +179,10 @@ $moduleitems=$data['moduleitems'];
                                                 <input readonly name="position" id="position" type="number" value="{{$moduleitems->total()+1}}" class="form-control" /> 
                                             </div>
                                         </div>
+                                        
+                                        <?php if ($page_name=="faqcat"){$page_name="faq";}?>
 
-                                       @if(session()->has('board') && session('board') >3)
+                                       @if(session()->has($page_name) && session($page_name) >3)
                                        <div class="form-group">
                                             <label class="control-label col-md-3">Display
                                                 <span class="required"> * </span>
@@ -238,7 +247,8 @@ $moduleitems=$data['moduleitems'];
                                         <div class="row">
                                             <div class="col-md-offset-3 col-md-9">
                                                 <input type="submit" class="btn blue" name="submit" value="Submit" />
-                                                <button onclick="resetForm('#board_form');" type="button" class="btn default">Reset</button>
+                                                <!--<button onclick="resetForm('<?php echo $template_form_id;?>');" type="button" class="btn default">Reset</button>-->
+                                                <button onclick="" type="button" data-dismiss="modal" class="btn default">Cancel</button>
                                             </div>
                                         </div>
                                     </div>

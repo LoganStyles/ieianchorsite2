@@ -1,16 +1,14 @@
 @extends('layouts.master_pages')
 
 @section('title')
-Admin - Activity Page
+Admin - 
+    <?php echo ucfirst($page_name); 
+$moduleitems=$data['moduleitems'];
+?>
+Page
 @endsection 
 
 @section('content')
-<?php $page_name = "faq";
-$moduleitems=$data['moduleitems'];
-//$module_subitems=$data['module_subitems'];
-//print_r($moduleitems);
-//print_r($module_subitems);exit;
-?>
 
 <!-- BEGIN CONTENT -->
 <div class="page-content-wrapper">
@@ -26,7 +24,7 @@ $moduleitems=$data['moduleitems'];
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Articles</span>
+                    <span><?php echo ucfirst($page_name); ?></span>
                 </li>
             </ul>
 
@@ -61,15 +59,15 @@ $moduleitems=$data['moduleitems'];
                                 <div class="portlet-title">
                                     <div class="actions">
                                         <div class="btn-group btn-group-devided" data-toggle="buttons">
-<!--                                            <a class="btn btn-circle btn-default btn-sm new_item" href="">
+                                            <a class="btn btn-circle btn-default btn-sm new_item" href="">
                                                 <i class="fa fa-plus"></i>New 
                                             </a>
-                                            <a class="btn btn-circle btn-default btn-sm edit_item" >
+                                            <a class="btn btn-circle btn-default btn-sm edit_faq_item" >
                                                 <i class="fa fa-pencil"></i>Edit 
                                             </a>
                                             <a class="btn btn-circle btn-default btn-sm delete_item" href="">
                                                 <i class="fa fa-remove"></i>Delete 
-                                            </a>-->
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -88,12 +86,13 @@ $moduleitems=$data['moduleitems'];
                                 @foreach($moduleitems as $row)
                                 <tr class="table_row @if($loop->index ==0)active @endif ">
                                 <input type="hidden" value="{{$row->id}}" class="row_id"/>
+                                <input type="hidden" value="{{$row->cat_id}}" class="row_cat_id"/>
                                 <input type="hidden" value="{{$row->type}}" class="row_type"/>
                                 <input type="hidden" value="{{$loop->index +1}}" class="row_loop_index"/>
-                                    <td> {{$row->id}}  </td>
+                                    <td> {{$loop->index +1}}  </td>
                                     <td class="row_title"> {{$row->title}} </td>
                                     <td class="row_question"> {{$row->question}} </td>
-                                    <td class="row_details"> {{$row->answer}} </td>
+                                    <td class="row_details"> {!!$row->answer!!} </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -139,7 +138,7 @@ $moduleitems=$data['moduleitems'];
                         <div id="faq_edit_modal" class="modal fade" tabindex="2" >
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                                <h4 class="modal-title" id="faq_header">Add/Update Articles</h4>
+                                <h4 class="modal-title" id="faq_header">Add/Update FAQs</h4>
                             </div>
                             <div class="modal-body">
                                 <!-- BEGIN FORM-->
@@ -153,7 +152,22 @@ $moduleitems=$data['moduleitems'];
                                             <button class="close" data-close="alert"></button> Your form validation is successful! </div>
 
                                         <div class="form-group">
-                                            <label class="control-label col-md-2">Title
+                                            <label class="control-label col-md-2">FAQ Category
+                                                <span class="required"> * </span>
+                                            </label>
+                                            <div class="col-md-6">
+                                            <select class="form-control" id="category" name="category">   
+                                                <option value="1" >My retirement savings account</option>
+                                                <option value="2" >About my retirement</option>
+                                                <option value="3" >General FAQs</option>
+                                                <option value="4" >Multi fund</option>
+                                                <option value="5" >Micro Pension</option>
+                                            </select>
+                                            
+                                        </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">Question
                                                 <span class="required"> * </span>
                                             </label>
                                             <div class="col-md-6">
@@ -161,7 +175,7 @@ $moduleitems=$data['moduleitems'];
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-md-2">Details
+                                            <label class="control-label col-md-2">Answer
                                                 <span class="required"> * </span>
                                             </label>
                                             <div class="col-md-10">
@@ -175,7 +189,8 @@ $moduleitems=$data['moduleitems'];
                                         <div class="row">
                                             <div class="col-md-offset-3 col-md-9">
                                                 <input type="submit" class="btn blue" name="submit" value="Submit" />
-                                                <button onclick="resetForm('#faq_form');" type="button" class="btn default">Reset</button>
+                                                <!--<button onclick="resetForm('#faq_form');" type="button" class="btn default">Reset</button>-->
+                                                <button onclick="" type="button" data-dismiss="modal" class="btn default">Cancel</button>
                                             </div>
                                         </div>
                                     </div>
