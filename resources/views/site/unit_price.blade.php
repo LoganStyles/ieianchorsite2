@@ -96,7 +96,7 @@ Unit Price History
         $('body').on('submit','#fetch_price_history',function(e){
             e.preventDefault();
             //on form submission, get prices for the selected range
-            console.log('submitted');
+           // console.log('submitted');
             var startday=$('#start_date').val();
             var endday=$('#end_date').val();
             loadUnitPrices(startday,endday);
@@ -113,7 +113,7 @@ Unit Price History
            success:function(response){
                
                 var jsonData = JSON.parse(response);
-                console.log(response);
+                //console.log(response);
                if(jsonData.length > 0){
                    $('#unit_price_history_table tbody').find('tr:first-child').remove();
                                         
@@ -122,9 +122,9 @@ Unit Price History
                 
                         for (i = 0; i < jsonData.length; i++) {
                             var reportDate = jsonData[i].report_date; //new Date(jsonData[i].ReportDate.substring(0, 10));
-                            console.log(reportDate);
+                            //console.log(reportDate);
                             var formattedReportDate = moment(reportDate).format('MM-DD-YYYY'); //moment(reportDate, 'MM-DD-YYYY').format();// reportDate.toLocaleFormat('%d %b %Y');
-                            console.log(formattedReportDate);					
+                            //console.log(formattedReportDate);					
                             var RSA = jsonData[i].rsa;
                             var Retiree = jsonData[i].retiree;
 
@@ -184,8 +184,8 @@ Unit Price History
 
                 },
                 error: function (jqXHR, textStatus, error) {
-                    console.log(JSON.stringify(jqXHR));
-                    console.log("Ajax error: " + textStatus + ' : ' + error);
+                    //console.log(JSON.stringify(jqXHR));
+                    //console.log("Ajax error: " + textStatus + ' : ' + error);
                 }
 
             });

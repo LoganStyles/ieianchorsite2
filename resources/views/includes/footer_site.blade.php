@@ -136,7 +136,6 @@
 <script type="text/javascript" src="{{asset('site/js/moment/moment.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('site/js/slick.js')}}"  charset="utf-8"></script>
 <!-- FlexSlider -->
-<!--<script type="text/javascript" src="{{asset('site/js/jquery.flexslider-min.js')}}"></script>-->
 <script type="text/javascript" src="https://ieianchorpensions.com/livechat/php/app.php?widget-init.js"></script>
 <script type="text/javascript">
 $(document).on('ready', function () {

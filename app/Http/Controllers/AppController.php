@@ -1027,8 +1027,6 @@ class AppController extends BaseController {
      */
     public function destroy(Request $request) {
         if (session()->has('delete_group') && session('delete_group') == 1) {//can delete
-//            $item_type=$request['type'];
-//            $id=$request['id'];            
             $del_status = $this->deleteItem($request['type'], $request['id']);
         } else {
             $request->session()->flash('del_status', 'You are not authorised to perform this action!');
@@ -1042,14 +1040,25 @@ class AppController extends BaseController {
         $result = [];
         $from_date = ($request['startDate']) ? ($request['startDate']) : (date('m/d/Y'));
         $to_date = ($request['endDate']) ? ($request['endDate']) : (date('m/d/Y'));
-
-        $from = date('Y-m-d' . ' 00:00:00', strtotime($from_date));
-        $to = date('Y-m-d' . ' 00:00:00', strtotime($to_date));
-
-        $range_of_prices = DB::table('unit_prices')
+        
+        if(!($request['startDate']) ||  !($request['endDate'])){
+            $range_of_prices = DB::table('unit_prices')
+            ->orderBy('report_date', 'desc')
+            ->take(7)
+            ->get();
+        }else{
+            $from_date = ($request['startDate']) ? ($request['startDate']) : (date('m/d/Y'));
+            $to_date = ($request['endDate']) ? ($request['endDate']) : (date('m/d/Y'));
+            
+            $from = date('Y-m-d' . ' 00:00:00', strtotime($from_date));
+            $to = date('Y-m-d' . ' 00:00:00', strtotime($to_date));
+        
+            $range_of_prices = DB::table('unit_prices')
                 ->whereBetween('report_date', [$from, $to])
                 ->orderBy('report_date', 'desc')
                 ->get();
+        }
+        
         if ($range_of_prices) {
             $result = $range_of_prices;
         }
