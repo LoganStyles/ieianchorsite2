@@ -13,6 +13,16 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+Route::get('api_branches','BranchController@index');
+
+Route::get('api_downloads','DownloadController@index');
+
+Route::get('api_faqs','FaqController@index');
+
+Route::get('api_unit_prices','UnitPriceController@showPrices');
+
+Route::get('api_send_comment','ResponseController@sendComment');

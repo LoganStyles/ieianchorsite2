@@ -47,14 +47,14 @@ Branches
                                 </div>
                                 
                             </div>
-                            <div class="agileits_w3layouts_services_grid1">
-                                <div class="w3_agileits_services_grid1">
-                                    <div class="clearfix"> </div>
-                                </div>
-                                <h4><a href="javascript:;">{!!$item['address']!!}...</a></h4>
+                            <div class="agileits_w3layouts_services_grid1">                                
+                                <p>{!!$item['phone']!!}</p>
+                                <p>Personnel:<strong>{!!$item['contactperson']!!}</strong></p>
+                            </div>
+                            <div class="agileits_w3layouts_services_grid1">                                
+                                <h4><a href="javascript:;">{!!$item['address']!!}</a></h4>
                             </div>
                         </a>
-                        
                     </div>
                     @endforeach
            

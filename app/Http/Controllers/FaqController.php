@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Faq;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FaqController extends Controller
 {
@@ -14,7 +15,11 @@ class FaqController extends Controller
      */
     public function index()
     {
-        //
+        $moduleitems = DB::table('faqs')
+                ->leftjoin('faqcats','faqs.category_id','=','faqcats.id')
+                ->select('faqs.id','faqs.question','faqs.answer','faqcats.title as category')
+                ->get();
+        return $moduleitems;
     }
 
     /**

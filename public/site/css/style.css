@@ -1515,7 +1515,7 @@ p.b_label {
 }
 .w3_agile_services_grid{
 	margin-top:2em;
-        height: 200px;
+        height: 250px;
 }
 .wthree_services_grid1{
 	/*background:url(../images/g4.png) no-repeat 0px 0px;*/
@@ -1606,7 +1606,7 @@ p.b_label {
 	color:#47cf73;
 }
 .w3_agileits_services_grid1 {
-    padding: 1em 0;
+    /*padding: 1em 0;*/
 }
 .agileits_w3layouts_services_grid1 h4 a{
     text-transform: capitalize;

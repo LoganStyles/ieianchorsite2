@@ -200,6 +200,7 @@ class AppController extends BaseController {
         //clean with Purifier facade            
             $cleaned_name = Purifier::clean($request['name']);
             $cleaned_pin = Purifier::clean($request['pin']);
+            $cleaned_phone = Purifier::clean($request['phone']);
             $cleaned_employer = Purifier::clean($request['employer']);
             $cleaned_subject = Purifier::clean($request['subject']);
             $cleaned_details = Purifier::clean(trim($request['details']));
@@ -228,6 +229,27 @@ class AppController extends BaseController {
             $moduleitem->feedback_type = $request['feedback_type'];
             $moduleitem->save();
         }
+        
+        //send cservice email
+            $data = array(
+                'email' => 'cservice@ieianchorpensions.com',
+                'phone' => $cleaned_phone,
+                'pin' => $cleaned_pin,
+                'employer' => $cleaned_employer,
+                'details' => $cleaned_details,
+                'subject' => 'Contact Us('.ucwords(trim($request['feedback_type'])).') - '.$cleaned_subject,
+                'client_email' => trim($request['email']),
+                'feedback_type' => trim($request['feedback_type']),
+                'created_at' => Date('Y-m-d'),
+                'clientname' => $cleaned_name
+            );
+
+            Mail::send('emails.mailCservice', $data, function($message) use ($data) {
+                $message->from($data['client_email']);
+                $message->to($data['email']);
+                $message->subject($data['subject']);
+            });
+            
         $request->session()->flash('response_status', 'Thank you,your feedback has been received.');
         return redirect()->back();
     }
@@ -503,52 +525,6 @@ class AppController extends BaseController {
             'page_name' => $page
         ]);
     }
-
-//    public function pensionCalculator(Request $request) {
-//        //default values
-//        $data = [];
-//        $result = array('lumpsum' => '0.00',
-//            'monthly_pension' => '0.00',
-//            'qualify_for_lumpsum' => 'No',
-//            'qualify_for_programmed_withdrawal' => 'No',
-//            'total_package' => '0.00');
-//
-//        $this->validate($request, [
-//            'rsa_balance' => 'numeric',
-//            'monthly_contribution' => 'numeric',
-//            'years_before_retirement' => 'numeric',
-//            'percentage_return' => 'numeric'
-//        ]);
-//
-//        $percentageReturn = ($request['percentage_return']) / 100;
-//        $totalPackage = ($request['monthly_contribution'] * $request['years_before_retirement'] * 12) + ($request['rsa_balance'] * pow((1 + $request['percentage_return']), $request['years_before_retirement']));
-//
-//        //format & set total package
-//        $result['total_package'] = number_format($totalPackage, 2);
-//
-//        if ($totalPackage > 550000) {
-//            $result['qualify_for_lumpsum'] = 'Yes';
-//            $result['lumpsum'] = number_format(($totalPackage * .25), 2);
-//            $result['qualify_for_programmed_withdrawal'] = 'Yes';
-//            $result['monthly_pension'] = number_format(((0.75 * $totalPackage) / 120), 2);
-//        } else {
-//            $result['qualify_for_lumpsum'] = 'No';
-//            $result['lumpsum'] = $totalPackage;
-//            $result['qualify_for_programmed_withdrawal'] = 'No';
-//        }
-//        $page = "pension_calculator";
-//        $data['resultitems'] = $result;
-//        $data['siteitems'] = $this->getDBData('site');
-//        $data['services'] = $this->getDBData('service');
-//        $data['newsitem'] = $this->latest_news;
-//        $path = '/site/' . $page;
-//
-//        return view($path, [
-//            'prices' => $this->latest_prices,
-//            'data' => $data,
-//            'page_name' => $page
-//        ]);
-//    }
 
     public function processStates(Request $request) {
         if ($request['id'] > 0) {//validate and already existing module item

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Download;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DownloadController extends Controller
 {
@@ -14,7 +15,11 @@ class DownloadController extends Controller
      */
     public function index()
     {
-        //
+        $moduleitems = DB::table('downloads')
+                ->leftjoin('downloadcats','downloads.category_id','=','downloadcats.id')
+                ->select('downloads.id','downloads.title','downloads.download_count','downloads.filename as file_name','downloadcats.title as category')
+                ->get();
+        return $moduleitems;
     }
 
     /**

@@ -149,7 +149,7 @@ Retire Happy
                     
                     <div class="col-md-4 col-lg-4 col-sm-12 w3_agile_services_grid">
                         <?php $link=($news)?($news->link_label):(""); ?>
-                        <a href="{{url('/page/newsitem_site/'.$link)}}">
+                        <a href="{{url('/page/newsitem_site/')}}">
                             <div class="agile_services_grid1">
                                 <div style="width:100%;">
                                     <div style="width:30%;float: left;"><img  class="products_icon" src="{{ asset('/site/images/news.png')}}" /></div>

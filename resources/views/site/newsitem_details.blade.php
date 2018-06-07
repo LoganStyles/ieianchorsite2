@@ -49,7 +49,9 @@ News
                         <div class="w3ls_courses_left_grid">
                             <h2>{!!$subitem['title']!!}</h2>
                             <div>
+                                @if($subitem['filename'])
                                 <img src="{{ asset('/site/img/'.$subitem['filename'])}}" style="max-width: 100%;" />
+                                @endif
                             </div>
                             <div class="item_page_details">{!!$subitem['details']!!}</div>
                         
