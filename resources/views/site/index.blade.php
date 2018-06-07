@@ -19,20 +19,6 @@ Retire Happy
 
 @section('content')
 
-<!-- //banner -->	
-<!--<div id="exampleSlider" style="margin-top: 40px;">
-    <div><h3>Open A Retirement Savings Account Today <span>and Retire Happy</span></h3></div>
-    <div><h3>Don't Simply Retire, <span>Have Something to Retire To</span></h3></div>
-</div>-->
-<!--<div style="width:100%;">
-    <img style="max-width: 100%;" src="{{ asset('/site/images/retirement12.png')}}"  />
-    @if(count($slides) >0 && $slides[0])
-        
-        <img src="{{ asset('/site/img/'.$slides[0]['filename'])}}" style="max-width: 100%;" />
-        
-    @endif
-</div>-->
-
 <div class="container">
     <div id='coin-slider'>
         <?php foreach($slides as $item){ ?>
@@ -100,7 +86,7 @@ Retire Happy
                         <a href="{{url('/page/investment_portfolio')}}">
                             <div class="agile_services_grid1">
                                 <div style="width:100%;">
-                                    <div style="width:30%;float: left;"><img  class="products_icon" src="{{ asset('/site/images/portfolio.png')}}" /></div>
+                                    <div style="width:30%;float: left;"><img class="products_icon" src="{{ asset('/site/images/portfolio.png')}}" /></div>
                                     <div style="width:70%;float: left;background-color: #042948;"> <p class="product_icon_title">Investment Portfolio</p></div>
                                     <div class="clearfix"></div>
                                 </div>                                
@@ -117,7 +103,7 @@ Retire Happy
                         <a href="{{url('/page/rate_of_return')}}">
                             <div class="agile_services_grid1">
                                 <div style="width:100%;">
-                                    <div style="width:30%;float: left;"><img  class="products_icon" src="{{ asset('/site/images/rate_of_return.png')}}" /></div>
+                                    <div style="width:30%;float: left;"><img class="products_icon" src="{{ asset('/site/images/rate_of_return.png')}}" /></div>
                                     <div style="width:70%;float: left;background-color: #042948;"> <p class="product_icon_title">Rate of Return</p></div>
                                     <div class="clearfix"></div>
                                 </div>                                
@@ -134,7 +120,7 @@ Retire Happy
                         <a href="{{url('/page/investment')}}">
                             <div class="agile_services_grid1">
                                 <div style="width:100%;">
-                                    <div style="width:30%;float: left;"><img  class="products_icon" src="{{ asset('/site/images/strategy.png')}}" /></div>
+                                    <div style="width:30%;float: left;"><img class="products_icon" src="{{ asset('/site/images/strategy.png')}}" /></div>
                                     <div style="width:70%;float: left;background-color: #042948;"> <p class="product_icon_title">Investment Strategy</p></div>
                                     <div class="clearfix"></div>
                                 </div>                                
@@ -149,10 +135,10 @@ Retire Happy
                     
                     <div class="col-md-4 col-lg-4 col-sm-12 w3_agile_services_grid">
                         <?php $link=($news)?($news->link_label):(""); ?>
-                        <a href="{{url('/page/newsitem_site/')}}">
+                        <a href="{{url('/page/newsitem_site')}}">
                             <div class="agile_services_grid1">
                                 <div style="width:100%;">
-                                    <div style="width:30%;float: left;"><img  class="products_icon" src="{{ asset('/site/images/news.png')}}" /></div>
+                                    <div style="width:30%;float: left;"><img class="products_icon" src="{{ asset('/site/images/news.png')}}" /></div>
                                     <div style="width:70%;float: left;background-color: #042948;"> <p class="product_icon_title">News</p></div>
                                     <div class="clearfix"></div>
                                 </div>                                
