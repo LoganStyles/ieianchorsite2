@@ -10,34 +10,30 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/', 'AppController@showPage')->name('home');//display the home page
 Route::get('/ops', function () {    return view('backend/login');})->name('login'); //..displays backend login page
-
+//File downloads
+Route::get('/downloads/{file}', 'AppController@downloadFile');//download an item
 Route::get('logout', 'UserController@logoutUser')->name('logout'); //..logout user
 Route::get('/users', 'UserController@index')->name('show_users'); //..display users page
 Route::get('/create_user', 'UserController@createAdmin')->name('create_user'); //..display create administrator page
 Route::post('create_administrator', 'UserController@postCreateUser')->name('create_u'); //..submit post data to create an administrator
 Route::get('/usergroups', 'UserController@showUserGroups')->name('show_usergroups')->middleware('auth'); //..display usergroups page
-Route::get('/page/{generic}', 'AppController@showPage');//display a page
-Route::get('/page/{service}/{generic}', 'AppController@showPage');//display news
-
 Route::get('/module/{generic}', 'AppController@showPage')->middleware('auth');//display a module::about,services
 Route::post('/module/dashboard', 'UserController@postLoginUser')->name('login_u'); //..process login
 Route::post('site_update', 'AppController@updateSite')->name('update_site')->middleware('auth'); //process site info
 Route::post('delete', 'AppController@destroy')->name('delete_item')->middleware('auth');
-
 //site pages & content
-Route::get('/', 'AppController@showPage')->name('home');//display the home page
-Route::get('/page/investment', 'AppController@showInvestment')->name('investment'); //..display investment strategy
+Route::get('/investment', 'AppController@showInvestment')->name('investment'); //..display investment strategy
 Route::post('pension_calculator', 'AppController@pensionCalculator')->name('pension_calc'); //pension calculator
 Route::get('/unitprice/range','AppController@fetchRangeOfPrices')->name('unitprice_range');
+
+Route::get('/{generic}', 'AppController@showPage');//display a page
+Route::get('/{service}/{generic}', 'AppController@showPage');//display news
 
 Route::post('web-register', 'AppController@processRegister');
 //client testimonials
 Route::post('web-feedback', 'AppController@processClientTestimonial');
-
-//File downloads
-Route::get('/downloads/{file}', 'AppController@downloadFile');//download an item
 
 //PROCESSING
 Route::post('process_register', 'AppController@processRegister')->name('process_register'); //process register item

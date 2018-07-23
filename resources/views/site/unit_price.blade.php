@@ -62,8 +62,8 @@ Unit Price History
                             <thead>
                                 <tr>
                                     <th class="text-left">Date</th>
-                                    <th class="text-left">RSA</th>
-                                    <th class="text-left">Retiree</th>
+                                    <th class="text-left">RSA Fund II</th>
+                                    <th class="text-left">RSA Fund IV</th>
                                 </tr>
                             </thead>
                             <tbody>

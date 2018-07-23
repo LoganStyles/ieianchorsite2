@@ -60,14 +60,16 @@ class BaseController extends Controller {
                     ->get();
         } else if($item == "faq"){
             $moduleitems = DB::table($items)
-                    ->select('*')
-                    ->where('category_id',$subitem)
+                    ->select('faqs.category_id','faqs.quesiton','faqs.answer','faqs.created_at','faqs.updated_at')
+                    ->leftjoin('faqcats','faqcats.id','=','faqs.category_id')
+                    ->where('faqcats.title',$subitem)
                     ->get();
         }
         else if($item == "download"){
             $moduleitems = DB::table($items)
-                    ->select('*')
-                    ->where('category_id',$subitem)
+                    ->select('downloads.category_id','downloads.title','downloads.filename','downloads.display')
+                    ->leftjoin('downloadcats','downloadcats.id','=','downloads.category_id')
+                    ->where('downloadcats.title',$subitem)
                     ->get();
         }
         /*else if($item == "newsitem" || $item == "article"){
@@ -174,7 +176,7 @@ class BaseController extends Controller {
         if($item=="download"){
             $items="downloadcats";
         }
-        $paginateditems= DB::table($items)->where('display','1')->paginate(5);
+        $paginateditems= DB::table($items)->where('display','1')->paginate(6);
         return $paginateditems;
     }
 }

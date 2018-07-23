@@ -50,16 +50,6 @@ FAQs
 
 @section('content')
 
-<!-- small-banner -->
-<!--<div class="stats-bottom-banner">
-    <div class="container">
-        <h3>Wouldn't You Like <span>To</span> Retire Happy</h3>
-    </div>
-</div>-->
-<!-- //small-banner -->	
-
-<!-- services -->
-
 <div class="team">
     <div class="container">
         <h3 class="w3l_header w3_agileits_header">F<span>AQS</span></h3>
@@ -73,7 +63,7 @@ FAQs
                         <tbody>
                             @foreach($faqs as $item)
                             <tr class="@if($item['id'] ==$current_cat_id)accordion @endif ">
-                                <td><a href="{!!$item['id']!!}">{!!$item['title']!!}</a></td>
+                                <td><a href="{!!$item['title']!!}">{!!$item['title']!!}</a></td>
                             </tr>    
                             @endforeach
                         </tbody>

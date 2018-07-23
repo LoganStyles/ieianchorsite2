@@ -83,6 +83,7 @@ class AppController extends BaseController {
             $path = '/site/' . $page . '_details';
             $data['listed_items'] = $this->showPaginatedList($page); //get paginated range    
             $data['fetched_item'] = $this->getDBData($page, $sub_item, false); //get selected item details,set page
+//            print_r($data['fetched_item']);
             $page = $page . "_details";
         } else {
             //site pages

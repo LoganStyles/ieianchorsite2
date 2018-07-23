@@ -4,7 +4,7 @@ return array (
   'dbHost' => 'localhost',
   'dbPort' => '3306',
   'dbUser' => 'ieiancho_chat',
-  'dbPassword' => '@!E!Pl1vech#t',
+  'dbPassword' => 'E-v(xK14ld^E',
   'dbName' => 'ieiancho_chat',
   'superUser' => 'admin',
   'superPass' => '14vc@m39bT',

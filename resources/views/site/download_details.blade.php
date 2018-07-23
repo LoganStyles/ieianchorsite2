@@ -69,7 +69,7 @@ DOWNLOADs
                         <tbody>
                             @foreach($downloads as $item)
                             <tr class="@if($item['id'] ==$current_cat_id)accordion @endif ">
-                                <td><a href="{!!$item['id']!!}">{!!$item['title']!!}</a></td>
+                                <td><a href="{!!$item['title']!!}">{!!$item['title']!!}</a></td>
                             </tr>    
                             @endforeach
                         </tbody>

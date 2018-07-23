@@ -18,15 +18,6 @@ FAQs
 
 @section('content')
 
-
-<!-- small-banner -->
-<!--<div class="stats-bottom-banner">
-    <div class="container">
-        <h3>Wouldn't You Like <span>To</span> Retire Happy</h3>
-    </div>
-</div>-->
-<!-- //small-banner -->	
-
 <!-- //middle -->
 <div class="testimonials">
     <div class="container" >
@@ -41,7 +32,7 @@ FAQs
                             <tbody>
                                 @foreach($faqs as $item)
                                 <tr class="">
-                                    <td><a href="{{url('/page/faq/'.$item['id'])}}">{!!$item['title']!!}</a></td>
+                                    <td><a href="{{url('/page/faq/'.$item['title'])}}">{!!$item['title']!!}</a></td>
                                 </tr>    
                                 @endforeach
                             </tbody>
