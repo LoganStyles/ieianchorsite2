@@ -9,15 +9,15 @@
         <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
             function hideURLbar(){ window.scrollTo(0,1); } </script>
         <!-- //custom-theme -->
-        <link href="{{asset('/site/css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all" />
-        <link href="{{asset('/site/css/style.css')}}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{asset('/site/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{asset('/site/css/style.min.css')}}" rel="stylesheet" type="text/css" media="all" />
         <link rel='stylesheet' href="{{ asset('/site/css/dscountdown.css')}}" type='text/css' media='all' />
         <link href="{{asset('/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')}}" rel="stylesheet" type="text/css" />
         <!-- gallery -->
         <link href="{{asset('/site/css/lsb.css')}}" rel="stylesheet" type="text/css">
         <!-- //gallery -->
         <!-- font-awesome-icons -->
-        <link href="{{asset('/site/css/font-awesome.css')}}" rel="stylesheet"> 
+        <link href="{{asset('/site/css/font-awesome.min.css')}}" rel="stylesheet"> 
         <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700,900" rel="stylesheet">
         
         <link href="{{asset('/site/css/datatables/jquery.dataTables.min.css')}}" rel="stylesheet" />
@@ -111,8 +111,9 @@
                         <div class="header_contact_details_agile"><i class="fa fa-list-alt" aria-hidden="true"></i>
                             <div class="w3l_header_contact_details_agile">
                                 <div class="header-contact-detail-title">Unit Prices as at {{date("M j, Y",strtotime($prices->report_date))}}</div> 
+                                <span class="w3l_header_contact_details_agile-info_inner">RSA Fund I:  1.0035 </span><br>
                                 <span class="w3l_header_contact_details_agile-info_inner">RSA Fund II: {{$prices->rsa}} </span><br>
-                                <span class="w3l_header_contact_details_agile-info_inner">RSA Fund III: 1.0043 </span><br>
+                                <span class="w3l_header_contact_details_agile-info_inner">RSA Fund III: 1.0045 </span><br>
                                 <span class="w3l_header_contact_details_agile-info_inner">RSA Fund IV: {{$prices->retiree}} </span><br>
                                 
                                 <span class="w3l_header_contact_details_agile-info_inner">Administrative Fee: 100 </span><br><br>

@@ -16,6 +16,32 @@ class RegistrationController extends Controller
     {
         //
     }
+    
+    public function newClient(Request $request) {
+        $this->validate($request, [
+            'name' => 'required',
+            'PIN' => 'required',
+            'email' => 'required|email',
+            'comment' => 'required'
+        ]);
+        $this->validate($request, [
+            'fname' => 'required',
+            'lname' => 'required',
+            'dob' => 'required',
+            'states' => 'required',
+            'phone' => 'required',
+            'employer' => 'required',
+            'email' => 'required|email',
+            'image' => 'image|mimes:jpeg,jpg,png,gif|max:2048',
+            'CaptchaCode' => 'required|valid_captcha'
+        ]);
+        
+        //clean with Purifier facade            
+        $cleaned_name = Purifier::clean($request['name']);
+        $cleaned_pin = Purifier::clean($request['PIN']);
+        $cleaned_comment = Purifier::clean(trim($request['comment']));
+        
+    }
 
     /**
      * Show the form for creating a new resource.

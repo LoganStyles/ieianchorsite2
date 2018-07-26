@@ -4,17 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Newsitem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class NewsitemController extends Controller
-{
+class NewsitemController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index() {
+
+        $moduleitems = DB::table('newsitems')
+                ->select('newsitems.*')
+                ->take(10)
+                ->get();
+        return $moduleitems;
     }
 
     /**
@@ -22,8 +27,7 @@ class NewsitemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -33,8 +37,7 @@ class NewsitemController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -44,8 +47,7 @@ class NewsitemController extends Controller
      * @param  \App\Newsitem  $newsitem
      * @return \Illuminate\Http\Response
      */
-    public function show(Newsitem $newsitem)
-    {
+    public function show(Newsitem $newsitem) {
         //
     }
 
@@ -55,8 +57,7 @@ class NewsitemController extends Controller
      * @param  \App\Newsitem  $newsitem
      * @return \Illuminate\Http\Response
      */
-    public function edit(Newsitem $newsitem)
-    {
+    public function edit(Newsitem $newsitem) {
         //
     }
 
@@ -67,8 +68,7 @@ class NewsitemController extends Controller
      * @param  \App\Newsitem  $newsitem
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Newsitem $newsitem)
-    {
+    public function update(Request $request, Newsitem $newsitem) {
         //
     }
 
@@ -78,8 +78,8 @@ class NewsitemController extends Controller
      * @param  \App\Newsitem  $newsitem
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Newsitem $newsitem)
-    {
+    public function destroy(Newsitem $newsitem) {
         //
     }
+
 }

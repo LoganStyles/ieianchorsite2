@@ -128,13 +128,13 @@
 
 <script src="{{asset('/site/js/datatables/jquery.dataTables.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('site/js/jqPlot/jquery.jqplot.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('site/js/jqPlot/plugins/jqplot.dateAxisRenderer.js')}}"></script>
+<script type="text/javascript" src="{{asset('site/js/jqPlot/plugins/jqplot.dateAxisRenderer.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('site/js/jqPlot/plugins/jqplot.logAxisRenderer.js')}}"></script>
 <script type="text/javascript" src="{{asset('site/js/jqPlot/plugins/jqplot.canvasTextRenderer.js')}}"></script>
 <script type="text/javascript" src="{{asset('site/js/jqPlot/plugins/jqplot.canvasAxisTickRenderer.js')}}"></script>
 <script type="text/javascript" src="{{asset('site/js/jqPlot/plugins/jqplot.highlighter.js')}}"></script>
 <script type="text/javascript" src="{{asset('site/js/moment/moment.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('site/js/slick.js')}}"  charset="utf-8"></script>
+<script type="text/javascript" src="{{asset('site/js/slick.min.js')}}"  charset="utf-8"></script>
 <!-- FlexSlider -->
 <script type="text/javascript" src="https://ieianchorpensions.com/livechat/php/app.php?widget-init.js"></script>
 <script type="text/javascript">
@@ -249,7 +249,7 @@ $(document).on('ready', function () {
         </script>
         <!-- start-smooth-scrolling -->
         <!-- for bootstrap working -->
-        <script src="{{ asset('/site/js/bootstrap.js')}}"></script>
+        <script src="{{ asset('/site/js/bootstrap.min.js')}}"></script>
         <!-- //for bootstrap working -->
         <!-- here stars scrolling icon -->
         <script type="text/javascript">

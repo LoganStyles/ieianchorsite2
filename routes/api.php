@@ -23,6 +23,8 @@ Route::get('api_downloads','DownloadController@index');
 
 Route::get('api_faqs','FaqController@index');
 
+Route::get('api_news','NewsitemController@index');
+
 Route::get('api_unit_prices','UnitPriceController@showPrices');
 
 Route::get('api_send_comment','ResponseController@sendComment');
