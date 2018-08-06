@@ -66,7 +66,7 @@ Retire Happy
                     </div>
                     
                     <div class="col-md-4 col-lg-4 col-sm-12 w3_agile_services_grid">
-                        <a href="{{url('/page/show_pension_calculator')}}">
+                        <a href="{{url('/show_pension_calculator')}}">
                             <div class="agile_services_grid1">
                                  <div style="width:100%;">
                                     <div style="width:30%;float: left;"><img  class="products_icon" src="{{ asset('/site/images/calculator.png')}}" /></div>
@@ -83,7 +83,7 @@ Retire Happy
                     </div>
                     
                     <div class="col-md-4 col-lg-4 col-sm-12 w3_agile_services_grid">
-                        <a href="{{url('/page/investment_portfolio')}}">
+                        <a href="{{url('/investment_portfolio')}}">
                             <div class="agile_services_grid1">
                                 <div style="width:100%;">
                                     <div style="width:30%;float: left;"><img class="products_icon" src="{{ asset('/site/images/portfolio.png')}}" /></div>
@@ -100,7 +100,7 @@ Retire Happy
                     </div>
                     
                     <div class="col-md-4 col-lg-4 col-sm-12 w3_agile_services_grid">
-                        <a href="{{url('/page/rate_of_return')}}">
+                        <a href="{{url('/rate_of_return')}}">
                             <div class="agile_services_grid1">
                                 <div style="width:100%;">
                                     <div style="width:30%;float: left;"><img class="products_icon" src="{{ asset('/site/images/rate_of_return.png')}}" /></div>
@@ -117,7 +117,7 @@ Retire Happy
                     </div> 
                     
                     <div class="col-md-4 col-lg-4 col-sm-12 w3_agile_services_grid">
-                        <a href="{{url('/page/investment')}}">
+                        <a href="{{url('/investment')}}">
                             <div class="agile_services_grid1">
                                 <div style="width:100%;">
                                     <div style="width:30%;float: left;"><img class="products_icon" src="{{ asset('/site/images/strategy.png')}}" /></div>
@@ -135,7 +135,7 @@ Retire Happy
                     
                     <div class="col-md-4 col-lg-4 col-sm-12 w3_agile_services_grid">
                         <?php $link=($news)?($news->link_label):(""); ?>
-                        <a href="{{url('/page/newsitem_site')}}">
+                        <a href="{{url('/newsitem_site')}}">
                             <div class="agile_services_grid1">
                                 <div style="width:100%;">
                                     <div style="width:30%;float: left;"><img class="products_icon" src="{{ asset('/site/images/news.png')}}" /></div>
@@ -223,14 +223,14 @@ Retire Happy
         </div>
     </div>
     <p class="sub_para_agile">
-        <a class="btn btn-primary" target="_blank" href="{{url('/page/feedback/')}}"><i class="fa fa-thumbs-up"></i>&nbsp;Give us your feedback </a>
+        <a class="btn btn-primary" target="_blank" href="{{url('/feedback/')}}"><i class="fa fa-thumbs-up"></i>&nbsp;Give us your feedback </a>
         </p>
 </div>
 <!-- //testimonials -->
 <!-- small-banner -->
 <div class="stats-bottom-banner">
     <div class="container">
-        <h3>We Offer Services That Work <a href="{{url('/page/register/')}}"><strong><span style="font-size: 0.8em;margin-top: 3%;font-weight: 700!important;color: #000;text-decoration: none;" class="label label-success">Register with us today</span></strong></a> </h3>        
+        <h3>We Offer Services That Work <a href="{{url('/register/')}}"><strong><span style="font-size: 0.8em;margin-top: 3%;font-weight: 700!important;color: #000;text-decoration: none;" class="label label-success">Register with us today</span></strong></a> </h3>        
     </div>
 </div>
 <!-- //small-banner -->	

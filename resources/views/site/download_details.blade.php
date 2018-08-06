@@ -79,7 +79,12 @@ DOWNLOADs
                 <div class="col-md-8">
                     <div class="w3ls_courses_left_grids">
                     @foreach($fetched_item as $f_item)
-                    <button id="{{url('/downloads/'.$f_item['filename'])}}" class="accordion">{!!$f_item['title']!!}</button>
+                    <div class="accordion">
+                        <span>{!!$f_item['title']!!}</span>&nbsp;
+                        <button style="color:#000;" id="{{url('/viewfile/'.$f_item['filename'])}}" class="view_button">View</button>
+                        <button style="color:#000;" id="{{url('/downloads/'.$f_item['filename'])}}" class="download_button">Download</button>
+                    </div>
+                    
                     @endforeach
                     </div>
                 </div>

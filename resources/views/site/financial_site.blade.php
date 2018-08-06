@@ -1,15 +1,10 @@
 @extends('layouts.master_site')
 <?php 
 $page=$page_name;
-//echo 'page '.$page;exit;
 $site=$data['siteitems'][0];
 $services=$data['services'];
 $news=$data['newsitem'];
 $moduleitems=$data['moduleitems'];
-//$fetched_item=$data['fetched_item'];
-//$current_cat_item=$data['fetched_item'][0];//current cat item
-//$current_cat_id=$current_cat_item['category_id'];//current cat_id
-//$listed_items=$data['listed_items'];
 
 
 foreach ($moduleitems as $object) {

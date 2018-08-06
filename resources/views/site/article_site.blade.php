@@ -36,7 +36,7 @@ Articles
                 <div class="col-md-12">
                     @foreach($moduleitems as $item)
                     <div class="col-md-4 w3_agile_services_grid">
-                        <a href="{{url('/page/article/'.$item['link_label'])}}">
+                        <a href="{{url('/article/'.$item['link_label'])}}">
                             <div class="agile_services_grid1" >
                                 <div class="agile_services_grid1_sub">
                                     <p style="color: #cd9536; font-weight: 600; font-size: 1em;">{!!$item['title']!!}</p>

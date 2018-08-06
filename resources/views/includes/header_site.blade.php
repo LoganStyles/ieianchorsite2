@@ -1,4 +1,4 @@
-<?php $newslink=($news)?($news->link_label):("");?>
+<?php $newslink = ($news) ? ($news->link_label) : (""); ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -19,7 +19,7 @@
         <!-- font-awesome-icons -->
         <link href="{{asset('/site/css/font-awesome.min.css')}}" rel="stylesheet"> 
         <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700,900" rel="stylesheet">
-        
+
         <link href="{{asset('/site/css/datatables/jquery.dataTables.min.css')}}" rel="stylesheet" />
         <!--coin slider-->
         <link href="{{asset('/assets/global/coin-slider/coin-slider-styles.css')}}" rel="stylesheet" />
@@ -34,9 +34,9 @@
         </style>
 
         <link rel="stylesheet" type="text/css" href="{{asset('/site/js/jqPlot/jquery.jqplot.css')}}" />
-        
+
         <link rel="shortcut icon" href="{{ asset('/assets/pages/img/favicon.ico')}}" />
-        
+
         <link rel="apple-touch-icon" sizes="57x57" href="{{asset('/site/images/icons2/apple-icon-57x57.png')}}">
         <link rel="apple-touch-icon" sizes="60x60" href="{{asset('/site/images/icons2/apple-icon-60x60.png')}}">
         <link rel="apple-touch-icon" sizes="72x72" href="{{asset('/site/images/icons2/apple-icon-72x72.png')}}">
@@ -56,7 +56,7 @@
         <meta name="theme-color" content="#ffffff">
     </head>	
     <body>
-               
+
         <!-- banner -->
         <div class="header">
 
@@ -92,11 +92,11 @@
                                 <div class="w3l_header_contact_details_agile-info_inner">{{$site['office']}} </div><br>
                                 <div class="w3l_header_contact_details_agile-info_inner"><strong>Email:</strong>{{$site['email']}} </div>
                                 <div class="w3l_header_contact_details_agile-info_inner"><strong>Call:</strong>{{$site['phone1']}}, {{$site['phone2']}} </div>
-                                
+
                             </div>
                         </div>
                     </li>
-                    
+
                     <li>
                         <div class="header_contact_details_agile"><i class="fa fa-institution" aria-hidden="true"></i>
                             <div class="w3l_header_contact_details_agile">
@@ -107,18 +107,18 @@
                             </div>
                         </div>
                     </li>
-                     <li>
+                    <li>
                         <div class="header_contact_details_agile"><i class="fa fa-list-alt" aria-hidden="true"></i>
                             <div class="w3l_header_contact_details_agile">
                                 <div class="header-contact-detail-title">Unit Prices as at {{date("M j, Y",strtotime($prices->report_date))}}</div> 
-                                <span class="w3l_header_contact_details_agile-info_inner">RSA Fund I:  1.0035 </span><br>
-                                <span class="w3l_header_contact_details_agile-info_inner">RSA Fund II: {{$prices->rsa}} </span><br>
-                                <span class="w3l_header_contact_details_agile-info_inner">RSA Fund III: 1.0045 </span><br>
-                                <span class="w3l_header_contact_details_agile-info_inner">RSA Fund IV: {{$prices->retiree}} </span><br>
-                                
+                                <span class="w3l_header_contact_details_agile-info_inner">RSA Fund I:  {{$prices->fund1}} </span><br>
+                                <span class="w3l_header_contact_details_agile-info_inner">RSA Fund II: {{$prices->fund2}} </span><br>
+                                <span class="w3l_header_contact_details_agile-info_inner">RSA Fund III: {{$prices->fund3}} </span><br>
+                                <span class="w3l_header_contact_details_agile-info_inner">RSA Fund IV: {{$prices->fund4}} </span><br>
+
                                 <span class="w3l_header_contact_details_agile-info_inner">Administrative Fee: 100 </span><br><br>
                                 <strong>Price History:&nbsp;</strong><a target="_blank" href="{{url('/unit_price/')}}"><span class="label label-primary">View Price History</span></a>&nbsp;&nbsp;
-                                
+
                             </div>
                         </div>
                     </li>
@@ -136,7 +136,7 @@
                     </button>
                     <a class="navbar-brand" href="{{route('home')}}">
                         <div class="img_logo">
-                        <img src="{{ asset('/site/img/'.$site['filename'])}}" alt="IEI Anchor Pensions" class="img-responsive" style="max-width: 60%;" />
+                            <img src="{{ asset('/site/img/'.$site['filename'])}}" alt="IEI Anchor Pensions" class="img-responsive" style="max-width: 60%;" />
                         </div>
                     </a>
                 </div>
@@ -144,9 +144,13 @@
                 <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
                     <nav class="link-effect-2" id="link-effect-2">
                         <ul class="nav navbar-nav">
-                            <li class="<?php if($page=="home"){echo "active";}?>"><a href="{{route('home')}}"><span data-hover="Home">Home</span></a></li>
-                            
-                            <li class="<?php if($page=="about_site"||$page=="board_site"||$page=="management_site"){echo "active";}?>dropdown">
+                            <li class="<?php if ($page == "home") {
+    echo "active";
+} ?>"><a href="{{route('home')}}"><span data-hover="Home">Home</span></a></li>
+
+                            <li class="<?php if ($page == "about_site" || $page == "board_site" || $page == "management_site") {
+    echo "active";
+} ?>dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span data-hover="About Us">About Us</span> <b class="caret"></b></a>
                                 <ul class="dropdown-menu agile_short_dropdown">
                                     <li><a href="{{url('/about_site')}}">About Us</a></li>
@@ -154,32 +158,40 @@
                                     <li><a href="{{url('/management_site')}}">Management</a></li>
                                 </ul>
                             </li>
-                            <li class="<?php if($page=="service"){echo "active";}?> dropdown">
+                            <li class="<?php if ($page == "service") {
+    echo "active";
+} ?> dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span data-hover="Services">Services</span> <b class="caret"></b></a>
                                 <ul class="dropdown-menu agile_short_dropdown">
-                                    
+
                                     <?php
-                                    foreach($services as $subservice){
-                                        $link=$subservice['link_label']; ?>
-                                    <li><a href="{{url('/service/'.$link)}}">{{$subservice['title']}}</a></li>
-                                    <?php 
-                                    
-                                    }
-                                    ?>
+                                    foreach ($services as $subservice) {
+                                        $link = $subservice['link_label'];
+                                        ?>
+                                        <li><a href="{{url('/service/'.$link)}}">{{$subservice['title']}}</a></li>
+    <?php
+}
+?>
                                 </ul>
                             </li>
-                            
-                            <li class="<?php if($page=="investment"||$page=="investment_portfolio"){echo "active";}?> dropdown">
+
+                            <li class="<?php if ($page == "investment" || $page == "investment_portfolio") {
+    echo "active";
+} ?> dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span data-hover="Investment">Investment</span> <b class="caret"></b></a>
                                 <ul class="dropdown-menu agile_short_dropdown">                                    
-                                    <li><a href="{{route('investment')}}">Strategy</a></li>
+                                    <li><a href="{{url('/investment')}}">Strategy</a></li>
                                     <li><a href="{{url('/investment_portfolio')}}">Portfolio</a></li>
                                 </ul>
                             </li>
-                            
-                            <li class="<?php if($page=="newsitem"){echo "active";}?>"><a href="{{url('/newsitem_site')}}"><span data-hover="News">News</span></a></li>
-                            
-                            <li class="<?php if($page=="financial_site"||$page=="download_site"||$page=="rate_of_return"||$page=="unit_price"||$page=="show_pension_calculator"){echo "active";}?>dropdown">
+
+                            <li class="<?php if ($page == "newsitem") {
+    echo "active";
+} ?>"><a href="{{url('/newsitem_site')}}"><span data-hover="News">News</span></a></li>
+
+                            <li class="<?php if ($page == "financial_site" || $page == "download_site" || $page == "rate_of_return" || $page == "unit_price" || $page == "show_pension_calculator") {
+    echo "active";
+} ?>dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span data-hover="Resources">Resources</span> <b class="caret"></b></a>
                                 <ul class="dropdown-menu agile_short_dropdown">
                                     <li><a href="{{url('/download_site/')}}">Downloads</a></li>
@@ -190,8 +202,10 @@
                                     <li><a href="{{url('/show_pension_calculator')}}">Pension Calculator</a></li>
                                 </ul>
                             </li> 
-                            
-                            <li class="<?php if($page=="faq_site"||$page=="contact"||$page=="branch_site"){echo "active";}?>dropdown">
+
+                            <li class="<?php if ($page == "faq_site" || $page == "contact" || $page == "branch_site") {
+    echo "active";
+} ?>dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span data-hover="Contact Us">Contact Us</span> <b class="caret"></b></a>
                                 <ul class="dropdown-menu agile_short_dropdown">
                                     <li><a href="{{url('/contact')}}">Feedback</a></li>
@@ -206,6 +220,6 @@
                 </div>
                 <div class="clearfix"></div>
             </nav>
-            
-            
+
+
         </div>

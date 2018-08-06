@@ -176,7 +176,7 @@ class BaseController extends Controller {
         if($item=="download"){
             $items="downloadcats";
         }
-        $paginateditems= DB::table($items)->where('display','1')->paginate(6);
+        $paginateditems= DB::table($items)->where('display','1')->paginate(10);
         return $paginateditems;
     }
 }

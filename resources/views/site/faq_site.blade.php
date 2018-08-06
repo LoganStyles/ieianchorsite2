@@ -32,7 +32,7 @@ FAQs
                             <tbody>
                                 @foreach($faqs as $item)
                                 <tr class="">
-                                    <td><a href="{{url('/page/faq/'.$item['title'])}}">{!!$item['title']!!}</a></td>
+                                    <td><a href="{{url('/faq/'.$item['title'])}}">{!!$item['title']!!}</a></td>
                                 </tr>    
                                 @endforeach
                             </tbody>

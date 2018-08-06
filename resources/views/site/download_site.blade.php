@@ -32,7 +32,7 @@ Downloads
                             <tbody>
                                 @foreach($downloads as $item)
                                 <tr class="">
-                                    <td><a href="{{url('/page/download/'.$item['title'])}}">{!!$item['title']!!}</a></td>
+                                    <td><a href="{{url('/download/'.$item['title'])}}">{!!$item['title']!!}</a></td>
                                 </tr>    
                                 @endforeach
                             </tbody>

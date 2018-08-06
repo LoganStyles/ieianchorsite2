@@ -62,7 +62,9 @@ Unit Price History
                             <thead>
                                 <tr>
                                     <th class="text-left">Date</th>
+                                    <th class="text-left">RSA Fund I</th>
                                     <th class="text-left">RSA Fund II</th>
+                                    <th class="text-left">RSA Fund III</th>
                                     <th class="text-left">RSA Fund IV</th>
                                 </tr>
                             </thead>
@@ -113,29 +115,35 @@ Unit Price History
            success:function(response){
                
                 var jsonData = JSON.parse(response);
-                //console.log(response);
+                console.log(response);
                if(jsonData.length > 0){
                    $('#unit_price_history_table tbody').find('tr:first-child').remove();
                                         
-                      var line1 = [];
-                      var line2 = [];
+                      var line1 = [],
+                       line2 = [],
+                       line3=[],
+                       line4=[];
                 
                         for (i = 0; i < jsonData.length; i++) {
                             var reportDate = jsonData[i].report_date; //new Date(jsonData[i].ReportDate.substring(0, 10));
                             //console.log(reportDate);
                             var formattedReportDate = moment(reportDate).format('MM-DD-YYYY'); //moment(reportDate, 'MM-DD-YYYY').format();// reportDate.toLocaleFormat('%d %b %Y');
                             //console.log(formattedReportDate);					
-                            var RSA = jsonData[i].rsa;
-                            var Retiree = jsonData[i].retiree;
+                            var fund1 = jsonData[i].fund1;
+                            var fund2 = jsonData[i].fund2;
+                            var fund3 = jsonData[i].fund3;
+                            var fund4 = jsonData[i].fund4;
 
-                            line1.push([formattedReportDate, parseFloat(RSA)]);
-                            line2.push([formattedReportDate, parseFloat(Retiree)]);
+                            line1.push([formattedReportDate, parseFloat(fund1)]);
+                            line2.push([formattedReportDate, parseFloat(fund2)]);
+                            line3.push([formattedReportDate, parseFloat(fund3)]);
+                            line4.push([formattedReportDate, parseFloat(fund4)]);
 
-                            $('#unit_price_history_table tbody').append('<tr><td>' + formattedReportDate + '</td><td>' + RSA + '</td><td>' + Retiree + '</td></tr>');
+                            $('#unit_price_history_table tbody').append('<tr><td>' + formattedReportDate + '</td><td>' + fund1 + '</td><td>' + fund2 + '</td><td>' + fund3 + '</td><td>' + fund4 + '</td></tr>');
                         }
                 
                 // display chart				
-                    var plot1 = $.jqplot('chart1', [line1, line2], {
+                    var plot1 = $.jqplot('chart1', [line1, line2,line3,line4], {
                         title: 'Graphical Representation',
                         legend: {
                             show: true,
@@ -152,10 +160,16 @@ Unit Price History
                         },
                         series: [
                             {
-                                label: 'RSA'
+                                label: 'Fund1'
                             },
                             {
-                                label: 'Retiree'
+                                label: 'Fund2'
+                            },
+                            {
+                                label: 'Fund3'
+                            },
+                            {
+                                label: 'Fund4'
                             }
                         ],
                         axes: {

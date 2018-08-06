@@ -68,6 +68,11 @@ class AppController extends BaseController {
         $pathToFile = public_path('/site/downloads/' . $item);
         return response()->download($pathToFile);
     }
+    
+    public function viewFile($item) {
+        $pathToFile = public_path('/site/downloads/' . $item);
+        return response()->file($pathToFile);
+    }
 
     public function showPage($page='index', $sub_item = NULL, $data = []) {
         /* if its an admin page check if logged in, then redirect to requested page */
@@ -90,6 +95,7 @@ class AppController extends BaseController {
             switch ($page) {
                 case 'index':
                 case 'investment':
+//                    echo 'found investment';
                     $data['testimonials'] = $this->getDBData('testimonial');
                     $data['banners'] = $this->getDBData('banner');
                     $data['slides'] = $this->getDBData('slide');
@@ -179,7 +185,6 @@ class AppController extends BaseController {
                     break;
             }
         }
-
         return view($path, [
             'prices' => $this->latest_prices,
             'data' => $data,

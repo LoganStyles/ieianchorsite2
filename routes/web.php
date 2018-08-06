@@ -14,6 +14,7 @@ Route::get('/', 'AppController@showPage')->name('home');//display the home page
 Route::get('/ops', function () {    return view('backend/login');})->name('login'); //..displays backend login page
 //File downloads
 Route::get('/downloads/{file}', 'AppController@downloadFile');//download an item
+Route::get('/viewfile/{file}', 'AppController@viewFile');//view a file in browser
 Route::get('logout', 'UserController@logoutUser')->name('logout'); //..logout user
 Route::get('/users', 'UserController@index')->name('show_users'); //..display users page
 Route::get('/create_user', 'UserController@createAdmin')->name('create_user'); //..display create administrator page
@@ -24,10 +25,11 @@ Route::post('/module/dashboard', 'UserController@postLoginUser')->name('login_u'
 Route::post('site_update', 'AppController@updateSite')->name('update_site')->middleware('auth'); //process site info
 Route::post('delete', 'AppController@destroy')->name('delete_item')->middleware('auth');
 //site pages & content
-Route::get('/investment', 'AppController@showInvestment')->name('investment'); //..display investment strategy
 Route::post('pension_calculator', 'AppController@pensionCalculator')->name('pension_calc'); //pension calculator
 Route::get('/unitprice/range','AppController@fetchRangeOfPrices')->name('unitprice_range');
 
+Route::get('page/{generic}', 'AppController@showPage');//old routes
+Route::get('/page/{service}/{generic}', 'AppController@showPage');//old routes
 Route::get('/{generic}', 'AppController@showPage');//display a page
 Route::get('/{service}/{generic}', 'AppController@showPage');//display news
 
