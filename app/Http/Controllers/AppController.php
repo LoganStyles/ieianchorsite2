@@ -1,15 +1,11 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 namespace App\Http\Controllers;
 
 use App\Registration;
 use App\Registrationimage;
+use App\Careers;
+use App\Careerimage;
 use App\Response;
 use App\About;
 use App\Aboutimage;
@@ -58,7 +54,6 @@ class AppController extends BaseController {
         }
     }
 
-
     /*
      * handles file downloads
      * implement headers later
@@ -68,18 +63,44 @@ class AppController extends BaseController {
         $pathToFile = public_path('/site/downloads/' . $item);
         return response()->download($pathToFile);
     }
-    
+
     public function viewFile($item) {
         $pathToFile = public_path('/site/downloads/' . $item);
         return response()->file($pathToFile);
     }
 
-    public function showPage($page='index', $sub_item = NULL, $data = []) {
+    public function fetchHomeData() {
+        $home_data = $this->getHomePageData();
+        return json_encode($home_data);
+    }
+
+    public function fetchPageData(Request $request) {
+        $page = $request['page'];
+        $page_data = $this->getPageData($page);
+        return json_encode($page_data);
+    }
+
+    public function fetchPageDataNoImages(Request $request) {
+        $page = $request['page'];
+        $page_data = $this->getPageDataNoImages($page);
+        return json_encode($page_data);
+    }
+
+    public function fetchLatestPricesById(Request $request) {
+        $latest_id = $request['last_id'];
+        $curr_latest_id = (intval($latest_id) > 0 ? $latest_id : 0);
+        $items = DB::table('unit_prices')
+                ->where('id', '>=', $curr_latest_id)
+                ->orderBy('id', 'desc')
+                ->first();
+
+        $res = (array) $items;
+        return json_encode($res);
+    }
+
+    public function showPage($page = 'index', $sub_item = NULL, $data = []) {
         /* if its an admin page check if logged in, then redirect to requested page */
         //get default data
-        $data['siteitems'] = $this->getDBData('site');
-        $data['services'] = $this->getDBData('service');
-        $data['newsitem'] = $this->latest_news;
         $path = '/site/' . $page;
         $items = $page . 's';
 
@@ -88,18 +109,12 @@ class AppController extends BaseController {
             $path = '/site/' . $page . '_details';
             $data['listed_items'] = $this->showPaginatedList($page); //get paginated range    
             $data['fetched_item'] = $this->getDBData($page, $sub_item, false); //get selected item details,set page
-//            print_r($data['fetched_item']);
             $page = $page . "_details";
         } else {
             //site pages
             switch ($page) {
                 case 'index':
                 case 'investment':
-//                    echo 'found investment';
-                    $data['testimonials'] = $this->getDBData('testimonial');
-                    $data['banners'] = $this->getDBData('banner');
-                    $data['slides'] = $this->getDBData('slide');
-                    $data['awards'] = $this->getDBData('award');
                     break;
                 case 'show_pension_calculator':
                     $path = '/site/pension_calculator';
@@ -110,6 +125,7 @@ class AppController extends BaseController {
                         'total_package' => '0.00');
                     break;
                 case 'register':
+                case 'careers':
                 case 'feedback':
                     $data['states'] = $this->getDBData('ref_states_team', $sub_item, true);
                     break;
@@ -125,35 +141,8 @@ class AppController extends BaseController {
                     $this->checkLoggedStatus();
                     $path = '/backend/' . $page;
                     break;
-                case 'faq_site':
-                    $data['moduleitems'] = DB::table('faqcats')->select('*')->distinct()->get();
-                    break;
-                case 'download_site':
-                    $data['moduleitems'] = DB::table('downloadcats')->select('*')->distinct()->get();
-                    break;
                 case 'financial_site':
-                    $data['moduleitems'] = DB::table('financials')->select('*')->distinct()->get();
-                    break;
-                case 'branch_site':
-                    $data['moduleitems'] = DB::table('branches')->select('*')->distinct()->get();
-                    break;
-                case 'about_site':
-                    $data['moduleitems'] = $this->getDBData('about');
-                    break;
-                case 'board_site':
-                    $data['moduleitems'] = $this->getDBData('board');
-                    break;
-                case 'management_site':
-                    $data['moduleitems'] = $this->getDBData('management');
-                    break;
-                case 'service_site':
-                    $data['moduleitems'] = $this->getDBData('service');
-                    break;
-                case 'newsitem_site':
-                    $data['moduleitems'] = $this->getDBData('newsitem');
-                    break;
-                case 'article_site':
-                    $data['moduleitems'] = $this->getDBData('article');
+                    $path = '/site/' . 'financial_details';
                     break;
                 case 'banner':
                 case 'award':
@@ -173,7 +162,6 @@ class AppController extends BaseController {
                     $this->checkLoggedStatus();
                     $path = '/backend/template';
                     $data['moduleitems'] = $this->getDBPaginatedData($page);
-//                    $page="faq";
                     break;
                 case 'faq':
                     $this->checkLoggedStatus();
@@ -186,7 +174,6 @@ class AppController extends BaseController {
             }
         }
         return view($path, [
-            'prices' => $this->latest_prices,
             'data' => $data,
             'page_name' => $page
         ]);
@@ -196,20 +183,20 @@ class AppController extends BaseController {
 
     public function processContact(Request $request) {
         $this->validate($request, [
-                'name' => 'required',
-                'feedback_type' => 'required',
-                'details' => 'required',
-                'email' => 'required|email',
-                'phone' => 'required|numeric',
-                'subject' => 'required'
-            ]);
+            'name' => 'required',
+            'feedback_type' => 'required',
+            'details' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required|numeric',
+            'subject' => 'required'
+        ]);
         //clean with Purifier facade            
-            $cleaned_name = Purifier::clean($request['name']);
-            $cleaned_pin = Purifier::clean($request['pin']);
-            $cleaned_phone = Purifier::clean($request['phone']);
-            $cleaned_employer = Purifier::clean($request['employer']);
-            $cleaned_subject = Purifier::clean($request['subject']);
-            $cleaned_details = Purifier::clean(trim($request['details']));
+        $cleaned_name = Purifier::clean($request['name']);
+        $cleaned_pin = Purifier::clean($request['pin']);
+        $cleaned_phone = Purifier::clean($request['phone']);
+        $cleaned_employer = Purifier::clean($request['employer']);
+        $cleaned_subject = Purifier::clean($request['subject']);
+        $cleaned_details = Purifier::clean(trim($request['details']));
         if ($request['id'] > 0) {
             //already existing module item            
             Response::where('id', $request['id'])->update([
@@ -220,7 +207,7 @@ class AppController extends BaseController {
                 'details' => $cleaned_details,
                 'email' => $request['email'],
                 'phone' => $request['phone'],
-                'subject' =>$cleaned_subject
+                'subject' => $cleaned_subject
             ]);
         } else {
             $moduleitem = new Response();
@@ -235,27 +222,27 @@ class AppController extends BaseController {
             $moduleitem->feedback_type = $request['feedback_type'];
             $moduleitem->save();
         }
-        
-        //send cservice email
-            $data = array(
-                'email' => 'cservice@ieianchorpensions.com',
-                'phone' => $cleaned_phone,
-                'pin' => $cleaned_pin,
-                'employer' => $cleaned_employer,
-                'details' => $cleaned_details,
-                'subject' => 'Contact Us('.ucwords(trim($request['feedback_type'])).') - '.$cleaned_subject,
-                'client_email' => trim($request['email']),
-                'feedback_type' => trim($request['feedback_type']),
-                'created_at' => Date('Y-m-d'),
-                'clientname' => $cleaned_name
-            );
 
-            Mail::send('emails.mailCservice', $data, function($message) use ($data) {
-                $message->from($data['client_email']);
-                $message->to($data['email']);
-                $message->subject($data['subject']);
-            });
-            
+        //send cservice email
+        $data = array(
+            'email' => 'cservice@ieianchorpensions.com',
+            'phone' => $cleaned_phone,
+            'pin' => $cleaned_pin,
+            'employer' => $cleaned_employer,
+            'details' => $cleaned_details,
+            'subject' => 'Contact Us(' . ucwords(trim($request['feedback_type'])) . ') - ' . $cleaned_subject,
+            'client_email' => trim($request['email']),
+            'feedback_type' => trim($request['feedback_type']),
+            'created_at' => Date('Y-m-d'),
+            'clientname' => $cleaned_name
+        );
+
+        Mail::send('emails.mailCservice', $data, function($message) use ($data) {
+            $message->from($data['client_email']);
+            $message->to($data['email']);
+            $message->subject($data['subject']);
+        });
+
         $request->session()->flash('response_status', 'Thank you,your feedback has been received.');
         return redirect()->back();
     }
@@ -385,7 +372,8 @@ class AppController extends BaseController {
         if (!empty($image)) {
             $input['imagename'] = time() . '.' . $image->getClientOriginalExtension();
 
-            $destinationPath = public_path('/site/img');
+            //$destinationPath = public_path('/site/img');
+            $destinationPath =public_path('/site/client_imgs/');
             $image->move($destinationPath, $input['imagename']);
 
             //save the image                
@@ -432,19 +420,97 @@ class AppController extends BaseController {
         return redirect()->back();
     }
 
+    public function processCareers(Request $request) {
+
+        $this->validate($request, [
+            'fname' => 'required',
+            'lname' => 'required',
+            'dob' => 'required',
+            'available_startdate' => 'required',
+            'states' => 'required',
+            'phone' => 'required',
+            'salary' => 'required',
+            'email' => 'required|email',
+            'cv' => 'file|mimes:jpeg,jpg,png,gif,pdf|max:2048',
+            'letter' => 'file|mimes:jpeg,jpg,png,gif,pdf|max:2048',
+            'CaptchaCode' => 'required|valid_captcha'
+        ]);
+
+        $moduleitem = new Careers();
+        $moduleimage = new Careerimage();
+
+        //insert modules            
+        $moduleitem->fname = trim($request['fname']);
+        $moduleitem->lname = trim($request['lname']);
+        $moduleitem->email = trim($request['email']);
+        $moduleitem->phone = trim($request['phone']);
+
+        $client_dob = ($request['dob']) ? ($request['dob']) : (date('m/d/Y'));
+        $moduleitem->dob = date('Y-m-d', strtotime($client_dob));
+        
+        $client_start_date = ($request['available_startdate']) ? ($request['available_startdate']) : (date('m/d/Y'));
+        $moduleitem->available_startdate = date('Y-m-d', strtotime($client_start_date));
+
+        $moduleitem->salary = trim($request['salary']);
+        $moduleitem->states = $request['states'];
+        $moduleitem->oname = trim($request['oname']);
+        $moduleitem->validated = 'no';
+        $moduleitem->save();
+
+        //if image exists
+        $cv = $request->file('cv');
+        $letter = $request->file('letter');
+        if (!empty($cv) && !empty($letter)) {
+            $input['cvname'] = time().'CV' . '.' . $cv->getClientOriginalExtension();
+            $input['lettername'] = time().'L' . '.' . $letter->getClientOriginalExtension();
+
+            $destinationPath =public_path('/site/client_imgs/');
+            $cv->move($destinationPath, $input['cvname']);
+            $letter->move($destinationPath, $input['lettername']);
+
+            //save the image                
+            $moduleimage->filename_cv = $input['cvname'];
+            $moduleimage->filename_letter = $input['lettername'];
+            $moduleimage->itemid = $moduleitem->id;
+            $moduleimage->alt = $request['caption'];
+            $moduleimage->caption = $request['caption'];
+            $moduleimage->main = $request['main'];
+            $moduleimage->save();
+        }
+        
+        //send client validation email
+//            $data = array(
+//                'email' => 'careers@ieianchorpensions.com',
+//                'phone' => trim($request['phone']),
+//                'states' => trim($request['states']),
+//                'subject' => 'IEI-Anchor Pensions Careers',
+//                'client_email' => trim($request['email']),
+//                'clientname' => trim($request['fname']) . ' ' . trim($request['lname'])
+//            );
+//
+//            Mail::send('emails.mailEvent', $data, function($message) use ($data) {
+//                $message->from($data['email']);
+//                $message->to($data['client_email']);
+//                $message->subject('IEI-Anchor Pensions Careers');
+//            });
+            $request->session()->flash('career_status', 'Submission was successful!');
+
+        return redirect()->back();
+    }
+
     public function processClientTestimonial(Request $request) {
         $this->validate($request, [
             'title' => 'required|unique:testimonials',
             'email' => 'required|email',
-            'position'=>'required|integer',
+            'position' => 'required|integer',
             'image' => 'image|mimes:jpeg,jpg,png,gif|max:2048',
             'CaptchaCode' => 'required|valid_captcha'
         ]);
 
         $moduleitem = new Testimonial();
         $moduleimage = new Testimonialimage();
-        
-         $conv_display = (!empty($request['display']) ? ($request['display']) : ('0'));
+
+        $conv_display = (!empty($request['display']) ? ($request['display']) : ('0'));
         //clean with Purifier facade            
         $cleaned_title = Purifier::clean($request['title']);
         $cleaned_details = Purifier::clean(trim($request['details']));
@@ -462,7 +528,8 @@ class AppController extends BaseController {
         if (!empty($image)) {
             $input['imagename'] = time() . '.' . $image->getClientOriginalExtension();
 
-            $destinationPath = public_path('/site/img');
+            //$destinationPath = public_path('/site/img');
+            $destinationPath =public_path('/site/client_imgs/');
             $image->move($destinationPath, $input['imagename']);
 
             //save the image                
@@ -526,7 +593,7 @@ class AppController extends BaseController {
         $path = '/site/' . $page;
 
         return view($path, [
-            'prices' => $this->latest_prices,
+            //'prices' => $this->latest_prices,
             'data' => $data,
             'page_name' => $page
         ]);
@@ -586,8 +653,6 @@ class AppController extends BaseController {
         $cleaned_details = Purifier::clean(trim($request['details']));
 
         if ($request['id'] > 0) {
-//            echo 'great o';
-//            exit;
             //store in array
             $req_data = [
                 'title' => $cleaned_title,
@@ -692,7 +757,6 @@ class AppController extends BaseController {
                 }
             }
         } else {
-            //echo 'great o else'; exit;
             //chk for module type
             switch ($request['type']) {
                 case'about':
@@ -900,7 +964,7 @@ class AppController extends BaseController {
                 $moduleitem->delete();
                 $del_status = true;
                 break;
-            
+
             case'faq':
                 $moduleitem = Faq::find($id);
                 $moduleitem->delete();
@@ -1022,25 +1086,25 @@ class AppController extends BaseController {
         $result = [];
         $from_date = ($request['startDate']) ? ($request['startDate']) : (date('m/d/Y'));
         $to_date = ($request['endDate']) ? ($request['endDate']) : (date('m/d/Y'));
-        
-        if(!($request['startDate']) ||  !($request['endDate'])){
+
+        if (!($request['startDate']) || !($request['endDate'])) {
             $range_of_prices = DB::table('unit_prices')
-            ->orderBy('report_date', 'desc')
-            ->take(7)
-            ->get();
-        }else{
+                    ->orderBy('report_date', 'desc')
+                    ->take(7)
+                    ->get();
+        } else {
             $from_date = ($request['startDate']) ? ($request['startDate']) : (date('m/d/Y'));
             $to_date = ($request['endDate']) ? ($request['endDate']) : (date('m/d/Y'));
-            
+
             $from = date('Y-m-d' . ' 00:00:00', strtotime($from_date));
             $to = date('Y-m-d' . ' 00:00:00', strtotime($to_date));
-        
+
             $range_of_prices = DB::table('unit_prices')
-                ->whereBetween('report_date', [$from, $to])
-                ->orderBy('report_date', 'desc')
-                ->get();
+                    ->whereBetween('report_date', [$from, $to])
+                    ->orderBy('report_date', 'desc')
+                    ->get();
         }
-        
+
         if ($range_of_prices) {
             $result = $range_of_prices;
         }

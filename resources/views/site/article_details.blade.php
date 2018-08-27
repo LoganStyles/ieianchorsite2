@@ -1,14 +1,11 @@
 @extends('layouts.master_site')
 <?php 
 $page=$page_name;
-$site=$data['siteitems'][0];
-$services=$data['services'];
-$news=$data['newsitem'];
 $fetched_item=$data['fetched_item'];
 $listed_items=$data['listed_items'];
 ?>
 @section('title')
-News
+Articles
 @endsection 
 
 @section('content')

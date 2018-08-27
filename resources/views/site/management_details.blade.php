@@ -1,9 +1,6 @@
 @extends('layouts.master_site')
 <?php 
 $page=$page_name;
-$site=$data['siteitems'][0];
-$services=$data['services'];
-$news=$data['newsitem'];
 $fetched_item=$data['fetched_item'];
 $listed_items=$data['listed_items'];
 ?>
@@ -50,7 +47,7 @@ Services
                             <h2>
                                 {!!$subitem['title']!!}</h2>
                             <div>
-                                <img src="{{ asset('/site/img/'.$subitem['filename'])}}" style="max-width: 100%;" />
+                                <!--<img src="{{ asset('/site/img/'.$subitem['filename'])}}" style="max-width: 100%;" />-->
                             </div>
                             <div class="item_page_details">{!!$subitem['details']!!}</div>
                         

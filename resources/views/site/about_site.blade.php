@@ -1,10 +1,5 @@
 <?php
 $page=$page_name;
-$site=$data['siteitems'][0];
-$services=$data['services'];
-$news=$data['newsitem'];
-$moduleitems=$data['moduleitems'];
-//print_r($news);exit;
 ?>
 @extends('layouts.master_site')
 @section('title')
@@ -26,13 +21,8 @@ About Us
     <div class="container">
         <div class="agile_team_grids_top">
             <div class="col-md-6 w3ls_banner_bottom_left w3ls_courses_left">
-                <div class="w3ls_courses_left_grids">
-                    @foreach($moduleitems as $aboutitem)
-                        <div class="w3ls_courses_left_grid">
-                        <h3>{!!$aboutitem['title']!!}</h3>
-                        {!!substr($aboutitem['details'],3)!!}
-                    </div>
-                    @endforeach
+                <div class="w3ls_courses_left_grids" id="about_content">
+                    
                 </div>
             </div>
             <div class="col-md-6 agileits_courses_right">
@@ -46,7 +36,7 @@ About Us
 
 <!-- /core values -->
 <div class="agile_services">
-    <div class="col-md-6 agile_services_img_wthree">
+    <div class="col-md-6 agile_services_img_wthree img-responsive">
     </div>
     <div class="col-md-6 agile_inner_grids">
         <h3 class="agile_heading two" style="color: #000; font-weight: 600;">OUR CORE VALUES</h3>

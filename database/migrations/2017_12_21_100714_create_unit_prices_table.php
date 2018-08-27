@@ -16,8 +16,11 @@ class CreateUnitPricesTable extends Migration
         Schema::create('unit_prices', function (Blueprint $table) {
             $table->increments('id');
             $table->dateTime('report_date');
-            $table->decimal('rsa',6,4);
-            $table->decimal('retiree',6,4);
+            $table->decimal('fund1',6,4);
+            $table->decimal('fund2',6,4);
+            $table->decimal('fund3',6,4);
+            $table->decimal('fund4',6,4);
+            $table->timestamps();
         });
     }
 

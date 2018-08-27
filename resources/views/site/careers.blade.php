@@ -1,14 +1,11 @@
 <?php 
-$page=$page_name; 
-//$site=$data['siteitems'][0];
-//$services=$data['services'];
-//$news=$data['newsitem'];
+$page=$page_name;
 $states=$data['states'];
 ?>
 @extends('layouts.master_site')
 
 @section('title')
-Register
+Careers
 @endsection 
 
 @section('content')
@@ -17,7 +14,9 @@ Register
         <!-- mail -->
         <div class="team">
             <div class="container">
-                <h3 class="w3l_header w3_agileits_header">RSA <span>REGISTRATION</span></h3>
+                <h3 class="w3l_header w3_agileits_header">C<span>areers</span></h3>
+                <p class="sub_para_agile">Thank you for your interest in working with us. Unfortunately there are currently no job vacancies available, 
+                    but you can provide your details below and we will contact you.</p>
                 
      
     <div class="container">
@@ -27,10 +26,10 @@ Register
                 <div class="panel panel-primary">
                     <div class="panel-heading"> <span style="color: #800;">(*Required Fields)</span></div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/web-register') }}" enctype="multipart/form-data">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/web-careers') }}" enctype="multipart/form-data">
                             {!! csrf_field() !!}
                             
-                            <span style="color: #0086B3;font-size: 1.1em;"><strong>{{Session::get('reg_status')}}</strong></span>
+                            <span style="color: #0086B3;font-size: 1.1em;"><strong>{{Session::get('career_status')}}</strong></span>
 
                             <div class="form-group{{ $errors->has('fname') ? ' has-error' : '' }}">
                                 <label class="col-md-4 control-label"><span style="color: #f00">*</span>First Name</label>
@@ -80,55 +79,6 @@ Register
                                 </div>
                             </div>
                             
-                            <div class="form-group{{ $errors->has('dob') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label"><span style="color: #f00">*</span>Date of birth</label>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control date-picker" name="dob" value="{{ old('dob') }}">
-                                    @if ($errors->has('dob'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('dob') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-                            
-                            <div class="form-group{{ $errors->has('employer') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label"><span style="color: #f00">*</span>Employer Name</label>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" name="employer" value="{{ old('employer') }}">
-                                    @if ($errors->has('employer'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('employer') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-                            
-                            <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label">Photo</label>
-                                <div class="col-md-6">
-                                    <input type="file" id="image" name="image">
-                                    @if ($errors->has('image'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('image') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-                            
-                            <div class="form-group{{ $errors->has('employer_address') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label"><span style="color: #f00">*</span>Employer Address</label>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" name="employer_address" value="{{ old('employer_address') }}">
-                                    @if ($errors->has('employer_address'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('employer_address') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
-
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                 <label class="col-md-4 control-label"><span style="color: #f00">*</span>E-Mail Address</label>
 
@@ -143,8 +93,56 @@ Register
                                 </div>
                             </div>
                             
+                            <div class="form-group{{ $errors->has('dob') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label"><span style="color: #f00">*</span>Date of birth</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control date-picker" name="dob" value="{{ old('dob') }}">
+                                    @if ($errors->has('dob'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('dob') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            
+                            <div class="form-group{{ $errors->has('cv') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label"><span style="color: #f00">*</span>Upload CV (MAX 2MB)</label>
+                                <div class="col-md-6">
+                                    <input type="file" id="cv" name="cv">
+                                    @if ($errors->has('cv'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('cv') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            
+                            <div class="form-group{{ $errors->has('letter') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label"><span style="color: #f00">*</span>Upload Cover Letter (MAX 2MB)</label>
+                                <div class="col-md-6">
+                                    <input type="file" id="letter" name="letter">
+                                    @if ($errors->has('letter'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('letter') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            
+                            <div class="form-group{{ $errors->has('salary') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label"><span style="color: #f00">*</span>Desired Salary</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="salary" value="{{ old('salary') }}">
+                                    @if ($errors->has('salary'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('salary') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            
                             <div class="form-group{{ $errors->has('states') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label"><span style="color: #f00">*</span>State of Residence</label>
+                                <label class="col-md-4 control-label"><span style="color: #f00">*</span>State of Origin</label>
 
                                 <div class="col-md-6">
                                     <select class="form-control" name="states" id="states">
@@ -152,6 +150,18 @@ Register
                                         <option value="{{$state['title']}}">{{$state['title']}}</option>
                                     @endforeach
                                 </select>                                    
+                                </div>
+                            </div>
+                            
+                            <div class="form-group{{ $errors->has('available_startdate') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label"><span style="color: #f00">*</span>Available Start Date</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control date-picker" name="available_startdate" value="{{ old('available_startdate') }}">
+                                    @if ($errors->has('available_startdate'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('available_startdate') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
 
@@ -177,7 +187,7 @@ Register
                                 <div class="col-md-6 col-md-offset-4">
                                     <br/>
                                     <button type="submit" class="btn btn-primary">
-                                        <i class="fa fa-btn fa-user"></i>Register
+                                        Submit
                                     </button>
                                 </div>
                             </div>

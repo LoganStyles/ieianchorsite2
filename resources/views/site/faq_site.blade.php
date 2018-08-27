@@ -1,15 +1,14 @@
 <?php
 $page=$page_name; 
-$site=$data['siteitems'][0];
-$services=$data['services'];
-$news=$data['newsitem'];
-$moduleitems=$data['moduleitems'];
+//$site=$data['siteitems'][0];
+//$services=$data['services'];
+//$news=$data['newsitem'];
+//$moduleitems=$data['moduleitems'];
+//
+//foreach ($moduleitems as $object) {
+//            $faqs[] = (array) $object;
+//        }
 
-foreach ($moduleitems as $object) {
-            $faqs[] = (array) $object;
-        }
-
-//print_r($moduleitems);exit;
 ?>
 @extends('layouts.master_site')
 @section('title')
@@ -29,12 +28,8 @@ FAQs
                         <table class="table table-bordered">
                             <thead>
                             </thead>
-                            <tbody>
-                                @foreach($faqs as $item)
-                                <tr class="">
-                                    <td><a href="{{url('/faq/'.$item['title'])}}">{!!$item['title']!!}</a></td>
-                                </tr>    
-                                @endforeach
+                            <tbody id="faqcat_content">
+                                
                             </tbody>
                         </table> 
                         <br>
@@ -47,4 +42,3 @@ FAQs
 </div>
 
 @endsection
-<?php //include 'includes/footer.php'; ?>

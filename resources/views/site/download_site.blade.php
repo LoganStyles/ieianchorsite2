@@ -1,15 +1,5 @@
 <?php
-$page=$page_name; 
-$site=$data['siteitems'][0];
-$services=$data['services'];
-$news=$data['newsitem'];
-$moduleitems=$data['moduleitems'];
-
-foreach ($moduleitems as $object) {
-    $downloads[] = (array) $object;
-}
-
-//print_r($moduleitems);exit;
+$page=$page_name;
 ?>
 @extends('layouts.master_site')
 @section('title')
@@ -29,12 +19,8 @@ Downloads
                         <table class="table table-bordered">
                             <thead>
                             </thead>
-                            <tbody>
-                                @foreach($downloads as $item)
-                                <tr class="">
-                                    <td><a href="{{url('/download/'.$item['title'])}}">{!!$item['title']!!}</a></td>
-                                </tr>    
-                                @endforeach
+                            <tbody id="downloadcat_content">
+                                
                             </tbody>
                         </table> 
                         <br>
@@ -47,4 +33,3 @@ Downloads
 </div>
 
 @endsection
-<?php //include 'includes/footer.php'; ?>

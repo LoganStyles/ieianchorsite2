@@ -1,9 +1,6 @@
 @extends('layouts.master_site')
 <?php 
 $page=$page_name;
-$site=$data['siteitems'][0];
-$services=$data['services'];
-$news=$data['newsitem'];
 $fetched_item=$data['fetched_item'];
 $current_cat_item=$data['fetched_item'][0];//current cat item
 $current_cat_id=$current_cat_item['category_id'];//current cat_id
@@ -13,7 +10,6 @@ $listed_items=$data['listed_items'];
 foreach ($listed_items as $object) {
     $faqs[] = (array) $object;
 }
-//print_r($fetched_item);exit;
 ?>
 @section('title')
 FAQs

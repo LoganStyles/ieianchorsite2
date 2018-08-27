@@ -4,17 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Slide;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class SlideController extends Controller
-{
+class SlideController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index() {
+        $itemimages = 'slideimages';
+        $items = 'slides';        
+         $moduleitems = DB::table($items)
+                    ->leftjoin($itemimages, $items . '.id', '=', $itemimages . '.itemid')
+                    ->select($items . '.title',$items . '.link_label',$items . '.position',$items . '.display', 
+                            $itemimages . '.filename', $itemimages . '.itemid as imageid', $itemimages . '.alt', 
+                            $itemimages . '.caption', $itemimages . '.main')
+                    ->get();
+        return json_encode($moduleitems);
     }
 
     /**
@@ -22,8 +30,7 @@ class SlideController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -33,8 +40,7 @@ class SlideController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -44,8 +50,7 @@ class SlideController extends Controller
      * @param  \App\Slide  $slide
      * @return \Illuminate\Http\Response
      */
-    public function show(Slide $slide)
-    {
+    public function show(Slide $slide) {
         //
     }
 
@@ -55,8 +60,7 @@ class SlideController extends Controller
      * @param  \App\Slide  $slide
      * @return \Illuminate\Http\Response
      */
-    public function edit(Slide $slide)
-    {
+    public function edit(Slide $slide) {
         //
     }
 
@@ -67,8 +71,7 @@ class SlideController extends Controller
      * @param  \App\Slide  $slide
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Slide $slide)
-    {
+    public function update(Request $request, Slide $slide) {
         //
     }
 
@@ -78,8 +81,8 @@ class SlideController extends Controller
      * @param  \App\Slide  $slide
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Slide $slide)
-    {
+    public function destroy(Slide $slide) {
         //
     }
+
 }

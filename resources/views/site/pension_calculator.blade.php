@@ -1,9 +1,7 @@
 <?php
 $page=$page_name;
 $resultitems=$data['resultitems'];
-$site=$data['siteitems'][0];
-$services=$data['services'];
-$news=$data['newsitem'];
+
 ?>
 @extends('layouts.master_site')
 

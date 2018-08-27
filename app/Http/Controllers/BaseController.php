@@ -1,13 +1,8 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 namespace App\Http\Controllers;
 
+use App\Unit_price;
 use View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,24 +11,8 @@ use App\Http\Controllers\Controller;
 
 class BaseController extends Controller {
 
-    protected $latest_prices;
-
     public function __construct() {
-//        $this->middleware('auth');
-        //get latest unit prices
         
-        $this->latest_prices = DB::table('unit_prices')
-                ->orderBy('report_date', 'desc')
-                ->first();
-        //get latest news
-        $this->latest_news = DB::table('newsitems')
-                ->leftjoin('newsitemimages', 'newsitems.id', '=', 'newsitemimages.itemid')
-                ->select('newsitems.*', 'newsitemimages.filename', 'newsitemimages.itemid as imageid', 'newsitemimages.alt', 'newsitemimages.caption', 'newsitemimages.main')
-                ->latest()
-                ->first();
-        View::share('latest_prices', $this->latest_prices);
-        View::share('latest_news', $this->latest_news);
-       
     }
 
     /* test if user is logged in & check access */
@@ -45,7 +24,66 @@ class BaseController extends Controller {
         return false;
     }
 
-    protected function getDBData($item, $subitem = NULL,$ref=NULL) {
+    protected function getPageData($item) {
+        $itemimages = $item . 'images';
+        $items = $item . 's';
+        $arrays = [];
+
+        $moduleitems = DB::table($items)
+                ->leftjoin($itemimages, $items . '.id', '=', $itemimages . '.itemid')
+                ->select($items . '.*', $itemimages . '.filename', $itemimages . '.itemid as imageid', $itemimages . '.alt', $itemimages . '.caption', $itemimages . '.main')
+                ->where('display', '1')
+                ->orderBy('position', 'asc')
+                ->take(10)
+                ->get();
+
+        foreach ($moduleitems as $object) {
+            $arrays[] = (array) $object;
+        }
+        return $arrays;
+    }
+
+    protected function getPageDataNoImages($item) {
+        $items = $item . 's';
+        $moduleitems = DB::table($items)->select('*')->distinct()->get();
+        foreach ($moduleitems as $object) {
+            $arrays[] = (array) $object;
+        }
+        return $arrays;
+    }
+
+    protected function getHomePageData() {
+        $servicesitems = DB::table('services')
+                ->leftjoin('serviceimages', 'services.id', '=', 'serviceimages.itemid')
+                ->select('services.*', 'serviceimages.filename', 'serviceimages.itemid as imageid', 'serviceimages.alt', 'serviceimages.caption', 'serviceimages.main')
+                ->where('display', '1');
+
+        $testimonialsitems = DB::table('testimonials')
+                ->leftjoin('testimonialimages', 'testimonials.id', '=', 'testimonialimages.itemid')
+                ->select('testimonials.*', 'testimonialimages.filename', 'testimonialimages.itemid as imageid', 'testimonialimages.alt', 'testimonialimages.caption', 'testimonialimages.main')
+                ->where('display', '1');
+
+        $bannersitems = DB::table('banners')
+                ->leftjoin('bannerimages', 'banners.id', '=', 'bannerimages.itemid')
+                ->select('banners.*', 'bannerimages.filename', 'bannerimages.itemid as imageid', 'bannerimages.alt', 'bannerimages.caption', 'bannerimages.main')
+                ->where('display', '1')
+                ->take(4);
+
+        $awards = DB::table('awards')
+                ->leftjoin('awardimages', 'awards.id', '=', 'awardimages.itemid')
+                ->select('awards.*', 'awardimages.filename', 'awardimages.itemid as imageid', 'awardimages.alt', 'awardimages.caption', 'awardimages.main')
+                ->where('display', '1');
+
+        $items = $servicesitems->union($testimonialsitems)->union($bannersitems)->union($awards);
+        $data = $items->get();
+
+        foreach ($data as $object) {
+            $arrays[] = (array) $object;
+        }
+        return $arrays;
+    }
+
+    protected function getDBData($item, $subitem = NULL, $ref = NULL) {
         $itemimages = $item . 'images';
         $items = $item . 's';
         $arrays = [];
@@ -58,49 +96,40 @@ class BaseController extends Controller {
                     ->leftjoin('siteimages', 'sites.id', '=', 'siteimages.itemid')
                     ->select('sites.*', 'siteimages.filename', 'siteimages.itemid as imageid', 'siteimages.alt', 'siteimages.caption', 'siteimages.main')
                     ->get();
-        } else if($item == "faq"){
+        } else if ($item == "faq") {
             $moduleitems = DB::table($items)
-                    ->select('faqs.category_id','faqs.quesiton','faqs.answer','faqs.created_at','faqs.updated_at')
-                    ->leftjoin('faqcats','faqcats.id','=','faqs.category_id')
-                    ->where('faqcats.title',$subitem)
+                    ->select('faqs.category_id', 'faqs.question', 'faqs.answer', 'faqs.created_at', 'faqs.updated_at')
+                    ->leftjoin('faqcats', 'faqcats.id', '=', 'faqs.category_id')
+                    ->where('faqcats.title', $subitem)
                     ->get();
-        }
-        else if($item == "download"){
+        } else if ($item == "download") {
             $moduleitems = DB::table($items)
-                    ->select('downloads.category_id','downloads.title','downloads.filename','downloads.display')
-                    ->leftjoin('downloadcats','downloadcats.id','=','downloads.category_id')
-                    ->where('downloadcats.title',$subitem)
+                    ->select('downloads.category_id', 'downloads.title', 'downloads.filename', 'downloads.display')
+                    ->leftjoin('downloadcats', 'downloadcats.id', '=', 'downloads.category_id')
+                    ->where('downloadcats.title', $subitem)
                     ->get();
-        }
-        /*else if($item == "newsitem" || $item == "article"){
-            echo 'inside newsitw';exit;
-            $moduleitems = DB::table($items)
-                    ->select('*')
-                    ->where('display','1')
-                    ->get();
-        }*/ else if($ref){
+        } else if ($ref) {
             $moduleitems = DB::table($items)->get();
-
-        }else if ($subitem) {
-            //echo 'inside subitem';exit;
+        } else if ($subitem) {
             $moduleitems = DB::table($items)
                     ->leftjoin($itemimages, $items . '.id', '=', $itemimages . '.itemid')
                     ->select($items . '.*', $itemimages . '.filename', $itemimages . '.itemid as imageid', $itemimages . '.alt', $itemimages . '.caption', $itemimages . '.main')
-                    ->where([[$items . '.link_label', $subitem],['display','1']])
+                    ->where([[$items . '.link_label', $subitem], ['display', '1']])
                     ->get();
-        } else if($item == "newsitem" || $item == "article") {
+        } else if ($item == "newsitem" || $item == "article") {
+
             $moduleitems = DB::table($items)
                     ->leftjoin($itemimages, $items . '.id', '=', $itemimages . '.itemid')
                     ->select($items . '.*', $itemimages . '.filename', $itemimages . '.itemid as imageid', $itemimages . '.alt', $itemimages . '.caption', $itemimages . '.main')
-                    ->where('display','1')
+                    ->where('display', '1')
                     ->orderBy('id', 'desc')
                     ->take(10)
                     ->get();
-        }else {
+        } else {
             $moduleitems = DB::table($items)
                     ->leftjoin($itemimages, $items . '.id', '=', $itemimages . '.itemid')
                     ->select($items . '.*', $itemimages . '.filename', $itemimages . '.itemid as imageid', $itemimages . '.alt', $itemimages . '.caption', $itemimages . '.main')
-                    ->where('display','1')
+                    ->where('display', '1')
                     ->orderBy('position', 'asc')
                     ->take(10)
                     ->get();
@@ -111,9 +140,8 @@ class BaseController extends Controller {
         }
         return $arrays;
     }
-    
-    
-    protected function getDBPaginatedData($item, $subitem = NULL,$ref=NULL) {
+
+    protected function getDBPaginatedData($item, $subitem = NULL, $ref = NULL) {
         $itemimages = $item . 'images';
         $items = $item . 's';
         $arrays = [];
@@ -126,36 +154,33 @@ class BaseController extends Controller {
                     ->leftjoin('siteimages', 'sites.id', '=', 'siteimages.itemid')
                     ->select('sites.*', 'siteimages.filename', 'siteimages.itemid as imageid', 'siteimages.alt', 'siteimages.caption', 'siteimages.main')
                     ->paginate(5);
-        } else if($item == "faq" && $subitem){
+        } else if ($item == "faq" && $subitem) {
             $moduleitems = DB::table($items)
                     ->select('*')
-                    ->where('category_id',$subitem)
+                    ->where('category_id', $subitem)
                     ->paginate(5);
-        } else if($ref){
+        } else if ($ref) {
             $moduleitems = DB::table($items)->paginate(5);
-
-        }else if($item == "faqcat"){
+        } else if ($item == "faqcat") {
             $moduleitems = DB::table($items)->paginate(5);
-
-        }else if( $item == "faq"){
+        } else if ($item == "faq") {
             $moduleitems = DB::table('faqs')
-                    ->leftjoin('faqcats','faqs.category_id','=','faqcats.id')
-                    ->select('faqcats.title','faqcats.id as cat_id','faqs.question','faqs.*')
+                    ->leftjoin('faqcats', 'faqs.category_id', '=', 'faqcats.id')
+                    ->select('faqcats.title', 'faqcats.id as cat_id', 'faqs.question', 'faqs.*')
                     ->paginate(5);
-
-        }else if ($subitem) {
+        } else if ($subitem) {
             $moduleitems = DB::table($items)
                     ->leftjoin($itemimages, $items . '.id', '=', $itemimages . '.itemid')
                     ->select($items . '.*', $itemimages . '.filename', $itemimages . '.itemid as imageid', $itemimages . '.alt', $itemimages . '.caption', $itemimages . '.main')
                     ->where($items . '.link_label', $subitem)
                     ->paginate(5);
-        } else if($item == "newsitem" || $item == "article"){
+        } else if ($item == "newsitem" || $item == "article") {
             $moduleitems = DB::table($items)
                     ->leftjoin($itemimages, $items . '.id', '=', $itemimages . '.itemid')
                     ->select($items . '.*', $itemimages . '.filename', $itemimages . '.itemid as imageid', $itemimages . '.alt', $itemimages . '.caption', $itemimages . '.main')
                     ->orderBy('id', 'desc')
                     ->paginate(5);
-        }else {
+        } else {
             $moduleitems = DB::table($items)
                     ->leftjoin($itemimages, $items . '.id', '=', $itemimages . '.itemid')
                     ->select($items . '.*', $itemimages . '.filename', $itemimages . '.itemid as imageid', $itemimages . '.alt', $itemimages . '.caption', $itemimages . '.main')
@@ -169,14 +194,15 @@ class BaseController extends Controller {
     protected function showPaginatedList($item) {
         $itemimages = $item . 'images';
         $items = $item . 's';
-        if($item=="faq"){
-            $items="faqcats";
+        if ($item == "faq") {
+            $items = "faqcats";
         }
-        
-        if($item=="download"){
-            $items="downloadcats";
+
+        if ($item == "download") {
+            $items = "downloadcats";
         }
-        $paginateditems= DB::table($items)->where('display','1')->paginate(10);
+        $paginateditems = DB::table($items)->where('display', '1')->paginate(10);
         return $paginateditems;
     }
+
 }

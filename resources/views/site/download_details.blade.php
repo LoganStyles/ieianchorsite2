@@ -1,9 +1,6 @@
 @extends('layouts.master_site')
 <?php 
 $page=$page_name;
-$site=$data['siteitems'][0];
-$services=$data['services'];
-$news=$data['newsitem'];
 $fetched_item=$data['fetched_item'];
 $current_cat_item=$data['fetched_item'][0];//current cat item
 $current_cat_id=$current_cat_item['category_id'];//current cat_id
@@ -47,14 +44,6 @@ DOWNLOADs
 
 @section('content')
 
-<!-- small-banner -->
-<div class="stats-bottom-banner">
-    <div class="container">
-        <h3>Wouldn't You Like <span>To</span> Retire Happy</h3>
-    </div>
-</div>
-<!-- //small-banner -->	
-
 <!-- services -->
 
 <div class="team">
@@ -79,10 +68,14 @@ DOWNLOADs
                 <div class="col-md-8">
                     <div class="w3ls_courses_left_grids">
                     @foreach($fetched_item as $f_item)
-                    <div class="accordion">
-                        <span>{!!$f_item['title']!!}</span>&nbsp;
-                        <button style="color:#000;" id="{{url('/viewfile/'.$f_item['filename'])}}" class="view_button">View</button>
-                        <button style="color:#000;" id="{{url('/downloads/'.$f_item['filename'])}}" class="download_button">Download</button>
+                    <div class="accordion" style="width:100%;overflow: auto;">
+                        <span></span>&nbsp;
+                        <div class="pull-left" style="width:80%;">{!!$f_item['title']!!}</div>
+                        <div class="pull-right" style="width:20%;">
+                            <button style="color:#000;" id="{{url('/viewfile/'.$f_item['filename'])}}" class="view_button">View</button>
+                            <button style="color:#000;" id="{{url('/downloads/'.$f_item['filename'])}}" class="download_button">Download</button>
+                        </div>
+                        
                     </div>
                     
                     @endforeach

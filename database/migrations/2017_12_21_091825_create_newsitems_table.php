@@ -21,6 +21,7 @@ class CreateNewsitemsTable extends Migration
             $table->integer('position')->default(0);
             $table->enum('display',['0','1']);
             $table->string('keywords')->nullable();
+            $table->string('url')->nullable();
             $table->text('description')->nullable();
             $table->string('excerpt')->nullable();
             $table->string('type')->default('newsitem');

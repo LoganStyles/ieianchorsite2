@@ -1,8 +1,5 @@
 <?php 
 $page=$page_name; 
-$site=$data['siteitems'][0];
-$services=$data['services'];
-$news=$data['newsitem'];
 ?>
 @extends('layouts.master_site')
 @section('title')
@@ -98,7 +95,6 @@ Unit Price History
         $('body').on('submit','#fetch_price_history',function(e){
             e.preventDefault();
             //on form submission, get prices for the selected range
-           // console.log('submitted');
             var startday=$('#start_date').val();
             var endday=$('#end_date').val();
             loadUnitPrices(startday,endday);
@@ -115,7 +111,6 @@ Unit Price History
            success:function(response){
                
                 var jsonData = JSON.parse(response);
-                console.log(response);
                if(jsonData.length > 0){
                    $('#unit_price_history_table tbody').find('tr:first-child').remove();
                                         

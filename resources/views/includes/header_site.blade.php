@@ -1,4 +1,4 @@
-<?php $newslink = ($news) ? ($news->link_label) : (""); ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -22,6 +22,9 @@
 
         <link href="{{asset('/site/css/datatables/jquery.dataTables.min.css')}}" rel="stylesheet" />
         <!--coin slider-->
+        <!--coin slider-->
+        <script type="text/javascript" src="{{ asset('/site/js/jquery-2.1.4.min.js')}}"></script>
+<script src="{{asset('/assets/global/coin-slider/coin-slider.min.js')}}" type="text/javascript"></script>
         <link href="{{asset('/assets/global/coin-slider/coin-slider-styles.css')}}" rel="stylesheet" />
         <style>
             .dataTables_filter, .dataTables_length, .dataTables_info, .dataTables_paginate {
@@ -63,11 +66,11 @@
             <div class="w3layouts_header_right">
                 <div class="agileits-social top_content">
                     <ul>                       
-                        <li><a href="{{$site['facebook']}}" target="_blank"><img src="{{asset('/site/images/icons/facebook.png')}}" /></a></li>
-                        <li><a href="{{$site['twitter']}}" target="_blank"><img src="{{asset('/site/images/icons/twitter.png')}}" /></a></li>
-                        <li><a href="{{$site['instagram']}}" target="_blank"><img src="{{asset('/site/images/icons/instagram.png')}}" /></a></li>
-                        <li><a href="{{$site['youtube']}}" target="_blank"><img src="{{asset('/site/images/icons/youtube.png')}}" /></a></li>
-                        <li><a href="{{$site['linkedin']}}" target="_blank"><img src="{{asset('/site/images/icons/linkedin.png')}}" /></a></li>
+                        <li><a href="https://web.facebook.com/anchorpensions?_rdc=1&_rdr" target="_blank"><img src="{{asset('/site/images/icons/facebook.png')}}" /></a></li>
+                        <li><a href="https://twitter.com/ieiapensionmgrs" target="_blank"><img src="{{asset('/site/images/icons/twitter.png')}}" /></a></li>
+                        <li><a href="https://www.instagram.com/ieianchorpensions/" target="_blank"><img src="{{asset('/site/images/icons/instagram.png')}}" /></a></li>
+                        <li><a href="https://www.youtube.com/channel/UCyXZnwdv_jcXyNeFfBfhvEw" target="_blank"><img src="{{asset('/site/images/icons/youtube.png')}}" /></a></li>
+                        <li><a href="https://www.linkedin.com/company-beta/16194771" target="_blank"><img src="{{asset('/site/images/icons/linkedin.png')}}" /></a></li>
                         <li><a href="https://api.whatsapp.com/send?phone=+2348165722731&text=Hello, how may we help you? Just send us a message now to get assistance." class="social-icon whatsapp" target="_blank"><img src="{{asset('/site/images/icons/whatsapp2.png')}}" /></a></li>
 
                     </ul>
@@ -75,7 +78,7 @@
             </div>
             <div class="w3layouts_header_left">
                 <ul>
-                    <li><a target="_blank" title="RSA Account Login" href="{{$site['client_url']}}">RSA Account Login</a></li>
+                    <li><a target="_blank" title="RSA Account Login" href="http://ffpro.ieianchorpensions.com/pfaweb/">RSA Account Login</a></li>
                     <li><a target="_blank" title="Register With Us" href="{{url('/register/')}}">Register With Us</a></li>
                 </ul>
 
@@ -89,32 +92,36 @@
                         <div class="header_contact_details_agile"><i class="fa fa-map-marker" aria-hidden="true"></i>
                             <div class="w3l_header_contact_details_agile">
                                 <div class="header-contact-detail-title">Head Office</div> 
-                                <div class="w3l_header_contact_details_agile-info_inner">{{$site['office']}} </div><br>
-                                <div class="w3l_header_contact_details_agile-info_inner"><strong>Email:</strong>{{$site['email']}} </div>
-                                <div class="w3l_header_contact_details_agile-info_inner"><strong>Call:</strong>{{$site['phone1']}}, {{$site['phone2']}} </div>
+                                <div class="w3l_header_contact_details_agile-info_inner">22, Otukpo Street, Off Gimbiya Street, Area 11, Garki, Abuja, Nigeria </div><br>
+                                <div class="w3l_header_contact_details_agile-info_inner"><strong>Email:</strong><br>cservice@ieianchorpensions.com </div><br>
+                                <div class="w3l_header_contact_details_agile-info_inner"><strong>Call:</strong>08165722731, 08078450652 </div>
 
                             </div>
                         </div>
                     </li>
-
+                    
                     <li>
                         <div class="header_contact_details_agile"><i class="fa fa-institution" aria-hidden="true"></i>
                             <div class="w3l_header_contact_details_agile">
-                                <span class="w3l_header_contact_details_agile-info_inner"><strong>Bank:</strong> UBA </span><br>
-                                <span class="w3l_header_contact_details_agile-info_inner"><strong>Account Name:</strong> UPCL/IEI-ANCHOR PENSIONS RSA CONTRIBUTION A/C </span><br>
-                                <span class="w3l_header_contact_details_agile-info_inner"><strong>Account Number:</strong> 1006236132 </span><br><br>
-                                <strong>EPCCOS :&nbsp;</strong><a target="_blank" href="{{url('https://apps.nibss-plc.com.ng/EPCCOS/login;jsessionid=26AB9979142CA84F38202ACA6726646F')}}"><span class="label label-primary">Login to EPCCOS</span></a>&nbsp;&nbsp;
+                                <div class="header-contact-detail-title">Bank</div> 
+                                <div class="w3l_header_contact_details_agile-info_inner">UBA </div>
+                                <div class="w3l_header_contact_details_agile-info_inner"><strong>Account Name:</strong><br>UPCL/IEI-ANCHOR PENSIONS RSA CONTRIBUTION A/C </div>
+                                <div class="w3l_header_contact_details_agile-info_inner"><strong>Account Number:</strong>1006236132 </div><br>
+                                <div class="w3l_header_contact_details_agile-info_inner"><strong>EPCCOS:&nbsp;&nbsp;</strong><a target="_blank" href="{{url('https://apps.nibss-plc.com.ng/EPCCOS/login;jsessionid=26AB9979142CA84F38202ACA6726646F')}}"><span class="label label-primary">Login to EPCCOS</span></a>&nbsp;&nbsp; </div>
+
                             </div>
                         </div>
                     </li>
+
+                    
                     <li>
                         <div class="header_contact_details_agile"><i class="fa fa-list-alt" aria-hidden="true"></i>
                             <div class="w3l_header_contact_details_agile">
-                                <div class="header-contact-detail-title">Unit Prices as at {{date("M j, Y",strtotime($prices->report_date))}}</div> 
-                                <span class="w3l_header_contact_details_agile-info_inner">RSA Fund I:  {{$prices->fund1}} </span><br>
-                                <span class="w3l_header_contact_details_agile-info_inner">RSA Fund II: {{$prices->fund2}} </span><br>
-                                <span class="w3l_header_contact_details_agile-info_inner">RSA Fund III: {{$prices->fund3}} </span><br>
-                                <span class="w3l_header_contact_details_agile-info_inner">RSA Fund IV: {{$prices->fund4}} </span><br>
+                                <div class="header-contact-detail-title" id="price_date"></div> 
+                                <span class="w3l_header_contact_details_agile-info_inner" id="price_fund1" style="font-weight:700;"> </span><br>
+                                <span class="w3l_header_contact_details_agile-info_inner" id="price_fund2" style="font-weight:700;"> </span><br>
+                                <span class="w3l_header_contact_details_agile-info_inner" id="price_fund3" style="font-weight:700;"> </span><br>
+                                <span class="w3l_header_contact_details_agile-info_inner" id="price_fund4" style="font-weight:700;"> </span><br>
 
                                 <span class="w3l_header_contact_details_agile-info_inner">Administrative Fee: 100 </span><br><br>
                                 <strong>Price History:&nbsp;</strong><a target="_blank" href="{{url('/unit_price/')}}"><span class="label label-primary">View Price History</span></a>&nbsp;&nbsp;
@@ -136,7 +143,7 @@
                     </button>
                     <a class="navbar-brand" href="{{route('home')}}">
                         <div class="img_logo">
-                            <img src="{{ asset('/site/img/'.$site['filename'])}}" alt="IEI Anchor Pensions" class="img-responsive" style="max-width: 60%;" />
+                            <img src="{{ asset('/site/img/1510824106.png')}}" alt="IEI Anchor Pensions" class="img-responsive" style="max-width: 60%;" />
                         </div>
                     </a>
                 </div>
@@ -144,13 +151,17 @@
                 <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
                     <nav class="link-effect-2" id="link-effect-2">
                         <ul class="nav navbar-nav">
-                            <li class="<?php if ($page == "home") {
-    echo "active";
-} ?>"><a href="{{route('home')}}"><span data-hover="Home">Home</span></a></li>
+                            <li class="<?php
+                            if ($page == "home") {
+                                echo "active";
+                            }
+                            ?>"><a href="{{route('home')}}"><span data-hover="Home">Home</span></a></li>
 
-                            <li class="<?php if ($page == "about_site" || $page == "board_site" || $page == "management_site") {
-    echo "active";
-} ?>dropdown">
+                            <li class="<?php
+                            if ($page == "about_site" || $page == "board_site" || $page == "management_site") {
+                                echo "active";
+                            }
+                            ?>dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span data-hover="About Us">About Us</span> <b class="caret"></b></a>
                                 <ul class="dropdown-menu agile_short_dropdown">
                                     <li><a href="{{url('/about_site')}}">About Us</a></li>
@@ -158,26 +169,24 @@
                                     <li><a href="{{url('/management_site')}}">Management</a></li>
                                 </ul>
                             </li>
-                            <li class="<?php if ($page == "service") {
-    echo "active";
-} ?> dropdown">
+                            <li class="<?php
+                            if ($page == "service") {
+                                echo "active";
+                            }
+                            ?> dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span data-hover="Services">Services</span> <b class="caret"></b></a>
-                                <ul class="dropdown-menu agile_short_dropdown">
+                                <ul class="dropdown-menu agile_short_dropdown" id="services_dropdown">
+                                    <!--append ajax fetched services here-->
 
-                                    <?php
-                                    foreach ($services as $subservice) {
-                                        $link = $subservice['link_label'];
-                                        ?>
-                                        <li><a href="{{url('/service/'.$link)}}">{{$subservice['title']}}</a></li>
-    <?php
-}
-?>
+
                                 </ul>
                             </li>
 
-                            <li class="<?php if ($page == "investment" || $page == "investment_portfolio") {
-    echo "active";
-} ?> dropdown">
+                            <li class="<?php
+                            if ($page == "investment" || $page == "investment_portfolio") {
+                                echo "active";
+                            }
+                            ?> dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span data-hover="Investment">Investment</span> <b class="caret"></b></a>
                                 <ul class="dropdown-menu agile_short_dropdown">                                    
                                     <li><a href="{{url('/investment')}}">Strategy</a></li>
@@ -185,13 +194,17 @@
                                 </ul>
                             </li>
 
-                            <li class="<?php if ($page == "newsitem") {
-    echo "active";
-} ?>"><a href="{{url('/newsitem_site')}}"><span data-hover="News">News</span></a></li>
+                            <li class="<?php
+                            if ($page == "newsitem") {
+                                echo "active";
+                            }
+                            ?>"><a href="{{url('/newsitem_site')}}"><span data-hover="News">News</span></a></li>
 
-                            <li class="<?php if ($page == "financial_site" || $page == "download_site" || $page == "rate_of_return" || $page == "unit_price" || $page == "show_pension_calculator") {
-    echo "active";
-} ?>dropdown">
+                            <li class="<?php
+                            if ($page == "financial_site" || $page == "download_site" || $page == "rate_of_return" || $page == "unit_price" || $page == "show_pension_calculator") {
+                                echo "active";
+                            }
+                            ?>dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span data-hover="Resources">Resources</span> <b class="caret"></b></a>
                                 <ul class="dropdown-menu agile_short_dropdown">
                                     <li><a href="{{url('/download_site/')}}">Downloads</a></li>
@@ -203,9 +216,11 @@
                                 </ul>
                             </li> 
 
-                            <li class="<?php if ($page == "faq_site" || $page == "contact" || $page == "branch_site") {
-    echo "active";
-} ?>dropdown">
+                            <li class="<?php
+                            if ($page == "faq_site" || $page == "contact" || $page == "branch_site") {
+                                echo "active";
+                            }
+                            ?>dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span data-hover="Contact Us">Contact Us</span> <b class="caret"></b></a>
                                 <ul class="dropdown-menu agile_short_dropdown">
                                     <li><a href="{{url('/contact')}}">Feedback</a></li>
@@ -213,6 +228,11 @@
                                     <li><a href="{{url('/branch_site')}}">Our Office/Service Centers</a></li>
                                 </ul>
                             </li> 
+                            <li class="<?php
+                            if ($page == "careers") {
+                                echo "active";
+                            }
+                            ?>"><a href="{{url('/careers/')}}"><span data-hover="Careers">Careers</span></a></li>
 
                         </ul>
                     </nav>
@@ -221,5 +241,6 @@
                 <div class="clearfix"></div>
             </nav>
 
-
+<div id="container-progress"></div>
         </div>
+        

@@ -1,8 +1,5 @@
 <?php 
 $page=$page_name; 
-$site=$data['siteitems'][0];
-$services=$data['services'];
-$news=$data['newsitem'];
 ?>
 @extends('layouts.master_site')
 @section('title')

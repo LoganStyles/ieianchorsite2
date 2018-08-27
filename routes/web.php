@@ -27,19 +27,24 @@ Route::post('delete', 'AppController@destroy')->name('delete_item')->middleware(
 //site pages & content
 Route::post('pension_calculator', 'AppController@pensionCalculator')->name('pension_calc'); //pension calculator
 Route::get('/unitprice/range','AppController@fetchRangeOfPrices')->name('unitprice_range');
-
+Route::get('/slides/range','SlideController@index')->name('top4_slides');
+Route::get('/homedata','AppController@fetchHomeData')->name('home_data');
+Route::get('/pagedata','AppController@fetchPageData');
+Route::get('/pagedata_noimages','AppController@fetchPageDataNoImages');
+Route::get('/fetchLatestPrices','AppController@fetchLatestPricesById')->name('home_data');
+//generic page requests
 Route::get('page/{generic}', 'AppController@showPage');//old routes
 Route::get('/page/{service}/{generic}', 'AppController@showPage');//old routes
 Route::get('/{generic}', 'AppController@showPage');//display a page
 Route::get('/{service}/{generic}', 'AppController@showPage');//display news
 
 Route::post('web-register', 'AppController@processRegister');
+
+Route::post('web-careers', 'AppController@processCareers');
 //client testimonials
 Route::post('web-feedback', 'AppController@processClientTestimonial');
 
 //PROCESSING
-Route::post('process_register', 'AppController@processRegister')->name('process_register'); //process register item
-//
 Route::post('process_register', 'AppController@processRegister')->name('process_register'); //process register item
 //States
 Route::post('process_states', 'AppController@processStates')->name('process_states'); //process state items
