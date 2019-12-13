@@ -45,9 +45,13 @@ Rate of Return
                 </div>
                 
                 <div style="margin-top: 3%;">
-                    <div style="background-color: #042948;"> <p class="product_icon_title">Retiree Fund</p></div>
+                    <div style="background-color: #042948;"> <p class="product_icon_title">Retiree</p></div>
                     <table id="retiree_fund_table" class="datatable" style=" width: 100%;">
-                        <thead></thead>
+                        <thead><tr>
+                                <th class="text-left">Date</th>
+                                <th class="text-left">Annual Rate of Return</th>
+                                <th class="text-left">3 Year Rolling Average Return</th>
+                            </tr></thead>
                         <tbody></tbody>
                         <tfoot></tfoot>
                     </table>
@@ -63,6 +67,8 @@ Rate of Return
 <script>
 	$(function() {
             rsa = [
+                    { "Date": "31 Dec 2018", "AnnualReturn": 9.62, "AverageRollingReturn": 11.94},
+                    { "Date": "31 Dec 2017", "AnnualReturn": 14.02, "AverageRollingReturn": 10.38 },
                     { "Date": "31 Dec 2016", "AnnualReturn": 12.19, "AverageRollingReturn": 8.50 },
                     { "Date": "31 Dec 2015", "AnnualReturn": 9.67, "AverageRollingReturn": 10.33 },
                     { "Date": "31 Dec 2014", "AnnualReturn": 3.62, "AverageRollingReturn": 12.65 },
@@ -70,7 +76,9 @@ Rate of Return
 		];
                 
                 retiree = [
-			{ "Date": "31 Dec 2016", "AnnualReturn": 11.51, "AverageRollingReturn": 11.02 },
+			{ "Date": "31 Dec 2018", "AnnualReturn": 11.44, "AverageRollingReturn": 12.55 },
+            { "Date": "31 Dec 2017", "AnnualReturn": 14.71, "AverageRollingReturn": 12.40 },
+            { "Date": "31 Dec 2016", "AnnualReturn": 11.51, "AverageRollingReturn": 11.02 },
 			{ "Date": "31 Dec 2015", "AnnualReturn": 11.65, "AverageRollingReturn": 11.83 },
 			{ "Date": "31 Dec 2014", "AnnualReturn": 9.89, "AverageRollingReturn": 12.84 },
 			{ "Date": "31 Dec 2013", "AnnualReturn": 13.95, "AverageRollingReturn": 11.65 }
@@ -86,50 +94,7 @@ Rate of Return
 			$('#rsa_fund_table tbody').append('<tr><td>' + rsa[i].Date + '</td><td>' + rsa[i].AnnualReturn + '</td><td>' + rsa[i].AverageRollingReturn + '</td></tr>');
 		}
                 
-                // display chart				
-//		var plot1 = $.jqplot('rsaChart', [rsaLine1,rsaLine2], {
-//			title:'RSA Annual Rate of Return and 3 Year Rolling Rate of Return',
-//			axes:{
-//			    xaxis:{
-//			    	renderer:$.jqplot.DateAxisRenderer 
-//			    },
-//			    yaxis:{
-//			      	tickOptions:{
-//			        	formatString:'%.2f%'
-//			        }
-//			    }
-//			},
-//			highlighter: {
-//			    show: true,
-//			    sizeAdjust: 7.5
-//			},
-//			cursor: {
-//			    show: false
-//			},
-//			legend: {
-//	            show: true,
-//	            placement: 'outsideGrid'
-//	        },
-//	        seriesDefaults: {
-//	            rendererOptions: {
-//	                smooth: true,
-//	                animation: {
-//	                    show: true
-//	                }
-//	            },
-//	            showMarker: true
-//	        },
-//	        series: [
-//	            {
-//	                label: 'Annual Rate of Return'
-//	            },
-//	            {
-//	                label: '3 Year Rolling Average Return'
-//	            }
-//	        ]
-//		});
-                
-                // Retiree table and graph
+        // Retiree table and graph
 		var retireeLine1 = [];
 		var retireeLine2 = [];
 		

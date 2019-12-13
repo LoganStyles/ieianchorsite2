@@ -39,7 +39,7 @@ Dashboard
                                 <div class="display">
                                     <div class="number">
                                         <h3 class="font-green-sharp">
-                                            <span data-counter="counterup" data-value="{{$prices->fund1}}"></span>
+                                            <span data-counter="counterup" data-value=""></span>
                                             <small class="font-green-sharp"></small>
                                         </h3>
                                         <small>RSA Fund I</small>
@@ -55,7 +55,7 @@ Dashboard
                                 <div class="display">
                                     <div class="number">
                                         <h3 class="font-green-sharp">
-                                            <span data-counter="counterup" data-value="{{$prices->fund2}}"></span>
+                                            <span data-counter="counterup" data-value=""></span>
                                             <small class="font-green-sharp"></small>
                                         </h3>
                                         <small>RSA Fund II</small>
@@ -71,7 +71,7 @@ Dashboard
                                 <div class="display">
                                     <div class="number">
                                         <h3 class="font-green-sharp">
-                                            <span data-counter="counterup" data-value="{{$prices->fund3}}"></span>
+                                            <span data-counter="counterup" data-value=""></span>
                                             <small class="font-green-sharp"></small>
                                         </h3>
                                         <small>RSA Fund III</small>
@@ -87,7 +87,7 @@ Dashboard
                                 <div class="display">
                                     <div class="number">
                                         <h3 class="font-green-sharp">
-                                            <span data-counter="counterup" data-value="{{$prices->fund4}}"></span>
+                                            <span data-counter="counterup" data-value=""></span>
                                             <small class="font-green-sharp"></small>
                                         </h3>
                                         <small>RSA Fund IV</small>

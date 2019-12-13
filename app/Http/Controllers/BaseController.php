@@ -29,12 +29,13 @@ class BaseController extends Controller {
         $items = $item . 's';
         $arrays = [];
 
+        
         $moduleitems = DB::table($items)
                 ->leftjoin($itemimages, $items . '.id', '=', $itemimages . '.itemid')
                 ->select($items . '.*', $itemimages . '.filename', $itemimages . '.itemid as imageid', $itemimages . '.alt', $itemimages . '.caption', $itemimages . '.main')
                 ->where('display', '1')
                 ->orderBy('position', 'asc')
-                ->take(10)
+                ->take(15)
                 ->get();
 
         foreach ($moduleitems as $object) {
@@ -131,7 +132,7 @@ class BaseController extends Controller {
                     ->select($items . '.*', $itemimages . '.filename', $itemimages . '.itemid as imageid', $itemimages . '.alt', $itemimages . '.caption', $itemimages . '.main')
                     ->where('display', '1')
                     ->orderBy('position', 'asc')
-                    ->take(10)
+                    ->take(15)
                     ->get();
         }
 
@@ -201,7 +202,7 @@ class BaseController extends Controller {
         if ($item == "download") {
             $items = "downloadcats";
         }
-        $paginateditems = DB::table($items)->where('display', '1')->paginate(10);
+        $paginateditems = DB::table($items)->where('display', '1')->paginate(15);
         return $paginateditems;
     }
 

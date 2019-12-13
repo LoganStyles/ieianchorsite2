@@ -10,26 +10,67 @@ Retire Happy
 
 @section('content')
 
-<div class="container">    
-    <div id='coin-slider'>
-        <a href="#">
-            <img src="{{ asset('/site/img/1524142018.png')}}"/>
-            <span style="text-transform: uppercase;">WOULDN'T YOU LIKE TO RETIRE HAPPY</span>
-        </a>
-        <a href="#">
-            <img src="{{ asset('/site/img/1524141805.png')}}" />
-            <span style="text-transform: uppercase;">Guaranteed maximum return on investment</span>
-        </a>
-        <a href="#">
-            <img src="{{ asset('/site/img/1524141434.png')}}" />
-            <span style="text-transform: uppercase;">Start today to reap huge benefits tomorrow</span>
-        </a>
-        <a href="#">
-            <img src="{{ asset('/site/img/1518515294.png')}}" />
-            <span style="text-transform: uppercase;">CHECK YOUR BALANCE WITH EASE AND WITHOUT STRESS</span>
-        </a>
-    </div>
-</div>
+<div class="slider-container" style="max-height: 380px">
+            <div class="slider-control left inactive"></div>
+            <div class="slider-control right"></div>
+            <ul class="slider-pagi"></ul>
+            <div class="slider">
+                <div class="slide slide-0 active" >
+                    <div class="slide__bg" ></div>
+                    <div class="slide__content">
+                        <svg class="slide__overlay" viewBox="0 0 720 405" preserveAspectRatio="xMaxYMax slice">
+                        <path class="slide__overlay-path" d="M0,0 150,0 500,405 0,405" />
+                        </svg>
+                        <div class="slide__text">
+                            <h2 class="slide__text-heading">Data Recapture Exercise</h2>
+                            <p class="slide__text-desc">Following directives from National Pensions Commission, we are mandated to recapture your data. For more, click the link below</p>
+                            <!--<p class="slide__text-desc">Providing quality service, building good relationships, helping customers efficiently...IEI Anchor Pensions</p>-->
+                            <a class="slide__text-link" href="https://datarecapture.ieianchorpensions.com/" target="_blank">Data Recapture</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide slide-1 ">
+                    <div class="slide__bg"></div>
+                    <div class="slide__content">
+                        <svg class="slide__overlay" viewBox="0 0 720 405" preserveAspectRatio="xMaxYMax slice">
+                        <path class="slide__overlay-path" d="M0,0 150,0 500,405 0,405" />
+                        </svg>
+                        <div class="slide__text">
+                            <h2 class="slide__text-heading">Invest Right, Live Better </h2>
+                            <p class="slide__text-desc">
+                                We apply proven strategies to maximize your average returns thereby achieving your financial goals</p>
+                            <a class="slide__text-link" href="{{url('/investment')}}">Investment Strategy</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide slide-2">
+                    <div class="slide__bg"></div>
+                    <div class="slide__content">
+                        <svg class="slide__overlay" viewBox="0 0 720 405" preserveAspectRatio="xMaxYMax slice">
+                        <path class="slide__overlay-path" d="M0,0 150,0 500,405 0,405" />
+                        </svg>
+                        <div class="slide__text">
+                            <h2 class="slide__text-heading">Live in your world. Play in ours</h2>
+                            <p class="slide__text-desc">With IEI...You are in good hands, because our customers' satisfaction is our goal</p>
+                            <a class="slide__text-link" href="{{url('/faq_site')}}">Client Satisfaction</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide slide-3">
+                    <div class="slide__bg"></div>
+                    <div class="slide__content">
+                        <svg class="slide__overlay" viewBox="0 0 720 405" preserveAspectRatio="xMaxYMax slice">
+                        <path class="slide__overlay-path" d="M0,0 150,0 500,405 0,405" />
+                        </svg>
+                        <div class="slide__text">
+                            <h2 class="slide__text-heading">Pleasing people the world over</h2>
+                            <p class="slide__text-desc">At IEI, We have a personal connection with our customers such that doing business with us is a breeze.</p>
+                            <a class="slide__text-link" href="{{url('/service_site')}}">Building Connections</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 <!-- //middle -->
@@ -48,7 +89,7 @@ Retire Happy
             <div class="col-md-8 col-lg-8 col-sm-12">
                 <div class="col-md-12 col-lg-12 "col-sm-12>
                     <div class="col-md-4 col-lg-4 col-sm-12 w3_agile_services_grid">
-                        <a target="_blank" href="{{url('http://ffpro.ieianchorpensions.com/pfaweb/')}}">
+                        <a target="_blank" href="{{url('https://ffpro.ieianchorpensions.com/pfaweb/')}}">
                             <div class="agile_services_grid1" >
                                 <div style="width:100%;">
                                     <div style="width:30%;float: left;"><img  class="products_icon" src="{{ asset('/site/images/statements.png')}}" /></div>
@@ -168,6 +209,7 @@ Retire Happy
         </div>
     </div>
 </div>
+
 
 <!-- gallery -->
 <div class="gallery">

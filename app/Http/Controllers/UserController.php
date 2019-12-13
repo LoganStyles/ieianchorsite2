@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends BaseController {  
     
+    
     public function __construct(){
         parent::__construct();
 //        $this->middleware('auth');
@@ -199,7 +200,7 @@ class UserController extends BaseController {
 
                 /*show dashboard*/
                 return view('/backend/dashboard', [
-                    'prices' => $this->latest_prices,
+//                    'prices' => $this->latest_prices,
                     'page_name' => 'dashboard'
                 ]);
             }else{
@@ -210,7 +211,7 @@ class UserController extends BaseController {
         } else {
             //return back since already logged in
             return view('/backend/dashboard', [
-                    'prices' => $this->latest_prices,
+//                    'prices' => $this->latest_prices,
                     'page_name' => 'dashboard'
                 ]);
         }

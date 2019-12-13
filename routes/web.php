@@ -10,6 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
 Route::get('/', 'AppController@showPage')->name('home');//display the home page
 Route::get('/ops', function () {    return view('backend/login');})->name('login'); //..displays backend login page
 //File downloads
@@ -56,6 +58,5 @@ Route::post('processm', 'AppController@processModule')->name('processm'); //proc
 Route::post('process_usergroup', 'UserController@processUserGroups')->name('process_role')->middleware('auth'); //..create/edit usergroups
 //Feedback
 Route::post('process_feedback', 'AppController@processContact')->name('process_feedback'); //process feedback items
-
 
 Route::post('delete_feedback', 'AppController@destroy')->name('delete_feedback');

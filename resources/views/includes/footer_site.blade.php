@@ -10,6 +10,7 @@
                     <li><a target="_blank" href="{{url('https://ubapensions.com/')}}">UBA Pensions Custodian Limited</a></li>                            
                     <li><a href="{{url('/faq_site')}}">Frequently Asked Questions</a></li>
                     <li><a href="{{url('/contact/')}}">Contact Us</a></li>
+                    <li><a href="{{url('/non_disclosure_statement/')}}">Non Disclosure Statement</a></li>
                 </ul>
 
             </div>
@@ -113,11 +114,11 @@
 //        }
 </script>
 
+
 <script src="{{asset('/site/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('/assets/global/scripts/app.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('/assets/pages/scripts/components-date-time-pickers.min.js')}}" type="text/javascript"></script>
-
 
 
 <script src="{{asset('/site/js/datatables/jquery.dataTables.min.js')}}"></script>

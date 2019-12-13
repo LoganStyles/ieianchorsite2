@@ -69,6 +69,7 @@ class AppController extends BaseController {
         return response()->file($pathToFile);
     }
 
+
     public function fetchHomeData() {
         $home_data = $this->getHomePageData();
         return json_encode($home_data);
@@ -97,6 +98,7 @@ class AppController extends BaseController {
         $res = (array) $items;
         return json_encode($res);
     }
+
 
     public function showPage($page = 'index', $sub_item = NULL, $data = []) {
         /* if its an admin page check if logged in, then redirect to requested page */
@@ -128,7 +130,8 @@ class AppController extends BaseController {
                 case 'careers':
                 case 'feedback':
                     $data['states'] = $this->getDBData('ref_states_team', $sub_item, true);
-                    break;
+                    break;            
+                    
 
                 case 'states':
                     $this->checkLoggedStatus();
@@ -190,6 +193,7 @@ class AppController extends BaseController {
             'phone' => 'required|numeric',
             'subject' => 'required'
         ]);
+        
         //clean with Purifier facade            
         $cleaned_name = Purifier::clean($request['name']);
         $cleaned_pin = Purifier::clean($request['pin']);
@@ -589,7 +593,7 @@ class AppController extends BaseController {
         $data['resultitems'] = $result;
         $data['siteitems'] = $this->getDBData('site');
         $data['services'] = $this->getDBData('service');
-        $data['newsitem'] = $this->latest_news;
+        // $data['newsitem'] = $this->latest_news;
         $path = '/site/' . $page;
 
         return view($path, [

@@ -28,6 +28,7 @@ function fetchLatestPrices($last_id) {
     });
 }
 
+
 function fetchPageDetails($page) {
     $.ajax({
         url: BASEURL + '/pagedata',
@@ -84,6 +85,7 @@ function fetchPageDetails($page) {
         }
     });
 }
+
 
 function fetchPageDetailsNoImages($page) {
     $.ajax({
@@ -183,12 +185,12 @@ $(document).on('ready', function () {
         $(window).load(function () {
             $('#myModal').modal('show');
         });
-        $('#coin-slider').coinslider({
-          width: 1262,
-            height: 300,
-            navigation: false,
-            delay: 5000
-        });
+//        $('#coin-slider').coinslider({
+//          width: 1262,
+//            height: 300,
+//            navigation: false,
+//            delay: 5000
+//        });
 
         //FETCH AWARDS,TESTIMONIALS,SERVICES,BANNERS FOR HOME PAGE
         $.ajax({
@@ -238,7 +240,7 @@ $(document).on('ready', function () {
                             case 'banner':
                                 banner_count++;
                                 filename = home_data[i].filename;
-                                url = home_data[i].url;
+                                url = "https://datarecapture.ieianchorpensions.com/";
                                 banner_list = '<a href="' + url + '" target="_blank">';
                                 banner_list += '<img src="' + IMG_URL + '/' + filename + '" style="max-width: 100%;" alt="" class="img-responsive" />';
                                 banner_list += '</a>';

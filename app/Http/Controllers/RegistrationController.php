@@ -19,7 +19,7 @@ class RegistrationController extends Controller
      */
     public function index()
     {
-        //
+        
     }
     
     public function newClient(Request $request) {
@@ -72,6 +72,7 @@ class RegistrationController extends Controller
             } else {
                 $msg .= "but there was an error uploading the file. ";
             }
+            
             //save the image                
             $moduleimage->filename = $newfilename;
             $moduleimage->itemid = $moduleitem->id;

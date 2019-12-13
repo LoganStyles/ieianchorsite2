@@ -11,6 +11,7 @@
         <!-- //custom-theme -->
         <link href="{{asset('/site/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" media="all" />
         <link href="{{asset('/site/css/style.min.css')}}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{asset('/assets/global/slider/styles.css')}}" rel="stylesheet" type="text/css" />
         <link rel='stylesheet' href="{{ asset('/site/css/dscountdown.css')}}" type='text/css' media='all' />
         <link href="{{asset('/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')}}" rel="stylesheet" type="text/css" />
         <!-- gallery -->
@@ -24,8 +25,9 @@
         <!--coin slider-->
         <!--coin slider-->
         <script type="text/javascript" src="{{ asset('/site/js/jquery-2.1.4.min.js')}}"></script>
-<script src="{{asset('/assets/global/coin-slider/coin-slider.min.js')}}" type="text/javascript"></script>
-        <link href="{{asset('/assets/global/coin-slider/coin-slider-styles.css')}}" rel="stylesheet" />
+        <script type="text/javascript" src="{{asset('/assets/global/slider/slider.js')}}"></script>
+<!--        <script src="{{asset('/assets/global/coin-slider/coin-slider.min.js')}}" type="text/javascript"></script>
+        <link href="{{asset('/assets/global/coin-slider/coin-slider-styles.css')}}" rel="stylesheet" />-->
         <style>
             .dataTables_filter, .dataTables_length, .dataTables_info, .dataTables_paginate {
                 /*display: none;*/
@@ -78,7 +80,7 @@
             </div>
             <div class="w3layouts_header_left">
                 <ul>
-                    <li><a target="_blank" title="RSA Account Login" href="http://ffpro.ieianchorpensions.com/pfaweb/">RSA Account Login</a></li>
+                    <li><a target="_blank" title="RSA Account Login" href="https://ffpro.ieianchorpensions.com/pfaweb/">RSA Account Login</a></li>
                     <li><a target="_blank" title="Register With Us" href="{{url('/register/')}}">Register With Us</a></li>
                 </ul>
 
@@ -94,7 +96,7 @@
                                 <div class="header-contact-detail-title">Head Office</div> 
                                 <div class="w3l_header_contact_details_agile-info_inner">22, Otukpo Street, Off Gimbiya Street, Area 11, Garki, Abuja, Nigeria </div><br>
                                 <div class="w3l_header_contact_details_agile-info_inner"><strong>Email:</strong><br>cservice@ieianchorpensions.com </div><br>
-                                <div class="w3l_header_contact_details_agile-info_inner"><strong>Call:</strong>08165722731, 08078450652 </div>
+                                <div class="w3l_header_contact_details_agile-info_inner"><strong>Call:</strong>08165722731, 08139882060  </div>
 
                             </div>
                         </div>
@@ -174,11 +176,9 @@
                                 echo "active";
                             }
                             ?> dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span data-hover="Services">Services</span> <b class="caret"></b></a>
+                                <a href="{{url('/service_site')}}" class="dropdown-toggle" data-toggle="dropdown"><span data-hover="Services">Services</span> <b class="caret"></b></a>
                                 <ul class="dropdown-menu agile_short_dropdown" id="services_dropdown">
                                     <!--append ajax fetched services here-->
-
-
                                 </ul>
                             </li>
 
@@ -211,8 +211,9 @@
                                     <li><a href="{{url('/financial_site')}}">Financial Reports</a></li>
                                     <li><a href="{{url('/rate_of_return')}}">Rate of Return</a></li>
                                     <li><a href="{{url('/unit_price/')}}">Unit Prices</a></li>
-                                    <li><a href="{{url('http://ffpro.ieianchorpensions.com/pfaweb/')}}">Online Statement</a></li>
+                                    <li><a href="{{url('https://ffpro.ieianchorpensions.com/pfaweb/')}}">Online Statement</a></li>
                                     <li><a href="{{url('/show_pension_calculator')}}">Pension Calculator</a></li>
+                                    <li><a href="{{url('/download/Corporate-Governance/')}}">&nbsp; Corporate Governance Statement&nbsp; </a></li>
                                 </ul>
                             </li> 
 
@@ -233,6 +234,11 @@
                                 echo "active";
                             }
                             ?>"><a href="{{url('/careers/')}}"><span data-hover="Careers">Careers</span></a></li>
+                            <li class="<?php
+                            if ($page == "careers") {
+                                echo "active";
+                            }
+                            ?>"><a target="_blank" href="https://datarecapture.ieianchorpensions.com/"><span data-hover="Data Recapture">Data Recapture</span></a></li>
 
                         </ul>
                     </nav>
